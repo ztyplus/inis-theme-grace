@@ -1,0 +1,74 @@
+
+pre code.hljs {
+	display:block;
+	overflow-x:auto;
+	padding:0 1em;
+}
+code.hljs {
+	padding:3px 5px;
+  margin-bottom: .5rem;
+  max-height: 800px;
+  /* font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace; */
+}
+.hljs {
+	/* background:#21252a; */
+	color:#ddd;
+}
+.hljs-keyword,.hljs-literal,.hljs-name,.hljs-selector-tag,.hljs-strong,.hljs-tag {
+	color:#f92672
+}
+.hljs-code {
+	color:#66d9ef
+}
+.hljs-attribute,.hljs-link,.hljs-regexp,.hljs-symbol {
+	color:#bf79db
+}
+.hljs-addition,.hljs-built_in,.hljs-bullet,.hljs-emphasis,.hljs-section,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-string,.hljs-subst,.hljs-template-tag,.hljs-template-variable,.hljs-title,.hljs-type,.hljs-variable {
+	color:#a6e22e
+}
+.hljs-class .hljs-title,.hljs-title.class_ {
+	color:#fff
+}
+.hljs-comment,.hljs-deletion,.hljs-meta,.hljs-quote {
+	color:#75715e
+}
+.hljs-doctag,.hljs-keyword,.hljs-literal,.hljs-section,.hljs-selector-id,.hljs-selector-tag,.hljs-title,.hljs-type {
+	font-weight:700
+}
+.hljs ul{margin:0 !important;list-style:decimal-leading-zero}
+.hljs ul li{padding:5px!important;line-height:14px}
+.hljs ul li::marker{color:#999}
+pre {
+  background-color: #222;
+  overflow: auto;
+  border-radius: 5px;
+  overflow-x: hidden;
+}
+
+code::-webkit-scrollbar {
+  width: 2px;
+  height: 0px;
+}
+code::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px var(--theme-color-1);
+  background: #bbb5b5;
+}
+
+code::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px var(--theme-color-1);
+  border-radius: 5px;
+  background: var(--theme-color-1);
+}
+code ul {
+  padding-left: 30px!important;
+}
+.article pre .pre-head{color:white;background:#0d0d0d;height:30px}
+.article pre .pre-head:before{position:relative;top:10px;left:10px;z-index:2;-webkit-border-radius:50%;border-radius:50%;background:#fc625d;-webkit-box-shadow:20px 0 #fdbc40,40px 0 #35cd4b;box-shadow:20px 0 #fdbc40,40px 0 #35cd4b;content:" ";display: block;width: 1em;height: 1em;}
+.article pre:hover .pre-head .code-language{opacity:1;transition:all .3s ease}
+.article pre:hover .pre-head .copy{opacity:1;transition:all .6s ease}
+.article pre .pre-head > p{display:flex;justify-content:center;margin-top:-5px!important}
+.article pre .pre-head .code-language{opacity:0;font-weight:bold;font-size:.9em;font-family:Ubuntu,sans-serif;transition:all .3s ease}
+ .copy{opacity:0;position:absolute;right:10px;border:1px solid white;padding:0 10px;border-radius:4px;margin-top:-2px;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;top: 0;}
+ .article pre .pre-head p {line-height:0;color: #ddd;font-size:.875rem;font-weight: 500;position: relative;}
+/* 代码框功能美化 - 结束 */

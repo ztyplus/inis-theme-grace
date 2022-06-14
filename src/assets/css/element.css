@@ -1,0 +1,55 @@
+.cus-dialog {
+    width: 95%!important;
+    max-width: 500px;
+    padding: 0 2rem 2rem;
+    border-radius: 10px!important; 
+    background-color: var(--card-bg-color)!important;
+}
+.el-dialog {
+    padding: 0 1rem 2rem;
+    background-color: var(--card-bg-color)!important;
+  }
+.el-aside {
+    overflow: visible!important;
+}
+.percentage-value {
+    display: block;
+    margin-top: 10px;
+    font-size: 28px;
+}
+.percentage-label{
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+}
+.el-alert {
+    background-color: var(--alert-success-bg-color)!important;
+}
+.el-pager li,.btn-next,.btn-prev {
+    background-color:var(--item-bg-color)!important;
+    color: var(--card-title-color)!important;
+}
+.el-pager .is-active {
+    background-color:#409eff!important;
+}
+.article .el-divider__text {
+    background-color: var(--card-bg-color)!important;
+    color: var(--card-title-color)!important;
+    font-size: .8rem;
+}
+.article-content img{
+    display: block;
+    margin: 0 auto;
+    max-height: 700px;
+    max-width: 100%;
+}
+.article-content video{
+    max-width: 100%;
+    width: 100%;
+}
+@media(max-width:550px) {
+    .el-row .el-col {
+      max-width: 100%!important;
+      flex: 0 0 100%;
+    }
+  }
