@@ -11,13 +11,13 @@
           <el-button class="mr-1" type="success" v-if="is_login" @click="methods.logout">登出</el-button>
           <el-divider direction="vertical" />
           <el-tooltip content="2251513837" placement="top">
-            <span @click="methods.copy('2251513837')"><img class="wh-100" src="@/assets/images/qq.svg"></span>
+            <span @click="methods.copy('2251513837')"><svg-icon class="wh-100" file-name="qq"></svg-icon></span>
           </el-tooltip>
           <el-tooltip content="yang2210670" placement="top" >
-            <span @click="methods.copy('yang2210670')"><img class="wh-100" src="@/assets/images/wechat.svg"></span>
+            <span @click="methods.copy('yang2210670')"><svg-icon class="wh-100" file-name="wechat"></svg-icon></span>
           </el-tooltip>
           <el-tooltip content="yang2210670@163.com" placement="top">
-            <span @click="methods.copy('yang2210670@163.com')"><img class="wh-100" src="@/assets/images/email.svg"></span>
+            <span @click="methods.copy('yang2210670@163.com')"><svg-icon class="wh-100" file-name="email"></svg-icon></span>
           </el-tooltip>
         </div>
         <p>知不可乎骤得，托遗响于悲风</p>

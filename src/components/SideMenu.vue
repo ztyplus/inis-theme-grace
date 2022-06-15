@@ -9,31 +9,31 @@
         background-color="none"
         >
             <el-menu-item index="index" @click="methods.close('index')">
-                <img src="@/assets/images/index.svg">
+                <svg-icon file-name="index"></svg-icon>
                 <span>首页</span>
             </el-menu-item>
             <el-menu-item index="post" @click="methods.close('post')">
-                <img src="@/assets/images/article.svg">
+                <svg-icon file-name="article"></svg-icon>
                 <span>文章</span>
             </el-menu-item>
             <el-menu-item v-if="is_login" index="diary" @click="methods.close('diary')">
-                <img src="@/assets/images/diary.svg">
+                <svg-icon file-name="diary"></svg-icon>
                 <span>日记</span>
             </el-menu-item>
             <el-menu-item index="albumlist" @click="methods.close('albumlist')">
-                <img src="@/assets/images/camera.svg">
+                <svg-icon file-name="camera"></svg-icon>
                 <span>相册</span>
             </el-menu-item>
             <el-menu-item index="talks" @click="methods.close('talks')">
-                <img src="@/assets/images/talks.svg">
+                <svg-icon file-name="talks"></svg-icon>
                 <span>说说</span>
             </el-menu-item>
             <el-menu-item index="timeaxis" @click="methods.close('timeaxis')">
-                <img src="@/assets/images/guidang.svg">
+                <svg-icon file-name="guidang"></svg-icon>
                 <span>归档</span>
             </el-menu-item>
             <el-menu-item index="links" @click="methods.close('links')">
-                <img src="@/assets/images/links.svg">
+                <svg-icon file-name="links"></svg-icon>
                 <span>友链</span>
             </el-menu-item>
         </el-menu>
@@ -127,7 +127,7 @@ export default {
         width: 100%;
         height: 100%;
     }
-    img {
+    svg {
         width: 40px;
         height: 40px;
     }

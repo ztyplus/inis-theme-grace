@@ -45,6 +45,7 @@ const routes = [
             {
                 name: 'talks',
                 path: '/talks',
+                meta: { keepAlive: true,css: "talk-pages"},
                 component: () => import('@/views/pages/Talks'),
             },
             {

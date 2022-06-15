@@ -3,15 +3,15 @@
     <div class="tool">
       <!-- <el-tooltip content="清除缓存" placement="left"> -->
         <el-button type="primary" plain @click="methods.clearStorage">
-          <img class="wh-100" src="@/assets/images/refresh.svg">
+          <svg-icon class="wh-100" file-name="refresh"></svg-icon>
         </el-button>
       <!-- </el-tooltip> -->
     </div>
     <div class="tool">
       <!-- <el-tooltip content="黑夜模式" placement="left"> -->
-        <el-button type="primary" plain @click="methods.getDay">
-          <img v-if="!day" class="wh-100" src="@/assets/images/sun-icon.svg">
-          <img v-if="day" class="wh-100" src="@/assets/images/moon-icon.svg">
+          <el-button type="primary" plain @click="methods.getDay">
+          <svg-icon v-if="!day" class="wh-100" file-name="sun-icon"></svg-icon>
+          <svg-icon v-if="day" class="wh-100" file-name="moon-icon"></svg-icon>
         </el-button>
       <!-- </el-tooltip> -->
     </div>
@@ -19,7 +19,7 @@
     <div class="tool">
       <!-- <el-tooltip content="回到顶部" placement="left"> -->
         <el-button type="primary" plain @click="methods.goTop">
-          <img class="wh-100" src="@/assets/images/arrow-top.svg">
+          <svg-icon class="wh-100" file-name="arrow-top"></svg-icon>
         </el-button>
       <!-- </el-tooltip> -->
     </div>

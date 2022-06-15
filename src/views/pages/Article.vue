@@ -10,7 +10,7 @@
         <span>字数{{article.font_count}}</span>
       </div>
        <el-divider content-position="right" class="my-2">
-        <span>★ 更新于{{create_time}}</span>
+        <span>★ 更新于{{methods.natureTime(article.create_time)}}</span>
        </el-divider>
     </div>
     <div class="article-content text-left my-2 py-1" v-code-highlight v-html="article.content"></div>
@@ -31,7 +31,6 @@ export default {
     const store = useStore()
     const state = reactive({
       article: null,
-      create_time: null,
     })
     const methods = {
       initData(){
@@ -42,12 +41,14 @@ export default {
         GET('article', {params}).then((res) => {
           if (res.data.code == 200) {
             state.article = res.data.data
-            let timestamp = inisHelper.date.to.time(res.data.data.create_time)
-            state.create_time = inisHelper.time.nature(timestamp,5)
             store.dispatch("headCover", res.data.data.img_src) 
           }
         })
-      }
+      },
+      natureTime(date = null){
+          const time = inisHelper.date.to.time(date)
+          return inisHelper.time.nature(time,5)
+      },
     }
     onMounted(()=>{
       methods.initData()

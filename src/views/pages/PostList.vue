@@ -41,7 +41,7 @@ export default {
     const state = reactive({
       ArticleList: [],
       page: 1,
-      allpage: 2
+      allpage: 0
     })
     const methods = {
       initData(){

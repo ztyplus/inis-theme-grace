@@ -1,3 +1,10 @@
+.main-card {
+    border-radius: 15px;
+    box-shadow: 0px 20px 40px rgb(103 118 128 / 3%);
+    padding: 1rem 1.875rem;
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out; 
+}
 .cus-dialog {
     width: 95%!important;
     max-width: 500px;
@@ -47,6 +54,16 @@
     max-width: 100%;
     width: 100%;
 }
+.talk-box .el-divider {
+    margin: 1rem 0;
+    border-top: 1px var(--border-dashed-color) dashed!important;
+}
+.talk-content p{
+    color: var(--h3-color);
+    line-height: 1.5rem;
+    padding: .5rem 0;
+  }
+.imgbox {border-radius: 10px;overflow: hidden;}
 @media(max-width:550px) {
     .el-row .el-col {
       max-width: 100%!important;

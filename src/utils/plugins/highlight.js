@@ -55,7 +55,7 @@ const highlight = {
     }
 }
 
-const req = require.context('@/assets/images', false, /\.svg$/)
+const req = require.context('@/assets/svg', false, /\.svg$/)
 const requireAll = requireContext => requireContext.keys().map(requireContext)
 requireAll(req)
 
