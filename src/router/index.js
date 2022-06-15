@@ -22,7 +22,7 @@ const routes = [
             {
                 name: 'article',
                 path: '/article/:id',
-                meta: { keepAlive: false},
+                meta: { keepAlive: true},
                 component: () => import('@/views/pages/Article'),
             },
             {
@@ -45,7 +45,7 @@ const routes = [
             {
                 name: 'talks',
                 path: '/talks',
-                meta: { keepAlive: true,css: "talk-pages"},
+                meta: { keepAlive: false,css: "talk-pages"},
                 component: () => import('@/views/pages/Talks'),
             },
             {

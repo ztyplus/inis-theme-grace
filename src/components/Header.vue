@@ -75,7 +75,7 @@ export default {
 .headbox {
   z-index: 9;
   background-color: var(--card-bg-color);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   box-shadow: 0px 20px 40px rgb(103 118 128 / 3%);
   padding: 1.875rem;
   position: relative;

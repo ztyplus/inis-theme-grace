@@ -91,7 +91,7 @@ export default {
     width: 150px;
     height: 150px;
     content: "";
-    background-image: url(@/assets/svg/moon.svg);
+    background-image: url(@/assets/images/moon.svg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -102,7 +102,7 @@ export default {
     width: 150px;
     height: 150px;
     content: "";
-    background-image: url(@/assets/svg/sun.svg);
+    background-image: url(@/assets/images/sun.svg);
     background-repeat: no-repeat;
     background-size: cover;
 }

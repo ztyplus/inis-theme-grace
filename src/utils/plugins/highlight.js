@@ -43,7 +43,7 @@ const highlight = {
             })
             // 复制操作
             el.querySelectorAll('pre').forEach((item)=>{
-                item.onclick = function(){
+                item.firstChild.firstChild.lastChild.onclick = function(){
                     var innerText = item.lastChild.innerText.replace(/\n\n/mg,'\n')
                     // inisHelper.set.copy.text(innerText)
                     const { toClipboard } = useClipboard()

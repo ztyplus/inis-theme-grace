@@ -17,6 +17,8 @@
   --theme-color-2:  rgba(121, 188, 255, 0.1);
   --border-color:  #ebedee;
   --border-dashed-color: #E4E7ED;
+  --main-button-color: #9aa3af;
+  --border-radius: 5px;
 
   --box-shadow: 0px 0px 20px -5px rgb(158 158 158 / 55%);
 }
@@ -40,6 +42,7 @@
   --theme-color-2:  rgba(121, 188, 255, 0.1);
   --border-color:  #606266;
   --border-dashed-color: #A8ABB2;
+  --main-button-color: #38485d;
 
 
   --box-shadow: 5px 5px 20px 5px rgb(110 119 128 / 22%);
@@ -145,6 +148,9 @@ html,body {
 .pl-1 {
   padding-left: .5rem!important;
 }
+.pr-1 {
+  padding-right: .5rem!important;
+}
 .pl-2 {
   padding-left: 1rem!important;
 }
@@ -176,7 +182,6 @@ html,body {
   box-sizing: border-box;
 }
 .border-none {
-  border: none !important;
 }
 .flex-center {
   display: flex;
@@ -205,10 +210,15 @@ html,body {
   content: '';
   display: block;
 }
-.layout-169 {
+.layout-169,.layout-50{
   box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
+}
+.layout-50:after {
+  padding-top: 50%;
+  content: '';
+  display: block;
 }
 .layout-card {
   display: inline-block;
@@ -237,7 +247,7 @@ html,body {
 .item-title::after{
   content: '';
   background-color: #409EFF;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   height: 5px;
   position: absolute;
   bottom: -2px;
@@ -290,49 +300,33 @@ html,body {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
     background-color: var(--bg-brand-color);
 }
+@-webkit-keyframes rotation {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(360deg);
+  }
 
+}
+.rotate {
+  -webkit-transform: rotate(360deg);
+  animation: rotation 3s linear infinite;
+  -moz-animation: rotation 3s linear infinite;
+  -webkit-animation: rotation 3s linear infinite;
+  -o-animation: rotation 3s linear infinite;
+}
 @media(max-width:992px) {
-  .container {
-    padding: 0 1rem;
-  }
-  .headbox {
-    padding: 1.2rem!important;
-  }
+
 }
 @media(max-width:1120px) {
-  .container {
-    width: 95%!important;
-    padding: 0 1rem;
-  }
+
 }
 
 @media(max-width:768px) {
   html {font-size:14px}
-  .container {
-    width: 100%!important;
-    padding: 0 .5rem;
-    box-sizing: border-box;
-    margin-top: 6rem!important;
-  }
-  .topback {
-    height: 12rem!important;
-  }
-  .sidetool {
-    bottom: 2rem!important;
-  }
-  .el-aside {
-    position: fixed;
-    left: 0;
-    z-index: 999;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .main {
-    padding: .8rem!important;
-  }
+
 }
 @media(min-width:768px) {
-  .wide_switch {
-    display: none;
-  }
+
 }

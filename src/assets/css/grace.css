@@ -1,5 +1,5 @@
 .main-card {
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     box-shadow: 0px 20px 40px rgb(103 118 128 / 3%);
     padding: 1rem 1.875rem;
     position: relative;
@@ -12,10 +12,29 @@
     border-radius: 10px!important; 
     background-color: var(--card-bg-color)!important;
 }
+.sendtalk-box {
+    width: 95%!important;
+    padding: 0 2rem 2rem;
+    max-width: 1140px;
+    border-radius: var(--border-radius)!important; 
+    background-color: var(--card-bg-color)!important;
+}
+.sendtalk-box .el-dialog__footer {
+  padding-bottom: 0!important;
+}
+.el-dialog__title {
+    font-family: 700;
+    font-size: 1.5rem;
+    color: var(--h1-color)!important;
+}
+.el-textarea__inner {
+    background-color: var(--main-bg-color)!important;
+    min-height: 200px!important;
+}
 .el-dialog {
     padding: 0 1rem 2rem;
     background-color: var(--card-bg-color)!important;
-  }
+}
 .el-aside {
     overflow: visible!important;
 }
@@ -63,10 +82,75 @@
     line-height: 1.5rem;
     padding: .5rem 0;
   }
+.item-text {
+color: var(--h2-color);
+font-size: 0.8rem;
+font-weight: 300; 
+}
+.el-upload-list__item,.el-upload--picture-card {
+  height: 80px!important;
+  width: 80px !important;
+}
+.el-upload-list--picture-card .el-upload-list__item-thumbnail {object-fit: cover!important;}
+.el-upload-list {width: 100%;border: 1px solid var(--border-color);border-radius: var(--border-radius);padding: .5rem!important;box-sizing: border-box;}
 .imgbox {border-radius: 10px;overflow: hidden;}
 @media(max-width:550px) {
     .el-row .el-col {
       max-width: 100%!important;
       flex: 0 0 100%;
     }
+    .el-upload-list__item,.el-upload--picture-card {
+      height: 60px!important;
+      width: 60px !important;
+    }
   }
+
+  @media(max-width:992px) {
+    .container {
+      padding: 0 1rem;
+    }
+    .headbox {
+      padding: 1.2rem!important;
+    }
+  }
+  @media(max-width:1120px) {
+    .container {
+      width: 95%!important;
+      padding: 0 1rem;
+    }
+  }
+  
+  @media(max-width:768px) {
+    html {font-size:14px}
+    .container {
+      width: 100%!important;
+      padding: 0 .5rem;
+      box-sizing: border-box;
+      margin-top: 6rem!important;
+    }
+    .el-dialog__body {
+        padding: 0!important;
+    }
+    .topback {
+      height: 12rem!important;
+    }
+    .sidetool {
+      bottom: 2rem!important;
+    }
+    .el-aside {
+      position: fixed;
+      left: 0;
+      z-index: 999;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .main,.talk-box {
+      padding: .8rem!important;
+    }
+  }
+  @media(min-width:768px) {
+    .wide_switch {
+      display: none;
+    }
+  }
+  

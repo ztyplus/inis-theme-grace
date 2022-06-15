@@ -5,46 +5,199 @@
         <img :src="talk.expand.user.head_img" class="br-50">
         <div class="info pl-1">
           <div class="talk-name">{{talk.nickname}}</div>
-          <span class="talk-time">{{methods.natureTime(talk.create_time)}}</span>
+          <span class="item-text">{{methods.natureTime(talk.create_time)}}</span>
         </div>
       </div>
       <el-divider border-style="dashed" />
       <div class="talk-content text-left" v-html="talk.content"></div>
+      <div class="talk-info text-left mt-2 flex">
+        <span class="justify-center pr-1">
+          <svg-icon file-name="os" fill="var(--h2-color)"></svg-icon>
+          <span class="item-text">{{talk.expand.agent.os.system}}</span>
+        </span>
+        <span class="justify-center pr-1">
+          <svg-icon file-name="browser" fill="var(--h2-color)"></svg-icon>
+          <span class="item-text">{{talk.expand.agent.browser.kernel}}</span>
+        </span>
+        <span class="justify-center pr-1">
+          <svg-icon file-name="ip" fill="var(--h2-color)"></svg-icon>
+          <span class="item-text">{{loction[talk.ip]}}</span>
+        </span>
+      </div>
     </div>
-    <svg-icon file-name="sun"></svg-icon>
+    <div class="more-load cursor-pointer" @click="methods.loadTalks">
+      <div class="justify-center h-100">
+        <svg-icon file-name="more" :class="isLoading ? 'rotate': ''"></svg-icon>
+        <span v-if="!stopLoding" class="pl-1 item-text">加载更多...</span>
+        <span v-if="stopLoding" class="pl-1 item-text">没有更多内容了</span>
+      </div>
+    </div>
   </div>
+
+<el-dialog
+    :model-value="send_talk"
+    width="80%"
+    :show-close="false"
+    custom-class="sendtalk-box"
+    center
+    title="发布动态"
+    @close="methods.colseDialog"
+  >
+    <el-form-item>
+      <el-input v-model="talkcontent" type="textarea" placeholder="说些什么吧..." />
+    </el-form-item>
+
+    <el-upload
+      :action="api_url"
+      list-type="picture-card"
+      :file-list="fileList"
+      :multiple="true"
+      accept="image/*,video/*"
+      :limit="9"
+      :on-exceed="methods.exceed"
+      :headers="upload_headers"
+      :data="upload_data"
+      :handleStart="methods.handleStart"
+      :on-success="methods.handleSuccess"
+      :on-error="methods.handleError"
+      :on-remove="methods.handleRemove"
+      :before-upload="methods.beforeUpload"
+    >
+    <svg-icon file-name="plus"></svg-icon>
+  </el-upload>
+
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button type="primary" @click="methods.submit">发布</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
 </template>
 
 <script>
 import { reactive, toRefs,onMounted } from 'vue'
 import { GET } from '@/utils/http/request'
 import { inisHelper } from '@/utils/helper'
+import SvgIcon from '@/components/tool/SvgIcon.vue'
+import { mapGetters,useStore } from 'vuex'
 export default {
+  components: { SvgIcon },
+  computed: {
+      ...mapGetters([
+          'send_talk'
+      ]),
+  },
   setup () {
+    const store = useStore()
     const state = reactive({
+      upload_headers: {},
+      upload_data: {"mode":"upload"},
       talkList: [],
       page: 1,
-      allpage: 0
+      allpage: null,
+      isLoading: false,
+      stopLoding: false,
+      loction: {},
+      talkcontent: "",
+      api_url : INIS.api + '/file',
+      fileList: [], 
+      upload_url:[]
     })
     const methods = {
       initData(){
-        methods.getLinks()
+        state.upload_headers = {'login-token':inisHelper.get.storage("login")['login-token']}
+        methods.getTalks(1)
       },
-      getLinks(){
+      getTalks(page){
+        state.isLoading = true
         state.ArticleList = []
-        let params = {type:'moving',limit:2,page:state.page}
+        let params = {type:'moving',limit:5,page}
         GET('comments', {params}).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page
+            res.data.data.data.forEach(item => {
+              methods.loction(item.ip)
+            });
             state.talkList = state.talkList.concat(res.data.data.data)
-            console.log(state.talkList[0])
+            if (state.page >= state.allpage) state.stopLoding = true
+            state.isLoading = false
           }
         })
+      },
+      loadTalks(){
+        state.page += 1
+        if(state.page <= state.allpage) {
+          methods.getTalks(state.page)
+        }
+      },
+      async loction(ip){
+        let params = {ip}
+        await GET('location',{params}).then((res)=>{
+          if (res.data.code == 200) {
+            var data = res.data.data 
+            if (data.province || data.city || data.district) {
+              state.loction[ip] = methods.empty(data.province) + methods.empty(data.city) + methods.empty(data.district)
+            }else {
+              state.loction[ip] = "未知地点"
+            }
+          }
+        }) 
+
+      },
+      empty(item){
+        if(item) return item
+        else return ""
       },
       natureTime(date = null){
           const time = inisHelper.date.to.time(date)
           return inisHelper.time.nature(time,5)
       },
+      colseDialog(){
+        store.dispatch("swTalk")
+      },
+      exceed(){
+        ElNotification({
+          title: '文件添加失败',
+          message: "最多只能上传9个文件",
+          type: 'warning',
+        })  
+      },
+      
+      handleSuccess(res, file) {
+        console.log(res.data,file.name)
+        if(res.code == 200) {
+            state.upload_url.push({
+            url:res.data,
+            name: file.name,
+          })
+        }else {
+          ElNotification({
+            title: '文件添加失败',
+            message: res.msg,
+            type: 'warning',
+          })
+        }
+        // console.log(state.upload_url)
+      },
+      beforeUpload(rawFile){
+        // console.log("beforeUpload",rawFile)
+        setTimeout(() => {},1000)
+      },
+      handleRemove(file, fileList) {
+        state.upload_url.splice(file.name,1)
+        console.log("删除后2",state.upload_url)
+      },
+      handleError(err, file) {
+        console.log("上传失败")
+      },
+      handleStart(e){
+        console.log(e)
+        // state.fileList = []
+      },
+      submit(){
+
+      }
     }
     onMounted(()=>{
         methods.initData()
@@ -67,12 +220,15 @@ export default {
       font-size: 0.875rem;
       font-weight: 600;
     }
-    .talk-time {
-      color: var(--h2-color);
-      font-size: 0.8rem;
-      font-weight: 300;      
-    }
   }
+  
+}
+.more-load {
+  border-radius: 10px;;
+  height: 1.5rem;
+  padding: 5px 1rem;
+  display: inline-block;
+  background-color: var(--card-bg-color);
 }
 </style>
 

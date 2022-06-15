@@ -5,4 +5,7 @@ export default {
     headCover(context, params = {}) {
         context.commit('HEADCOVER',params);
     },
+    swTalk(context, params = {}) {
+        context.commit('SWTALK',params);
+    },
 }

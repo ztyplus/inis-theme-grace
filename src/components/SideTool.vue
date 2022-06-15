@@ -1,27 +1,25 @@
 <template>
   <div class="sidetool">
+    <div v-if="is_login && $route.name == 'talks'" class="tool">
+      <el-button type="primary" plain @click="methods.send">
+        <svg-icon class="wh-100" file-name="send"></svg-icon>
+      </el-button>
+    </div>
+    <!-- <div class="tool">
+      <el-button type="primary" plain @click="methods.clearStorage">
+        <svg-icon class="wh-100" file-name="refresh"></svg-icon>
+      </el-button>
+    </div> -->
     <div class="tool">
-      <!-- <el-tooltip content="清除缓存" placement="left"> -->
-        <el-button type="primary" plain @click="methods.clearStorage">
-          <svg-icon class="wh-100" file-name="refresh"></svg-icon>
-        </el-button>
-      <!-- </el-tooltip> -->
+        <el-button type="primary" plain @click="methods.getDay">
+        <svg-icon v-if="!day" class="wh-100" file-name="sun-icon"></svg-icon>
+        <svg-icon v-if="day" class="wh-100" file-name="moon-icon"></svg-icon>
+      </el-button>
     </div>
     <div class="tool">
-      <!-- <el-tooltip content="黑夜模式" placement="left"> -->
-          <el-button type="primary" plain @click="methods.getDay">
-          <svg-icon v-if="!day" class="wh-100" file-name="sun-icon"></svg-icon>
-          <svg-icon v-if="day" class="wh-100" file-name="moon-icon"></svg-icon>
-        </el-button>
-      <!-- </el-tooltip> -->
-    </div>
-
-    <div class="tool">
-      <!-- <el-tooltip content="回到顶部" placement="left"> -->
-        <el-button type="primary" plain @click="methods.goTop">
-          <svg-icon class="wh-100" file-name="arrow-top"></svg-icon>
-        </el-button>
-      <!-- </el-tooltip> -->
+      <el-button type="primary" plain @click="methods.goTop">
+        <svg-icon class="wh-100" file-name="arrow-top"></svg-icon>
+      </el-button>
     </div>
   </div>
   <transition name="fade">
@@ -34,9 +32,16 @@
 import { reactive, toRefs,onMounted } from 'vue'
 import { inisHelper } from '@/utils/helper'
 import SwitchDay from '@/components/SwitchDay'
+import { mapGetters,useStore } from 'vuex'
 export default {
   components: {SwitchDay},
+  computed: {
+      ...mapGetters([
+          'is_login'
+      ]),
+  },
   setup(){
+    const store = useStore()
     const state = reactive({
       day: true,
       switchDay: false,
@@ -76,6 +81,9 @@ export default {
         document.body.style.overflow='';
         document.addEventListener("touchmove",mo,false);//禁止页面滑动
       },
+      send(){
+        store.dispatch("swTalk")
+      }
     }
     onMounted(()=>{
       let hour = new Date().getHours()
@@ -106,7 +114,7 @@ export default {
   width: 100%;
   height: 100%;
   padding: 5px;
-  background-color:#409EFF;
+  background-color:var(--main-button-color);
   border: none;
 }
 .tool {

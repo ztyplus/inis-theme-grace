@@ -77,12 +77,12 @@ export default {
 <style lang="less" scoped>
 
 .cover {
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   overflow: hidden;
 }
 .post-card {
   background-color: var(--item-bg-color);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   .blog-content {
     padding: .5rem 1rem;
     span {color: var(--h2-color);font-size: .875rem;font-weight: 300;}

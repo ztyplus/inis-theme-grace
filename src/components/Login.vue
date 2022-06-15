@@ -12,14 +12,14 @@
         <el-form-item>
             <el-input v-model="username" placeholder="管理员账号">
                 <template #prefix>
-                    <el-icon><user-filled /></el-icon>
+                    <svg-icon file-name="admin" fill="var(--h2-color)"></svg-icon>
                 </template>
             </el-input>
         </el-form-item>
         <el-form-item>
             <el-input v-model="password" placeholder="密码" type="password" @keyup.enter="methods.login">
                 <template #prefix>
-                    <el-icon><key /></el-icon>
+                    <svg-icon file-name="password" fill="var(--h2-color)"></svg-icon>
                 </template>
             </el-input>  
         </el-form-item> 

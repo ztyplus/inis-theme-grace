@@ -41,7 +41,7 @@ code.hljs {
 pre {
   background-color: #222;
   overflow: auto;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   overflow-x: hidden;
 }
 
@@ -50,14 +50,14 @@ code::-webkit-scrollbar {
   height: 0px;
 }
 code::-webkit-scrollbar-thumb {
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   -webkit-box-shadow: inset 0 0 5px var(--theme-color-1);
   background: #bbb5b5;
 }
 
 code::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 5px var(--theme-color-1);
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   background: var(--theme-color-1);
 }
 code ul {
