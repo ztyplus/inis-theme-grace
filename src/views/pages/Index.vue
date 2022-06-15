@@ -32,7 +32,7 @@
 
   <div class="card" v-if="TopList.length != 0">
     <h2 class="item-title">站长信息</h2>
-    <div class="about" v-html="About"></div>
+    <div class="about article-content" v-html="About"></div>
   </div>
 
 </template>
@@ -115,6 +115,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url(@/assets/css/markdown.css);
 .card {
   margin-bottom: 1.5rem;
   text-align: left;
