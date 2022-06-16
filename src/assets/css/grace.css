@@ -112,6 +112,9 @@ p::-moz-selection {
 p::-webkit-selection {
   background:var(--theme-color);
 }
+.aside .el-menu .el-menu-item *{
+  width: 100%!important;
+}
 @media(max-width:550px) {
     /* .el-row .el-col {
       max-width: 100%!important;

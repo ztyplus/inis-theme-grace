@@ -79,7 +79,7 @@ export default {
                 store.dispatch("headCover",null)
                 if(state.windowWidth < 760) {
                     // state.isCollapse = !state.isCollapse
-                    // methods.isCollapse() 
+                    methods.isCollapse() 
                 }
             }
         }
@@ -104,6 +104,7 @@ export default {
         margin: .5rem 0;
         height: 5rem;
         width: 5rem;
+        box-sizing: border-box;
         border-radius: var(--border-radius);
         flex-wrap: wrap;
         justify-content: space-evenly;
