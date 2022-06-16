@@ -94,6 +94,9 @@ font-weight: 300;
 .el-upload-list--picture-card .el-upload-list__item-thumbnail {object-fit: cover!important;}
 .el-upload-list {width: 100%;border: 1px solid var(--border-color);border-radius: var(--border-radius);padding: .5rem!important;box-sizing: border-box;}
 .imgbox {border-radius: 10px;overflow: hidden;}
+.el-image-viewer__canvas img {
+  cursor: pointer;
+}
 @media(max-width:550px) {
     .el-row .el-col {
       max-width: 100%!important;

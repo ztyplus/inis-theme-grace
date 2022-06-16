@@ -62,7 +62,6 @@ export default {
           if (res.data.code == 200) {
             state.article = res.data.data
             state.albumlist = res.data.data.expand.images
-            console.log(state.albumlist)
             let timestamp = inisHelper.date.to.time(res.data.data.create_time)
             state.create_time = inisHelper.time.nature(timestamp,5)
             store.dispatch("headCover", res.data.data.img_src) 

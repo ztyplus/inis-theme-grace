@@ -2,8 +2,9 @@
   <div class="demo-image__preview">
     <el-image-viewer
     v-if="imgVisible"
-	    :url-list="srcList"
+	    :url-list="imgList"
       :hideOnClickModal="true"
+      :initial-index="initialIndex"
       @close="methods.closeImg"
       @switch="methods.switchViewer"
     />
@@ -48,15 +49,8 @@ export default {
     const state = reactive({
       article: null,
       imgVisible: false,
-      srcList : [
-  'https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg',
-  'https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg',
-  'https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg',
-  'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
-  'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
-  'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
-  'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
-]
+      initialIndex: 0,
+      imgList : []
     })
     const methods = {
       initData(){
@@ -67,6 +61,9 @@ export default {
         GET('article', {params}).then((res) => {
           if (res.data.code == 200) {
             state.article = res.data.data
+            res.data.data.expand.images.forEach(element => {
+              state.imgList.push(element.src)
+            });
             store.dispatch("headCover", res.data.data.img_src) 
           }
         })
@@ -76,23 +73,20 @@ export default {
           return inisHelper.time.nature(time,5)
       },
       imagePreview(e){
-        state.imgVisible = true
-        console.log(e.target.src)
-          	if (e.target.nodeName == 'IMG') {//判断点击富文本内容为img图片
-   		// ImagePreview({
-   		// 	images:[e.target.currentSrc],  //获取当前图片src
-   		// 	showIndex:false,
-   		// 	loop:false,
-   		// })
-        } else {
-          console.log("点击内容不为img")
+        if (e.target.nodeName == 'IMG') {
+          state.imgList.forEach((item,index)=>{
+            if(e.target.src.indexOf(item) !== -1) {
+              state.initialIndex = index
+            }
+          })
+          state.imgVisible = true
         }
       },
       closeImg(){
         state.imgVisible = false
       },
       switchViewer(){
-        console.log(1)
+        // console.log(1)
       }
     }
     onMounted(()=>{
