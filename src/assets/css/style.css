@@ -74,10 +74,15 @@ html,body {
     -ms-transition: all 0.3s!important;
     transition: all 0.3s!important;
 }
+.wh-50 {
+  width: 50% !important;
+  height: 50% !important;
+}
 .wh-100 {
   width: 100% !important;
   height: 100% !important;
 }
+
 .w-0 {
   width: 0 !important;
 }
@@ -96,6 +101,15 @@ html,body {
 .w-50 {
   width: 50% !important;
 }
+.h-40 {
+  height: 40% !important;
+}
+.h-50 {
+  height: 50% !important;
+}
+.h-60 {
+  height: 60% !important;
+}
 .h-80 {
   height: 80% !important;
 }
@@ -107,6 +121,12 @@ html,body {
 }
 .m-1 {
   margin: .5rem;
+}
+.ml-1 {
+  margin-left: .5rem;
+}
+.ml-2 {
+  margin-left: 1rem;
 }
 .mr-1 {
   margin-right: .5rem;
@@ -182,6 +202,7 @@ html,body {
   box-sizing: border-box;
 }
 .border-none {
+  border: none!important;
 }
 .flex-center {
   display: flex;

@@ -6,6 +6,6 @@ export default {
         state.head_cover = params;
     },
     SWTALK(state, params){
-        state.send_talk = !state.send_talk;
+        state.send_talk = params;
     },
 }

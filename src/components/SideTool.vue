@@ -82,7 +82,7 @@ export default {
         document.addEventListener("touchmove",mo,false);//禁止页面滑动
       },
       send(){
-        store.dispatch("swTalk")
+        store.dispatch("swTalk",true)
       }
     }
     onMounted(()=>{

@@ -97,6 +97,21 @@ font-weight: 300;
 .el-image-viewer__canvas img {
   cursor: pointer;
 }
+.el-message-box {
+  background-color: var(--card-bg-color)!important;
+  border: none !important;
+}
+.el-message-box__title {color: var(--h1-color)!important;}
+.el-textarea__inner,.el-message-box__message p {color: var(--text-color)!important;}
+p::selection {
+  background:var(--theme-color);
+}
+p::-moz-selection {
+  background:var(--theme-color);
+}
+p::-webkit-selection {
+  background:var(--theme-color);
+}
 @media(max-width:550px) {
     /* .el-row .el-col {
       max-width: 100%!important;
