@@ -5,7 +5,7 @@
     <div class="layout-169 text-center">
       <el-carousel :interval="5000" indicator-position="none">
         <el-carousel-item v-for="(item,index) in TopList" :key="index">
-            <div class="banner">
+            <div class="banner cursor-pointer" @click="methods.goArticle(item.id)">
               <div class="wh-100 cover" :style="{'background-image':'url('+item.img_src+')'}" ></div>
               <span class="banner-title">{{ item.title }}</span>
             </div>
@@ -41,9 +41,11 @@
 import { inisHelper } from '@/utils/helper'
 import { reactive,toRefs,onMounted } from 'vue'
 import { GET } from '@/utils/http/request'
+import { useRouter } from "vue-router"
 export default {
   name: "Index",
   setup(){
+    const router = useRouter()
     const state = reactive({
       TopList: [],
       About: "",
@@ -94,6 +96,12 @@ export default {
             }
           })
         }
+      },
+        goArticle(id){
+        router.push({
+          name: 'article',
+          params: {id}
+        })
       },
       localStorage(){
         let TopList = inisHelper.get.storage("TopList")

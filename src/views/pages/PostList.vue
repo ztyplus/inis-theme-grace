@@ -49,7 +49,7 @@ export default {
       },
       getArticle(){
         state.ArticleList = []
-        let params = {where:'is_show,=,1;sort_id,<>,|4|',limit:8,page:state.page}
+        let params = {where:'is_show,=,1;sort_id,<>,|4|;sort_id,<>,|6|',limit:8,page:state.page}
         GET('article/sql', {params}).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page

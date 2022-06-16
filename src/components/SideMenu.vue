@@ -16,7 +16,7 @@
                 <svg-icon file-name="article"></svg-icon>
                 <span>文章</span>
             </el-menu-item>
-            <el-menu-item v-if="is_login" index="diary" @click="methods.close('diary')">
+            <el-menu-item v-if="is_login" index="diarylist" @click="methods.close('diarylist')">
                 <svg-icon file-name="diary"></svg-icon>
                 <span>日记</span>
             </el-menu-item>
@@ -27,10 +27,6 @@
             <el-menu-item index="talks" @click="methods.close('talks')">
                 <svg-icon file-name="talks"></svg-icon>
                 <span>动态</span>
-            </el-menu-item>
-            <el-menu-item index="timeaxis" @click="methods.close('timeaxis')">
-                <svg-icon file-name="guidang"></svg-icon>
-                <span>归档</span>
             </el-menu-item>
             <el-menu-item index="links" @click="methods.close('links')">
                 <svg-icon file-name="links"></svg-icon>

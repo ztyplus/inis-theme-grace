@@ -33,9 +33,7 @@ import { useStore } from "vuex"
 import { reactive, toRefs,onMounted} from "vue"
 import { GET } from '@/utils/http/request'
 import { inisHelper } from "@/utils/helper"
-import iLink from '@/components/tool/Link'
 export default {
-  components: {iLink},
   setup () {
     const route = useRoute()
     const store = useStore()

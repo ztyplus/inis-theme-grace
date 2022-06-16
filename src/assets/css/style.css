@@ -6,6 +6,7 @@
   --h1-color: #000000;
   --h2-color: #3B4B5E;
   --h3-color: #5E6E80;
+  --hover-color: #eff1f5;
   --strong-color: #FEFFFD;
   --quote-color: #303133;
   --strong-color: #34495e;
@@ -145,6 +146,9 @@ html,body {
 }
 .mt-2 {
   margin-top: 1rem;
+}
+.mb-1 {
+  margin-bottom: .5rem;
 }
 .mb-2 {
   margin-bottom: 1rem;

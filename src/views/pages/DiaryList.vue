@@ -8,7 +8,6 @@
     >
       <el-card  @click="methods.goArticle(item.id)">
         <h4 class="mb-1">
-          <span class="mr-1" v-for="(sort,id) in item.expand.sort" :key="id">{{sort.name}}</span>
           {{item.title}}
         </h4>
         <p>{{item.description}}</p>
@@ -39,11 +38,12 @@ export default {
     })
     const methods = {
       initData(){
-        methods.getArticle(1)
+        methods.getDiray(1)
       },
-      getArticle(page){
+      getDiray(page){
         state.isLoading = true
-        let params = {where:'is_show,=,1;',limit:12,page}
+        let params = {where:'is_show,=,1;sort_id,=,|6|',limit:12,page}
+        // let params = {where:'is_show,=,1;',limit:12,page}
         GET('article/sql', {params}).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page
@@ -55,14 +55,14 @@ export default {
       },
       goArticle(id){
         router.push({
-          name: 'album',
+          name: 'diary',
           params: {id}
         })
       },
       loadMore(){
         state.page += 1
         if(state.page <= state.allpage) {
-          methods.getArticle(state.page)
+          methods.getDiray(state.page)
         }
       },
     }

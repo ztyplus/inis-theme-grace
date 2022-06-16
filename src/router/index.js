@@ -26,8 +26,15 @@ const routes = [
                 component: () => import('@/views/pages/Article'),
             },
             {
+                name: 'diarylist',
+                path: '/diarylist',
+                meta: { keepAlive: true},
+                component: () => import('@/views/pages/DiaryList'),
+            },
+            {
                 name: 'diary',
-                path: '/diary',
+                path: '/diary/:id',
+                meta: { keepAlive: false},
                 component: () => import('@/views/pages/Diary'),
             },
             {
@@ -39,7 +46,7 @@ const routes = [
             {
                 name: 'album',
                 path: '/album/:id',
-                meta: { keepAlive: true},
+                meta: { keepAlive: false},
                 component: () => import('@/views/pages/Album'),
             },
             {
@@ -49,21 +56,10 @@ const routes = [
                 component: () => import('@/views/pages/Talks'),
             },
             {
-                name: 'timeaxis',
-                path: '/timeaxis',
-                component: () => import('@/views/pages/TimeAxis'),
-            },
-            {
                 name: 'links',
                 path: '/links',
                 component: () => import('@/views/pages/Links'),
             },
-            // {
-            //     name: 'onlineTest',
-            //     path: '/onlineTest',
-            //     meta: { keepAlive: true,name: '在线测试',parent:"液面监测" },
-            //     component: () => import('@/views/pages/onlineTest'),
-            // },
         ]
     },
     // {

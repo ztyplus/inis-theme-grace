@@ -120,9 +120,11 @@ export default {
         methods.getTalks(1)
       },
       getTalks(page,limit=state.limit,del=false){
-        if(page == 1) state.page = 1
+        if(page == 1) {
+          state.page = 1
         state.isLoading = true
         state.ArticleList = []
+        }
         let params = {type:'moving',limit,page}
         GET('comments', {params}).then((res) => {
           if (res.data.code == 200) {
