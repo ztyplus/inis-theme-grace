@@ -1,7 +1,12 @@
 <template>
   <div class="demo-image__preview">
     <el-image-viewer
-	         :url-list="srcList" />
+    v-if="imgVisible"
+	    :url-list="srcList"
+      :hideOnClickModal="true"
+      @close="methods.closeImg"
+      @switch="methods.switchViewer"
+    />
     <!-- <el-image
       style="width: 100px; height: 100px"
       src="https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg"
@@ -42,6 +47,7 @@ export default {
     const store = useStore()
     const state = reactive({
       article: null,
+      imgVisible: false,
       srcList : [
   'https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg',
   'https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg',
@@ -70,6 +76,7 @@ export default {
           return inisHelper.time.nature(time,5)
       },
       imagePreview(e){
+        state.imgVisible = true
         console.log(e.target.src)
           	if (e.target.nodeName == 'IMG') {//判断点击富文本内容为img图片
    		// ImagePreview({
@@ -77,9 +84,15 @@ export default {
    		// 	showIndex:false,
    		// 	loop:false,
    		// })
-   	} else {
-   		console.log("点击内容不为img")
-   	}
+        } else {
+          console.log("点击内容不为img")
+        }
+      },
+      closeImg(){
+        state.imgVisible = false
+      },
+      switchViewer(){
+        console.log(1)
       }
     }
     onMounted(()=>{
