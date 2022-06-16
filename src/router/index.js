@@ -22,7 +22,7 @@ const routes = [
             {
                 name: 'article',
                 path: '/article/:id',
-                meta: { keepAlive: true},
+                meta: { keepAlive: false},
                 component: () => import('@/views/pages/Article'),
             },
             {

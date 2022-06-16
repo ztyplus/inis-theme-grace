@@ -164,6 +164,7 @@ div.code-toolbar>.toolbar span {
     margin: 0 auto;
     max-height: 450px;
     max-width: 100%;
+    cursor: pointer;
     /*box-shadow: 0 0 10px var(--main-shadow);*/
 }
 .article-content  .dplayer-logo img {

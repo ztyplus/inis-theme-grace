@@ -51,7 +51,7 @@
       :action="api_url"
       list-type="picture-card"
       :file-list="fileList"
-      :multiple="true"
+      :multiple="false"
       accept="image/*,video/*"
       :limit="9"
       :on-exceed="methods.exceed"

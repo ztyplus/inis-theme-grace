@@ -1,4 +1,15 @@
 <template>
+  <div class="demo-image__preview">
+    <el-image-viewer
+	         :url-list="srcList" />
+    <!-- <el-image
+      style="width: 100px; height: 100px"
+      src="https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg"
+      :preview-src-list="srcList"
+      :initial-index="4"
+      fit="cover"
+    /> -->
+  </div>
   <div v-if="article" class="article">
     <div class="head">
       <h2 class="text-left m-0 pt-2 pb-0 border-none">{{article.title}}</h2>
@@ -13,7 +24,7 @@
         <span>★ 更新于{{methods.natureTime(article.create_time)}}</span>
        </el-divider>
     </div>
-    <div class="article-content text-left my-2 py-1" v-code-highlight v-html="article.content"></div>
+    <div class="article-content text-left my-2 py-1" v-code-highlight v-html="article.content" @click="methods.imagePreview"></div>
   </div>
 </template>
 
@@ -31,6 +42,15 @@ export default {
     const store = useStore()
     const state = reactive({
       article: null,
+      srcList : [
+  'https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg',
+  'https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg',
+  'https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg',
+  'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
+  'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+  'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+  'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
+]
     })
     const methods = {
       initData(){
@@ -49,6 +69,18 @@ export default {
           const time = inisHelper.date.to.time(date)
           return inisHelper.time.nature(time,5)
       },
+      imagePreview(e){
+        console.log(e.target.src)
+          	if (e.target.nodeName == 'IMG') {//判断点击富文本内容为img图片
+   		// ImagePreview({
+   		// 	images:[e.target.currentSrc],  //获取当前图片src
+   		// 	showIndex:false,
+   		// 	loop:false,
+   		// })
+   	} else {
+   		console.log("点击内容不为img")
+   	}
+      }
     }
     onMounted(()=>{
       methods.initData()
