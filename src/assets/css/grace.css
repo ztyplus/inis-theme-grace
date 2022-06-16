@@ -98,10 +98,10 @@ font-weight: 300;
   cursor: pointer;
 }
 @media(max-width:550px) {
-    .el-row .el-col {
+    /* .el-row .el-col {
       max-width: 100%!important;
       flex: 0 0 100%;
-    }
+    } */
     .el-upload-list__item,.el-upload--picture-card {
       height: 60px!important;
       width: 60px !important;

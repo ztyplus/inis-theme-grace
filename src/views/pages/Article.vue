@@ -8,13 +8,6 @@
       @close="methods.closeImg"
       @switch="methods.switchViewer"
     />
-    <!-- <el-image
-      style="width: 100px; height: 100px"
-      src="https://p2.qhimg.com/bdm/1024_768_85/t018160b069da5cac0d.jpg"
-      :preview-src-list="srcList"
-      :initial-index="4"
-      fit="cover"
-    /> -->
   </div>
   <div v-if="article" class="article">
     <div class="head">
