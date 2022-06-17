@@ -11,7 +11,7 @@
           {{item.title}}
         </h4>
         <svg-icon v-if="item.opt.auth == 'password'" class="lock" file-name="lock"></svg-icon>
-        <p>{{item.description}}</p>
+        <p class="">{{item.description}}</p>
       </el-card>
     </el-timeline-item>
   </el-timeline>
