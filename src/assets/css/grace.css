@@ -147,7 +147,7 @@ p::-webkit-selection {
   /* border-top: 1px solid #00b8bb41; */
 }
 @media(max-width:550px) {
-    .post-list .el-row .el-col {
+    .post-list .el-row .el-col,.album-list .el-row .el-col {
       max-width: 100%!important;
       flex: 0 0 100%;
     }

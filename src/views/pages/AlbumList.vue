@@ -1,4 +1,5 @@
 <template>
+  <div class="album-list">
     <el-row :gutter="20" class="mt-2">
       <el-col :span="12" mobile class="flex-center" v-for="(item,index) in ArticleList" :key="index">
         <div class="post-card mb-2 cursor-pointer" @click="methods.goArticle(item.id)">
@@ -20,6 +21,7 @@
         </div>
       </el-col>
     </el-row> 
+  </div>
     <el-pagination 
     background  
     layout="prev, pager, next" 

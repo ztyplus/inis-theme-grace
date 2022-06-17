@@ -1,29 +1,35 @@
 <template>
-  <div class="demo-image__preview">
-    <el-image-viewer
-    v-if="imgVisible"
-	    :url-list="imgList"
-      :hideOnClickModal="true"
-      :initial-index="initialIndex"
-      @close="methods.closeImg"
-      @switch="methods.switchViewer"
-    />
-  </div>
-  <div v-if="article" class="article">
+  <div v-if="album" class="album">
     <div class="head">
-      <h2 class="text-left m-0 pt-2 pb-0 border-none">{{article.title}}</h2>
+      <h2 class="text-left m-0 pt-2 pb-0 border-none">{{album.title}}</h2>
       <div class="meta text-left pt-1">
-        <span>发布{{article.create_time.split (" ")[0]}}</span>
+        <span>发布{{album.create_time.split (" ")[0]}}</span>
         <el-divider direction="vertical" />
-        <span>浏览{{article.views}}</span>
-        <el-divider direction="vertical" />
-        <span>字数{{article.font_count}}</span>
+        <span>浏览{{album.views}}</span>
       </div>
        <el-divider content-position="right" class="my-2">
-        <span>★ 更新于{{methods.natureTime(article.create_time)}}</span>
+        <span>★ 更新于{{create_time}}</span>
        </el-divider>
     </div>
-    <div class="article-content text-left my-2 py-1" v-code-highlight v-html="article.content" @click="methods.imagePreview"></div>
+
+    <photo-provider 
+    :photoClosable="true" 
+    :shouldTransition="true"
+    :default-backdrop-opacity="0.9"
+    :loop="true"
+    >
+      <el-row :gutter="0" >
+        <el-col v-for="(item,index) in albumlist" :key="index" :span="12" :xs="24" :md="8">
+          <div class="imgbox layout-169 m-1">
+            <div class="layout-card cursor-pointer ">
+            <photo-consumer :intro="item.src" class="item"  :src="item.src">
+              <img :src="item.src" class="view-box wh-100 transform">
+            </photo-consumer>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
+    </photo-provider>
   </div>
 </template>
 
@@ -40,46 +46,25 @@ export default {
     const route = useRoute()
     const store = useStore()
     const state = reactive({
-      article: null,
-      imgVisible: false,
-      initialIndex: 0,
-      imgList : []
+      album: null,
+      albumlist: [],
+      create_time: null,
     })
     const methods = {
       initData(){
-        methods.getArticle()
+        methods.getAlbum()
       },
-      getArticle(){
+      getAlbum(){
         let params = {id:route.params.id}
         GET('article', {params}).then((res) => {
           if (res.data.code == 200) {
-            state.article = res.data.data
-            res.data.data.expand.images.forEach(element => {
-              state.imgList.push(element.src)
-            });
+            state.album = res.data.data
+            state.albumlist = res.data.data.expand.images
+            let timestamp = inisHelper.date.to.time(res.data.data.create_time)
+            state.create_time = inisHelper.time.nature(timestamp,5)
             store.dispatch("headCover", res.data.data.img_src) 
           }
         })
-      },
-      natureTime(date = null){
-          const time = inisHelper.date.to.time(date)
-          return inisHelper.time.nature(time,5)
-      },
-      imagePreview(e){
-        if (e.target.nodeName == 'IMG') {
-          state.imgList.forEach((item,index)=>{
-            if(e.target.src.indexOf(item) !== -1) {
-              state.initialIndex = index
-            }
-          })
-          state.imgVisible = true
-        }
-      },
-      closeImg(){
-        state.imgVisible = false
-      },
-      switchViewer(){
-        // console.log(1)
       }
     }
     onMounted(()=>{
@@ -91,12 +76,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url(@/assets/css/markdown.css);
-@import url(@/assets/css/code.css);
 h2 {
   color: var(--h1-color);
 }
 .meta {
   span {color: var(--h2-color);font-size: .8rem;font-weight: 500;}
+}
+.PhotoConsumer {
+   img:hover {
+    transform: scale(1.02);
+    filter: saturate(1.75)
+}
 }
 </style>
