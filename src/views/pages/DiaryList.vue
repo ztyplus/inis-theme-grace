@@ -10,6 +10,7 @@
         <h4 class="mb-1">
           {{item.title}}
         </h4>
+        <svg-icon v-if="item.opt.auth == 'password'" class="lock" file-name="lock"></svg-icon>
         <p>{{item.description}}</p>
       </el-card>
     </el-timeline-item>
@@ -50,6 +51,7 @@ export default {
             state.ArticleList = state.ArticleList.concat(res.data.data.data)
             if (state.page >= state.allpage) state.stopLoding = true
             state.isLoading = false
+            console.log(state.ArticleList)
           }
         })
       },
@@ -89,6 +91,11 @@ span {
 }
 p {
   color: var(--h2-color);
+}
+.lock {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
 .more-load {
   border-radius: 10px;;

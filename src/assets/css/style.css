@@ -65,8 +65,6 @@ a {
 html,body {
   min-height: 100vh;
   background-color:var(--main-bg-color);
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  /* font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
 .transform {
     -webkit-transition: all 0.3s!important;

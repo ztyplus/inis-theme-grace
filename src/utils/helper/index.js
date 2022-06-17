@@ -35,7 +35,7 @@ class helper{
 
 
         /* 定义 set 方法 */
-        const setCookie  = (name,value,exdays)   => this.setCookie(name,value,exdays)
+        const setCookie  = (name,value,second)   => this.setCookie(name,value,second)
         const setStorage = (namespace,key,value) => this.setStorage(namespace,key,value)
         const css        = (classOrId,css,cover) => this.setCss(classOrId,css,cover)
         const copyText   = {text: (text,remark)  => this.setCopyText(text,remark)}

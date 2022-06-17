@@ -16,7 +16,7 @@
                 <svg-icon file-name="article"></svg-icon>
                 <span>文章</span>
             </el-menu-item>
-            <el-menu-item v-if="is_login" index="diarylist" @click="methods.close('diarylist')">
+            <el-menu-item index="diarylist" @click="methods.close('diarylist')">
                 <svg-icon file-name="diary"></svg-icon>
                 <span>日记</span>
             </el-menu-item>
@@ -46,15 +46,10 @@
 
 <script>
 import { reactive,toRefs,toRaw,ref } from "vue"
-import { mapGetters,useStore } from "vuex"
+import { useStore } from "vuex"
 import { useRoute,useRouter } from "vue-router"
 export default {
     name: "SideMenu",
-    computed: {
-        ...mapGetters([
-            'is_login'
-        ]),
-    },
     props:["isCollapse"],
     setup(props, ctx){
         const route = useRoute()

@@ -5,7 +5,7 @@ const diary = {
             let diary_text = ""
             el.querySelectorAll('p').forEach((p)=>{
                 if(p.innerText !== "") {
-                    diary_text += "<p><span>" + p.innerText + "</span></p>" ; 
+                    diary_text += "<p>" + p.innerText + "</p>" ; 
                 }
             })
             el.querySelector('p').parentNode.innerHTML = diary_text

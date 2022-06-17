@@ -1,12 +1,12 @@
 <template>
-<el-dialog
-    v-model="showLogin"
-    width="30%"
-    :show-close="false"
-    destroy-on-close
-    custom-class="cus-dialog"
-    center
-  >
+    <el-dialog
+        v-model="showLogin"
+        width="30%"
+        :show-close="false"
+        destroy-on-close
+        custom-class="cus-dialog"
+        center
+    >
     <h2 class="flex-center dialog-title">登录</h2>
     <el-form>
         <el-form-item>
