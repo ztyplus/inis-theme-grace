@@ -135,7 +135,7 @@ export default {
   content: "";
   position: absolute;
   inset: 1px;
-  background: var(--bg-gradient-jet);
+  // background: var(--bg-gradient-jet);
   border-radius: inherit;
   z-index: -1;
 }

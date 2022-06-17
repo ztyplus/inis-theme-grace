@@ -52,12 +52,13 @@ const routes = [
             {
                 name: 'talks',
                 path: '/talks',
-                meta: { keepAlive: false,css: "talk-pages"},
+                meta: { keepAlive: true,css: "talk-pages"},
                 component: () => import('@/views/pages/Talks'),
             },
             {
                 name: 'links',
                 path: '/links',
+                meta: { keepAlive: true},
                 component: () => import('@/views/pages/Links'),
             },
         ]

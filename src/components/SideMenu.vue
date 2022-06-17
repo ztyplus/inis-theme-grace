@@ -91,7 +91,9 @@ export default {
 .el-menu {
     border: none;
     .el-menu-item {
-        background-color: var(--main-bg-color);
+          background: var(--card-bg-color);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow-2);
         margin: .5rem 0;
         height: 5rem;
         width: 5rem;
@@ -104,7 +106,7 @@ export default {
         transition: none;
     }
     .el-menu-item:hover {
-        background-color: var(--hover-color);
+        background-color: var(--main-bg-color);
     }
     .is-active {
         background-image: linear-gradient(142.17deg, #79bbff 6.66%, #337ecc 91.48%);

@@ -82,7 +82,7 @@ html,body {
 .talk-content p{
     color: var(--h3-color);
     line-height: 1.5rem;
-    padding: .5rem 0;
+    padding: 0 0 .5rem;
   }
 .item-text {
 color: var(--h2-color);

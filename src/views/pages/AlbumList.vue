@@ -83,10 +83,11 @@ export default {
   overflow: hidden;
 }
 .post-card {
-  background-color: var(--item-bg-color);
+  background: var(--card-bg-color);
   border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-2);
   .blog-content {
-    padding: .5rem 1rem;
+    padding: .5rem 1rem 1rem;
     span {color: var(--h2-color);font-size: .875rem;font-weight: 300;}
     h4 {color: var(--card-title-color);}
     .desc {
