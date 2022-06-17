@@ -174,7 +174,7 @@ p::-webkit-selection {
   color: var(--h2-color)!important;
 }
 @media(max-width:550px) {
-    .post-list .el-row .el-col,.album-list .el-row .el-col {
+    .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;
       flex: 0 0 100%;
     }
