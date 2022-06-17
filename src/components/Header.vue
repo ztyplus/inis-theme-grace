@@ -1,8 +1,8 @@
 <template>
   <div class="headbox">
     <div class="flex">
-      <div class="avatar">
-        <el-avatar shape="square" :size="100" fit="cover" src="https://inis.ztyang.com/images/wechatavatar.jpg" />
+      <div class="avatar cursor-pointer" @click="methods.index">
+        <el-avatar shape="square" :size="100" fit="cover" src="static/images/avatar.jpg" />
       </div>
       <div class="headinfo">
         <h3 class="title flex">相左</h3>
@@ -33,6 +33,7 @@ import useClipboard from 'vue-clipboard3'
 import { reactive,toRefs } from 'vue'
 import Login from "@/components/Login"
 import { mapGetters } from 'vuex'
+import { useRouter } from 'vue-router'
 export default {
   name: 'Header',
     computed: {
@@ -42,6 +43,7 @@ export default {
     },
   components: { Login },
   setup(){
+    const router = useRouter()
     const { toClipboard } = useClipboard()
     const state = reactive({
         showLogin: false
@@ -54,6 +56,9 @@ export default {
             message: msg,
             type: 'success',
           })     
+      },
+      index(){
+        router.push({name: 'index'})
       },
       swDialog(){
         state.showLogin = !state.showLogin

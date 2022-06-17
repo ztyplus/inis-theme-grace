@@ -44,9 +44,7 @@
   --border-color:  #606266;
   --border-dashed-color: #A8ABB2;
   --main-button-color: #38485d;
-
-
-  --box-shadow: 5px 5px 20px 5px rgb(110 119 128 / 22%);
+  --box-shadow: 5px 5px 20px 5px rgb(11 12 12 / 55%);
 }
 * {
     padding: 0;

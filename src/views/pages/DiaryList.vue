@@ -51,7 +51,6 @@ export default {
             state.ArticleList = state.ArticleList.concat(res.data.data.data)
             if (state.page >= state.allpage) state.stopLoding = true
             state.isLoading = false
-            console.log(state.ArticleList)
           }
         })
       },

@@ -81,12 +81,13 @@ export default {
 <style lang="less" scoped>
 
 .cover {
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
   overflow: hidden;
 }
 .post-card {
   background-color: var(--item-bg-color);
   border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
   .blog-content {
     padding: .5rem 1rem;
     span {color: var(--h2-color);font-size: .875rem;font-weight: 300;}

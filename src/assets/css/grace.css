@@ -208,7 +208,7 @@ p::-webkit-selection {
       width: 100%!important;
       padding: 0 .5rem;
       box-sizing: border-box;
-      margin-top: 6rem!important;
+      padding-top: 6rem!important;
     }
     .el-dialog__body {
         padding: 0!important;
