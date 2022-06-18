@@ -1,5 +1,5 @@
 <template>
-  <el-timeline class="text-left">
+  <el-timeline class="text-left diary-list">
     <el-timeline-item v-for="(item,index) in ArticleList" :key="index"   
     :timestamp="item.create_time.split(' ')[0]" 
     placement="top" 
@@ -90,6 +90,7 @@ span {
 }
 p {
   color: var(--h2-color);
+  font-size: .875rem;
 }
 .lock {
   position: absolute;

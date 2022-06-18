@@ -12,7 +12,8 @@
         <el-divider content-position="right" class="my-2">
         </el-divider>
       </div>
-      <div class="diary-content text-left my-2" v-diary v-html="diary_data.data.content"></div>
+      <div class="diary-content text-left mt-2" v-diary v-html="diary_data.data.content"></div>
+      <span class="date item-text">{{ diary_data.data.create_time }}</span>
     </div>
     <div v-if="diary_data.code == 405">
       <el-dialog
@@ -101,5 +102,10 @@ h2 {
 }
 .meta {
   span {color: var(--h2-color);font-size: .8rem;font-weight: 500;}
+}
+.date {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
 }
 </style>

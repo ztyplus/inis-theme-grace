@@ -5,7 +5,7 @@
         <el-avatar shape="square" :size="100" fit="cover" src="static/images/avatar.jpg" />
       </div>
       <div class="headinfo">
-        <h3 class="title flex">相左</h3>
+        <h3 @click="methods.index" class="title flex cursor-pointer">相左</h3>
         <div class="share flex p-1 pl-0">
           <el-button class="mr-1" type="primary" v-if="!is_login" @click="methods.swDialog">登录</el-button>
           <el-button class="mr-1" type="success" v-if="is_login" @click="methods.logout">登出</el-button>
@@ -20,7 +20,7 @@
             <span @click="methods.copy('yang2210670@163.com')"><svg-icon class="wh-100" file-name="email"></svg-icon></span>
           </el-tooltip>
         </div>
-        <p>知不可乎骤得，托遗响于悲风</p>
+        <p class="w-100">知不可乎骤得，托遗响于悲风</p>
       </div>
     </div>
   </div>
@@ -64,9 +64,20 @@ export default {
         state.showLogin = !state.showLogin
       },
       logout(){
-        inisHelper.clear.storage("login")
-        ElMessage({message: '已退出登录！',type: 'success'})
-        location.reload()
+        ElMessageBox.confirm(
+          '此操作将清除登录信息！',
+          '退出登录',
+          {
+            confirmButtonText: '确认',
+            cancelButtonText: '取消',
+            type: 'warning',
+            showClose: false
+          }
+        ).then(() => {
+          inisHelper.clear.storage("login")
+          ElMessage({message: '已退出登录！',type: 'success'})
+          location.reload()
+        }).catch(() => {})
       }
     }
 
