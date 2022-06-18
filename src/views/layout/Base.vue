@@ -1,8 +1,11 @@
 <template>
   <div class="common-layout flex-center">
     <div class="topback">
-      <div class="headimg"
+      <div v-if="$route.name != 'diary'" class="headimg"
       :style="{'background-image': 'url('+(head_cover?head_cover:'static/images/default-bg.jpg')+')'}"
+      ></div>
+      <div v-if="$route.name == 'diary'" class="headimg"
+      :style="{'background-image': 'url(static/images/note.jpg)'}"
       ></div>
     </div>
     <div class="container">
@@ -124,6 +127,8 @@ export default {
 .footer {
   position: absolute;
   bottom: .5rem;
+  left: 0;
+  right: 0;
   span {
     color: var(--h2-color);
     font-size: .8rem;
