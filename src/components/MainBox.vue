@@ -19,7 +19,7 @@ export default {
 .main {
     background-color: var(--card-bg-color);
 }
-.talk-pages {
+.talk-pages,.message-pages {
     box-shadow: none;
     padding: 0!important;
     background: none!important;

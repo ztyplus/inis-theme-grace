@@ -59,6 +59,12 @@ const routes = [
                 meta: { keepAlive: true},
                 component: () => import('@/views/pages/Links'),
             },
+            {
+                name: 'msgwall',
+                path: '/msgwall',
+                meta: { keepAlive: false,css:"message-pages"},
+                component: () => import('@/views/pages/MsgWall'),
+            },
         ]
     },
     // {

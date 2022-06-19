@@ -63,7 +63,6 @@ export default {
           GET('article/sql', {params}).then((res) => {
             if (res.data.code == 200) {
               state.TopList = res.data.data.data
-              console.log('state.TopList: ', state.TopList);
               res.data.data.time = 3600
             }
           })

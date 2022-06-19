@@ -122,8 +122,8 @@ export default {
       getTalks(page,limit=state.limit,del=false){
         if(page == 1) {
           state.page = 1
-        state.isLoading = true
-        state.ArticleList = []
+          state.isLoading = true
+          state.talkList = []
         }
         let params = {type:'moving',limit,page}
         GET('comments', {params}).then((res) => {
@@ -289,13 +289,6 @@ export default {
     }
   }
   
-}
-.more-load {
-  border-radius: 10px;;
-  height: 1.5rem;
-  padding: 5px 1rem;
-  display: inline-block;
-  background-color: var(--card-bg-color);
 }
 </style>
 

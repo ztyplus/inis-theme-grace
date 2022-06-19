@@ -1,11 +1,11 @@
 <template>
 <el-affix :offset="20">
-    <div class="aside " :class=" ((windowWidth < 760) ? 'transform ': '') + ((isCollapse && windowWidth < 760) ? 'isCollapse': '') ">
-        <el-menu
+    <div class="aside">
+        <el-menu 
+        class="el-menu-vertical"
         active-text-color="#727cf5"
         :default-active="routeName"
         text-color="#fff"
-        class="el-menu-vertical"
         background-color="none"
         >
             <el-menu-item index="index" @click="methods.close('index')">
@@ -31,6 +31,10 @@
             <el-menu-item index="links" @click="methods.close('links')">
                 <svg-icon file-name="links"></svg-icon>
                 <span>友链</span>
+            </el-menu-item>
+            <el-menu-item index="msgwall" @click="methods.close('msgwall')">
+                <svg-icon file-name="msgwall"></svg-icon>
+                <span>留言</span>
             </el-menu-item>
         </el-menu>
         <div class="wide_switch" @click="methods.isCollapse">
@@ -58,7 +62,6 @@ export default {
         const state = reactive({
             isCollapse: ref(props.isCollapse),
             routeName: toRaw(route.name),
-            windowWidth: document.documentElement.clientWidth,
         })
         const methods = {
             isCollapse(){
@@ -155,6 +158,10 @@ export default {
     }
 }
 .isCollapse {
-    transform: translateX(-100%);
+    // transform: translateX(-100%);
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
 }
 </style>

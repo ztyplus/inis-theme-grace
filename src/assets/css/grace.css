@@ -33,8 +33,17 @@ html,body {
     color: var(--h1-color)!important;
 }
 .el-textarea__inner {
-    background-color: var(--main-bg-color)!important;
+    background-color: var(--card-bg-color)!important;
     min-height: 200px!important;
+}
+.el-input__wrapper {
+  background-color: var(--card-bg-color)!important;
+}
+.visitor-info .el-form-item {
+  width: 30%;
+}
+.visitor-info .el-input__inner {
+  color: var(--h2-color)!important;
 }
 .el-dialog {
     padding: 0 1rem 2rem;
@@ -179,6 +188,14 @@ p::-webkit-selection {
   color: var(--h2-color)!important;
 }
 .el-divider--vertical {border-color: var(--h2-color)!important;}
+.more-load {
+  border-radius: 10px;;
+  height: 1.5rem;
+  padding: 5px 1rem;
+  display: inline-block;
+  background-color: var(--card-bg-color);
+}
+
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;
@@ -196,6 +213,15 @@ p::-webkit-selection {
     }
     .diary-list .el-card__body {
       padding: 1rem!important;
+    }
+    .comment-box .el-form-item {
+      width: 100%!important;
+    }
+    .visitor-info {
+      display: block!important;
+    }
+    .visitor-info .el-form-item {
+      width: 100%;
     }
   }
 

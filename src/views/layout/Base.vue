@@ -12,7 +12,7 @@
       <el-container>
       <el-header><Header /></el-header>
       <el-container>
-        <el-aside><SideMenu :isCollapse="isCollapse" @CloseOverlay="methods.close"/></el-aside>
+        <el-aside :class=" ((windowWidth < 760) ? 'transform ': '') + ((isCollapse && windowWidth < 760) ? 'isCollapse': '') "><SideMenu :isCollapse="isCollapse" @CloseOverlay="methods.close"/></el-aside>
         <el-main><MainBox /></el-main>
       </el-container>
       </el-container>
@@ -49,6 +49,7 @@ export default {
   setup(){
     const state = reactive({
       isCollapse: true,
+      windowWidth: document.documentElement.clientWidth,
       year:new Date().getFullYear()
     })
     const methods = {
@@ -56,7 +57,7 @@ export default {
         methods.welcome()
       },
       close(val){
-        state.isCollapse = val
+        state.isCollapse = !state.isCollapse
       },
       welcome(){
         if(!inisHelper.get.cookie("wellcome")){
@@ -66,16 +67,21 @@ export default {
               console.log(1)
               let location = null
               inisHelper.set.cookie("wellcome",1,7200)
-              if(data.district) location = '来自'+data.province + data.city + data.district+'的朋友.'
-              else location = '来自'+data.province + data.city + '的朋友.'
-              ElNotification({
-                title: '欢迎你！',
-                message: location,
-                type: 'success',
-              })
+              if (data.province || data.city || data.district) {
+                location = '来自' + methods.empty(data.province) + methods.empty(data.city) + methods.empty(data.district) + '的朋友.'
+                ElNotification({
+                    title: '欢迎你！',
+                    message: location,
+                    type: 'success',
+                  })               
+              }
             }
           })
         }
+      },
+      empty(item){
+        if(item) return item
+        else return ""
       },
     }
     onMounted(()=>{
@@ -87,6 +93,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.isCollapse {
+    transform: translateX(-100%) translateY(-50%);
+    // width: 0;
+    // z-index: -1;
+}
 .topback {
   height: 18rem;
   position: absolute;
