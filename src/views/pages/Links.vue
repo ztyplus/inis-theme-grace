@@ -1,4 +1,7 @@
 <template>
+
+  <Tools />
+
   <div v-if="friendsList.length != 0">
     <el-divider content-position="center"><span><h3>友情链接</h3></span></el-divider>
     <div class="link-post">
@@ -14,23 +17,6 @@
     </div>
   </div>
 
-  <div v-if="toolsList.length != 0">
-    <el-divider content-position="center" class="my-2"><span><h3>自建工具</h3></span></el-divider>
-    <div class="link-post text-left">
-      <el-row :gutter="0" class="mt-6 mb-2">
-        <el-col v-for="(item,index) in toolsList" :key="index" :span="12" :md="8">
-          <a class="link-box m-1 p-2 mb-2" :href="item.url" target="_blank">
-            <div class="flex">
-              <img class="transform" :src="item.head_img" >
-              <h4 class="text-left h-1x pl-1">{{item.name}}</h4>
-            </div>
-            <p class="h-2x text-left pt-1">{{item.description}}</p>
-          </a>
-        </el-col>
-      </el-row>
-    </div>
-  </div>
-  
 
  <div v-if="websList.length != 0">
     <el-divider content-position="center" class="my-2"><span><h3>宝藏网站</h3></span></el-divider>
@@ -53,8 +39,13 @@
 <script>
 import { reactive, toRefs,onMounted } from 'vue'
 import { GET } from '@/utils/http/request'
+import SvgIcon from '@/components/tool/SvgIcon.vue'
+import Tools from '@/components/Tools'
+import { useRouter } from 'vue-router'
 export default {
+  components: { SvgIcon,Tools },
   setup () {
+    const router = useRouter()
     const state = reactive({
       friendsList: [],
       toolsList: [],
@@ -82,7 +73,7 @@ export default {
             } 
           }
         })
-      }
+      },
     }
   
     onMounted(()=>{
@@ -139,7 +130,7 @@ export default {
   border-radius: inherit;
   z-index: -1;
 }
-.link-box:hover img {
+.link-box:hover img,.link-box:hover svg {
   transform: scale(1.08);
 }
 .link-box:hover h4 {

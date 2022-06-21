@@ -52,7 +52,6 @@ export default {
         GET('comments', {params}).then((res) => {
           if (res.data.code == 200) {
             state.commentList = res.data.data.data
-            console.log('state.commentList: ', state.commentList);
             state.allpage = res.data.data.page
             state.page += 1
           }

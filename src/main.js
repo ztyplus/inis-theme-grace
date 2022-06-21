@@ -7,7 +7,6 @@ import vue3PhotoPreview from 'vue3-photo-preview';
 import 'vue3-photo-preview/dist/index.css';
 import highlight from './utils/plugins/highlight'
 import diary from './utils/plugins/diary'
-
  
 // import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 

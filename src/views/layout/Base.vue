@@ -64,7 +64,6 @@ export default {
           GET('location').then((res) => {
             if (res.data.code == 200) {
               var data = res.data.data
-              console.log(1)
               let location = null
               inisHelper.set.cookie("wellcome",1,7200)
               if (data.province || data.city || data.district) {

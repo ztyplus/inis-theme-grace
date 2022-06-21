@@ -65,6 +65,19 @@ const routes = [
                 meta: { keepAlive: false,css:"message-pages"},
                 component: () => import('@/views/pages/MsgWall'),
             },
+            {
+                name: 'tools',
+                path: 'tools',
+                component: () => import('@/components/MainBox'),
+                children: [
+                    {
+                        name: 'douyin',
+                        path: 'douyin',
+                        meta: { keepAlive: false},
+                        component: () => import('@/components/plugins/Douyin.vue'),
+                    },
+                ]
+            },
         ]
     },
     // {
