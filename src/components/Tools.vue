@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div v-if="$route.name == 'tools' || $route.name == 'links'">
     <el-divider content-position="center" class="my-2"><span><h3>自建工具</h3></span></el-divider>
     <div class="link-post text-left">
-      <el-row :gutter="0" class="mt-6 mb-2">
+      <el-row :gutter="0" class="mt-6 mb-2 ">
         <el-col  :span="12" :md="8">
           <div class="tool-box m-1 p-2 mb-2" @click="methods.goTool('douyin')">
             <div class="flex">
@@ -12,8 +12,20 @@
             <p class="h-2x text-left pt-1">解析抖音无水印视频</p>
           </div>
         </el-col>
+        <el-col  :span="12" :md="8">
+         <div class="tool-box m-1 p-2 mb-2" @click="methods.goTool('hotsearch')">
+            <div class="flex">
+              <svg-icon class="transform" width="3rem" height="3rem" file-name="hot"></svg-icon>
+              <h4 class="text-left h-1x pl-1">百度热搜</h4>
+            </div>
+            <p class="h-2x text-left pt-1">实时热点数据</p>
+          </div>
+        </el-col>
       </el-row>
     </div>
+  </div>
+  <div v-if="$route.name != 'tools'">
+    <RouteView />
   </div>
 </template>
 
@@ -21,8 +33,9 @@
 import { reactive, toRefs } from 'vue'
 import SvgIcon from '@/components/tool/SvgIcon.vue'
 import { useRouter } from 'vue-router'
+import RouteView from '@/components/tool/RouteView'
 export default {
-  components: { SvgIcon },
+  components: { SvgIcon,RouteView },
   setup () {
     const router = useRouter()
     const state = reactive({

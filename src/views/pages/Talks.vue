@@ -193,6 +193,7 @@ export default {
       async loction(ip){
         let params = {ip}
         await GET('location',{params}).then((res)=>{
+          // console.log(ip)
           if (res.data.code == 200) {
             var data = res.data.data 
             if (data.province || data.city || data.district) {

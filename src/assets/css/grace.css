@@ -42,7 +42,7 @@ html,body {
 .visitor-info .el-form-item {
   width: 30%;
 }
-.visitor-info .el-input__inner {
+.el-input__inner {
   color: var(--h2-color)!important;
 }
 .el-dialog {

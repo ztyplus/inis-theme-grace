@@ -84,7 +84,6 @@ export default {
                 inisHelper.set.cookie(`diaryPassword_${route.params.id}`,password,7200)
             }
           }
-          console.log(state.diary_data)
         })
       },
     }

@@ -34,6 +34,7 @@ export default {
         }
       },
       getInfo(url){
+        state.parse = false
         let params = {
           p_url: "https://inis.ztyang.com/api/douyin-ztyang-api",
           mode: 'douyin',
@@ -62,5 +63,6 @@ export default {
 
 .dv {
   max-height: 600px;
+  background-color: black;
 }
 </style>

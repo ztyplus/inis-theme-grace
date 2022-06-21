@@ -1,17 +1,14 @@
 <template>
     <div class="main main-card mb-2" :class="$route.meta.css" >
-        <router-view v-slot="{ Component }">
-            <keep-alive>
-                <component :is="Component" :key="$route.name" v-if="$route.meta.keepAlive" />
-            </keep-alive>
-            <component :is="Component" :key="$route.name" v-if="!$route.meta.keepAlive" />
-        </router-view>
+        <RouteView />
     </div>
 </template>
 
 <script>
+import RouteView from '@/components/tool/RouteView'
 export default {
-    name: "MainBox"
+    name: "MainBox",
+    components: { RouteView },
 }
 </script>
 

@@ -68,13 +68,19 @@ const routes = [
             {
                 name: 'tools',
                 path: 'tools',
-                component: () => import('@/components/MainBox'),
+                component: () => import('@/components/Tools'),
                 children: [
                     {
                         name: 'douyin',
                         path: 'douyin',
+                        meta: { keepAlive: true},
+                        component: () => import('@/components/plugins/Douyin'),
+                    },
+                    {
+                        name: 'hotsearch',
+                        path: 'hotsearch',
                         meta: { keepAlive: false},
-                        component: () => import('@/components/plugins/Douyin.vue'),
+                        component: () => import('@/components/plugins/HotSearch'),
                     },
                 ]
             },
