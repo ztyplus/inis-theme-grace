@@ -28,7 +28,7 @@
         </span>
         <span class="justify-center pr-1">
           <svg-icon file-name="ip" fill="var(--h2-color)"></svg-icon>
-          <span class="item-text">{{loction[talk.ip]}}</span>
+          <span class="item-text">{{methods.getAddr(talk.opt)}}</span>
         </span>
       </div>
     </div>
@@ -105,7 +105,6 @@ export default {
       allpage: 1,
       isLoading: false,
       stopLoding: false,
-      loction: {},
       talkcontent: null,
       api_url : INIS.api + '/file',
       fileList: [], 
@@ -130,9 +129,6 @@ export default {
           if (res.data.code == 200) {
             if(del && res.data.data.data.length > state.limit) state.allpage = res.data.data.page * 2
             else state.allpage = res.data.data.page
-            res.data.data.data.forEach(item => {
-              methods.loction(item.ip)
-            });
             if(page==1) state.talkList = []
             state.talkList = state.talkList.concat(res.data.data.data)
             state.page = Math.ceil(state.talkList.length / state.limit)
@@ -141,12 +137,15 @@ export default {
           }
         })
       },
-      submit(){
+      async submit(){
+        let location = await methods.loction()
+        console.log('location: ', location);
         if(state.talkcontent){
           let params = {
             'content':'<p>' + state.talkcontent.replace(/\n*$/g, '').replace(/\n/g, '</p> <p>') + '</p>',
             'login-token': state.login_token,
-            'type': 'moving'
+            'type': 'moving',
+            'opt': location
           }
           POST("comments",params).then((res)=>{
             if(res.data.code == 200) {
@@ -158,6 +157,19 @@ export default {
             else ElMessage({message: res.data.msg,type: 'error',})
           })
         }else {ElMessage({message: "内容为空",type: 'warning',})}
+      },
+      getAddr(opt){
+        let addr = ''
+        if(opt){
+          if(opt.province) addr += opt.province
+          if(opt.city) addr += opt.city
+          if(opt.district) addr += opt.district
+        }
+        if(addr != ""){
+          return addr
+        }else {
+          return "未知地址"
+        }
       },
       deleteTalk(id){
         let params = {
@@ -190,20 +202,14 @@ export default {
           methods.getTalks(state.page)
         }
       },
-      async loction(ip){
-        let params = {ip}
-        await GET('location',{params}).then((res)=>{
-          // console.log(ip)
+      async loction(){
+        let result = {'status': 0}
+        await GET('location').then((res)=>{
           if (res.data.code == 200) {
-            var data = res.data.data 
-            if (data.province || data.city || data.district) {
-              state.loction[ip] = methods.empty(data.province) + methods.empty(data.city) + methods.empty(data.district)
-            }else {
-              state.loction[ip] = "未知地点"
-            }
+            result = res.data.data 
           }
         }) 
-
+        return result
       },
       empty(item){
         if(item) return item
