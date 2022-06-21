@@ -130,15 +130,13 @@ export default {
 .el-header {
   padding: 0;
 }
-    .avatar {
+    .el-avatar {
         position: relative;
-        float: left;
-        margin: 18px 0 0 5px;
         overflow: hidden;
         transition-duration: 5s;/**动画时间**/
     }
 
-    .avatar:before {
+    .el-avatar:before {
         content: "";
         position: absolute;
         width: 1000px;

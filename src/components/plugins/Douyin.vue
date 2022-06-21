@@ -1,5 +1,6 @@
 <template>
-<div class="flex">
+<h3>抖音解析</h3>
+<div class="flex mt-4">
   <el-input v-model="link" placeholder="请输入视频地址" />
   <el-button class="ml-2" type="primary" @click="methods.parse(link)">解析</el-button>
 </div>
@@ -60,7 +61,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+h3 {
+  color: var(--title-color);
+}
 .dv {
   max-height: 600px;
   background-color: black;

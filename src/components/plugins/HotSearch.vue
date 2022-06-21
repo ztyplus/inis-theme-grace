@@ -26,6 +26,7 @@ export default {
       getHotList(){
         GET("other/hot").then((res)=>{
           if(res.data.code == 200){
+            console.log(res.data.data)
             state.hotList = res.data.data.baidu
           }
         })
