@@ -195,7 +195,9 @@ p::-webkit-selection {
   display: inline-block;
   background-color: var(--card-bg-color);
 }
-
+code li{
+  color: #f8f8f2 !important;
+}
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;
