@@ -2,7 +2,7 @@
   <div class="headbox">
     <div class="flex">
       <div class="avatar cursor-pointer" @click="methods.index">
-        <el-avatar shape="square" :size="100" fit="cover" src="static/images/avatar.jpg" />
+        <el-avatar shape="square" :size="100" fit="cover" src="/static/images/avatar.jpg" />
       </div>
       <div class="headinfo">
         <h3 @click="methods.index" class="title flex cursor-pointer">相左</h3>

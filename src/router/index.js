@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
+import { inisHelper } from '@/utils/helper'
 
 const routes = [
     {
@@ -79,18 +80,19 @@ const routes = [
                     {
                         name: 'hotsearch',
                         path: 'hotsearch',
-                        meta: { keepAlive: false},
+                        meta: { keepAlive: true},
                         component: () => import('@/components/plugins/HotSearch'),
                     },
                 ]
             },
+            {
+                name: 'config',
+                path: '/config',
+                meta: { keepAlive: false},
+                component: () => import('@/views/pages/Config'),
+            },
         ]
     },
-    // {
-    //     name: 'login',
-    //     path: '/login',
-    //     component: () => import('@/views/pages/Login'),
-    // },
 ]
   
 
@@ -100,20 +102,23 @@ const router = createRouter({
     routes
   })
 
-// 全局路由守卫
-// router.beforeEach((to, from, next) => {
-// if (!inisHelper.get.cookie('LoginToken')) {
-//     if (to.name == "login") {
-//         next();
-//     } else {
-//         router.push('login')
-//     }
-// } else {
-//     if (to.name == "login") {
-//         router.push('/')
-//     }
-//     next();
-// }
-// });
+
+let is_login = inisHelper.get.storage("login")
+// 判断缓存是否存在且未过期
+if (is_login != "expire" && is_login != false) {
+    is_login = true
+  } else is_login = false
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+if (!is_login) {
+    if (to.name == "config") {
+        next({path: '/'})
+    }else next()
+}else {
+    next()
+}
+
+});
 
 export default router

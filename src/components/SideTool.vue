@@ -5,11 +5,11 @@
         <svg-icon class="wh-100" file-name="send"></svg-icon>
       </el-button>
     </div>
-    <!-- <div class="tool">
-      <el-button type="primary" plain @click="methods.clearStorage">
-        <svg-icon class="wh-100" file-name="refresh"></svg-icon>
+    <div class="tool" v-if="is_login">
+        <el-button type="primary" plain @click="methods.config">
+        <svg-icon class="wh-100" file-name="setting"></svg-icon>
       </el-button>
-    </div> -->
+    </div>
     <div class="tool">
         <el-button type="primary" plain @click="methods.getDay">
         <svg-icon v-if="!day" class="wh-100" file-name="sun-icon"></svg-icon>
@@ -33,6 +33,7 @@ import { reactive, toRefs,onMounted } from 'vue'
 import { inisHelper } from '@/utils/helper'
 import SwitchDay from '@/components/SwitchDay'
 import { mapGetters,useStore } from 'vuex'
+import { useRouter } from "vue-router"
 export default {
   components: {SwitchDay},
   computed: {
@@ -41,6 +42,7 @@ export default {
       ]),
   },
   setup(){
+    const router = useRouter()
     const store = useStore()
     const state = reactive({
       day: true,
@@ -66,6 +68,9 @@ export default {
           state.switchDay = !state.switchDay
           methods.move()
         },2000)
+      },
+      config(){
+        router.push({name:'config'})
       },
       swDay(day){
         if (day) document.body.removeAttribute("class","dark")
