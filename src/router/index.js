@@ -111,6 +111,11 @@ if (is_login != "expire" && is_login != false) {
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
+
+// if (to.meta.title) {
+//     document.title = to.meta.title ? to.meta.title : defaultTitle;
+// }
+
 if (!is_login) {
     if (to.name == "config") {
         next({path: '/'})
