@@ -42,7 +42,7 @@ export default {
       getInfo(url) {
         state.parse = false;
         let params = {
-          p_url: "https://inis.ztyang.com/api/douyin-ztydouyin-api",
+          p_url: INIS.api + "/douyin-ztydouyin-api",
           mode: "douyin",
           url: url,
         };
