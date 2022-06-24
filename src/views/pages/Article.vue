@@ -1,4 +1,5 @@
 <template>
+<div v-if="article_data.code == 200">
   <div class="demo-image__preview">
     <el-image-viewer
       v-if="imgVisible"
@@ -30,6 +31,39 @@
       @click="methods.imagePreview"
     ></div>
   </div>
+</div>
+<div v-if="article_data.code == 405">
+  <el-dialog
+    :model-value="article_data.code == 405"
+    width="30%"
+    :show-close="false"
+    destroy-on-close
+    custom-class="cus-dialog"
+    center
+    title="输入密码访问"
+    :close-on-click-modal="false"
+    :close-on-press-escape="false"
+  >
+    <el-form>
+      <el-form-item>
+        <el-input v-model="password" placeholder="请输入文章密码">
+          <template #prefix>
+            <svg-icon file-name="password" fill="var(--h2-color)"></svg-icon>
+          </template>
+        </el-input>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button type="info" @click="$router.go(-1)">返回</el-button>
+        <el-button type="primary" @click="methods.getArticle(password)">提交</el-button>
+      </span>
+    </template>
+  </el-dialog>
+</div>
+<div v-if="article_data.code == 403">
+  <el-empty :description="article_data.msg" image="static/svg/permission.svg" />
+</div>
 </template>
 
 <script>
@@ -43,6 +77,8 @@ export default {
     const route = useRoute();
     const store = useStore();
     const state = reactive({
+      password:null,
+      article_data:"",
       article: null,
       imgVisible: false,
       initialIndex: 0,
@@ -52,14 +88,22 @@ export default {
       initData() {
         methods.getArticle();
       },
-      getArticle() {
-        let params = { id: route.params.id };
+      getArticle(password) {
+        let article_pass = inisHelper.get.cookie(`articlePassword_${route.params.id}`);
+        if (!article_pass) {
+          article_pass = password;
+        }
+        let params = { id: route.params.id,password: article_pass };
         GET("article", { params }).then((res) => {
+          state.article_data = res.data
           if (res.data.code == 200) {
             state.article = res.data.data;
             res.data.data.expand.images.forEach((element) => {
               state.imgList.push(element.src);
             });
+            if (password && res.data.code == 200) {
+              inisHelper.set.cookie(`articlePassword_${route.params.id}`, password, 7200);
+            }
             store.dispatch("headCover", res.data.data.img_src);
           }
         });

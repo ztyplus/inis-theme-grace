@@ -16,11 +16,11 @@
           <svg-icon file-name="article"></svg-icon>
           <span>文章</span>
         </el-menu-item>
-        <el-menu-item index="diarylist" @click="methods.close('diarylist')">
+        <el-menu-item v-if="diaryId" index="diarylist" @click="methods.close('diarylist')">
           <svg-icon file-name="diary"></svg-icon>
           <span>日记</span>
         </el-menu-item>
-        <el-menu-item index="albumlist" @click="methods.close('albumlist')">
+        <el-menu-item v-if="albumId" index="albumlist" @click="methods.close('albumlist')">
           <svg-icon file-name="camera"></svg-icon>
           <span>相册</span>
         </el-menu-item>
@@ -89,6 +89,7 @@
 import { reactive, toRefs, toRaw, ref } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
+import { inisHelper } from '@/utils/helper'
 export default {
   name: "SideMenu",
   props: ["isCollapse"],
@@ -96,9 +97,12 @@ export default {
     const route = useRoute();
     const store = useStore();
     const router = useRouter();
+    const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
       isCollapse: ref(props.isCollapse),
       routeName: toRaw(route.name),
+      diaryId: (grace_config && grace_config.option.diaryId ? grace_config.option.diaryId : null),
+      albumId: (grace_config && grace_config.option.albumId ? grace_config.option.albumId : null),
     });
     const methods = {
       isCollapse() {

@@ -3,5 +3,5 @@ export default {
         is_login: false
     },
     head_cover: "",
-    send_talk: false
+    send_talk: false,
 }

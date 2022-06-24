@@ -6,11 +6,11 @@
           shape="square"
           :size="100"
           fit="cover"
-          src="/static/images/avatar.jpg"
+          :src="avatar"
         />
       </div>
       <div class="headinfo">
-        <h3 @click="methods.index" class="title flex cursor-pointer">相左</h3>
+        <h3 @click="methods.index" class="title flex cursor-pointer">{{title}}</h3>
         <div class="share flex p-1 pl-0">
           <el-button
             class="mr-1"
@@ -23,23 +23,23 @@
             >登出</el-button
           >
           <el-divider direction="vertical" />
-          <el-tooltip content="2251513837" placement="top">
-            <span @click="methods.copy('2251513837')"
+          <el-tooltip :content="qq" placement="top">
+            <span @click="methods.copy(qq)"
               ><svg-icon class="wh-100" file-name="qq"></svg-icon
             ></span>
           </el-tooltip>
-          <el-tooltip content="yang2210670" placement="top">
-            <span @click="methods.copy('yang2210670')"
+          <el-tooltip :content="wechat" placement="top">
+            <span @click="methods.copy(wechat)"
               ><svg-icon class="wh-100" file-name="wechat"></svg-icon
             ></span>
           </el-tooltip>
-          <el-tooltip content="yang2210670@163.com" placement="top">
-            <span @click="methods.copy('yang2210670@163.com')"
+          <el-tooltip :content="email" placement="top">
+            <span @click="methods.copy(email)"
               ><svg-icon class="wh-100" file-name="email"></svg-icon
             ></span>
           </el-tooltip>
         </div>
-        <p class="w-100">知不可乎骤得，托遗响于悲风</p>
+        <p class="w-100">{{description}}</p>
       </div>
     </div>
   </div>
@@ -62,8 +62,15 @@ export default {
   setup() {
     const router = useRouter();
     const { toClipboard } = useClipboard();
+    const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
       showLogin: false,
+      qq: (grace_config && grace_config.option.qq ? grace_config.option.qq : ""),
+      wechat: (grace_config && grace_config.option.wechat ? grace_config.option.wechat : ""),
+      email: (grace_config && grace_config.option.email ? grace_config.option.email : ""),
+      title: (grace_config && grace_config.option.title ? grace_config.option.title : "相左"),
+      description: (grace_config && grace_config.option.description ? grace_config.option.description : "心有山海，静而不争"),
+      avatar: (grace_config && grace_config.option.avatar ? grace_config.option.avatar : "/static/images/avatar.jpg"),
     });
     const methods = {
       copy(msg) {

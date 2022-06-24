@@ -5,6 +5,11 @@
         <svg-icon class="wh-100" file-name="send"></svg-icon>
       </el-button>
     </div>
+    <div class="tool">
+      <el-button type="primary" plain @click="methods.clearStorage">
+        <svg-icon class="wh-100" file-name="refresh"></svg-icon>
+      </el-button>
+    </div>
     <div class="tool" v-if="is_login">
       <el-button type="primary" plain @click="methods.config">
         <svg-icon class="wh-100" file-name="setting"></svg-icon>
@@ -41,14 +46,14 @@ export default {
   setup() {
     const router = useRouter();
     const store = useStore();
+    const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
-      day: true,
+      day: (grace_config ? grace_config.option.day : true),
       switchDay: false,
     });
     const methods = {
       clearStorage() {
-        inisHelper.clear.storage("TopList");
-        inisHelper.clear.storage("About");
+        inisHelper.clear.storage("grace_config");
         ElMessage({ message: "清除缓存成功！", type: "success" });
         location.reload();
       },
@@ -93,11 +98,13 @@ export default {
       },
     };
     onMounted(() => {
-      let hour = new Date().getHours();
-      if (8 <= hour && hour < 20) state.day = true;
-      else state.day = false;
+      let autoSwithch = (grace_config ? grace_config.option.autoSwithch : true)
+      if(autoSwithch){
+        let hour = new Date().getHours();
+        if (8 <= hour && hour < 20) state.day = true;
+        else state.day = false;
+      }
       let day = eval(inisHelper.get.cookie("day"));
-      document.getElementsByTagName("body")[0].className = "dark";
       if (day != null) {
         state.day = day;
         methods.swDay(day);

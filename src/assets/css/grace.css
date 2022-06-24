@@ -198,6 +198,54 @@ p::-webkit-selection {
 code li{
   color: #f8f8f2 !important;
 }
+.config .el-collapse-item,.config .el-collapse-item__header,.config,.el-collapse-item__wrap {
+  background-color: var(--card-bg-color)!important;
+  color: var(--text-color);
+  font-size: 1rem;
+  border: none!important;
+}
+.el-collapse-item__content {
+  background-color: var(--card-bg-color)!important;
+}
+.config .el-collapse-item__header {
+  padding-left: 1rem;
+}
+.config .el-collapse-item {
+  text-align: left;
+  margin-bottom: .5rem;
+  box-shadow: var(--box-shadow-3);
+  border-radius: var(--border-radius);
+}
+.config svg {color: var(--h1-color);}
+.config .el-collapse {
+  border: none!important;
+}
+.config .el-collapse-item__wrap,.el-collapse-item__content{
+  padding: .5rem 1rem;
+  border-top: 1px solid var(--border-color);
+  border-bottom: none;
+}
+.config .el-color-picker {margin-right: .5rem;}
+.config .el-input__wrapper {
+  padding: 0!important;
+  border-bottom: none!important;
+}
+.config .el-input {
+  border-radius: 5px!important;
+  overflow: hidden;
+}
+.config .el-input__wrapper {
+  height: 1.8rem;
+}
+.config .el-input__inner {
+  padding-left: .5rem!important;
+}
+ .el-loading-mask {
+  background-color: var(--card-bg-color)!important;
+}
+.el-loading-text {
+  color: var(--text-color)!important;
+}
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;

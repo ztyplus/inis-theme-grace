@@ -46,22 +46,30 @@
 import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import { useRouter } from "vue-router";
+import { inisHelper } from '@/utils/helper'
 export default {
   setup() {
     const router = useRouter();
+    const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
       ArticleList: [],
       page: 1,
       allpage: 0,
+      albumId: "",
+      diaryId: ""
     });
     const methods = {
       initData() {
+        if (grace_config && grace_config.option.albumId && grace_config.option.diaryId) {
+          state.albumId = grace_config.option.albumId
+          state.diaryId = grace_config.option.diaryId
+        }
         methods.getArticle();
       },
       getArticle() {
         state.ArticleList = [];
         let params = {
-          where: "is_show,=,1;sort_id,<>,|4|;sort_id,<>,|6|",
+          where: `is_show,=,1;sort_id,<>,|${state.albumId}|;sort_id,<>,|${state.diaryId}|`,
           limit: 8,
           page: state.page,
         };

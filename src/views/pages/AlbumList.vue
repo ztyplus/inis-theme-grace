@@ -45,20 +45,28 @@
 import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import { useRouter } from "vue-router";
+import { inisHelper } from '@/utils/helper'
 export default {
   setup() {
     const router = useRouter();
+    const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
       ArticleList: [],
       page: 1,
       allpage: 2,
+      albumId: ""
     });
     const methods = {
       initData() {
+        if(grace_config.option.albumId){
+          state.albumId = grace_config.option.albumId
+        }else {
+          ElMessage({ message: "请配置相册分类ID", type: "warning" });
+        }
         methods.getArticle();
       },
       getArticle() {
-        let params = { where: "is_show=1;sort_id=|4|", limit: 8, page: state.page };
+        let params = { where: `is_show=1;sort_id=|${state.albumId}|`, limit: 8, page: state.page };
         GET("article/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;

@@ -34,10 +34,13 @@
 import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import { useRouter } from "vue-router";
+import { inisHelper } from '@/utils/helper';
 export default {
   setup() {
     const router = useRouter();
+    const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
+      diaryId: null,
       page: 1,
       allpage: 1,
       isLoading: false,
@@ -45,11 +48,16 @@ export default {
     });
     const methods = {
       initData() {
+        if(grace_config && grace_config.option.diaryId){
+          state.diaryiId = grace_config.option.diaryId
+        }else {
+          ElMessage({ message: "请配置日记分类ID", type: "warning" });
+        }
         methods.getDiray(1);
       },
       getDiray(page) {
         state.isLoading = true;
-        let params = { where: "is_show,=,1;sort_id,=,|6|", limit: 12, page };
+        let params = { where: `is_show,=,1;sort_id,=,|${state.diaryiId}|`, limit: 12, page };
         // let params = {where:'is_show,=,1;',limit:12,page}
         GET("article/sql", { params }).then((res) => {
           if (res.data.code == 200) {
@@ -88,7 +96,7 @@ export default {
 h4 {
   color: var(--text-color);
   span {
-    background: var(--theme-color-1);
+    background: var(--theme-color);
     padding: 2px 5px;
     border-radius: 2px;
     font-size: 0.875rem;

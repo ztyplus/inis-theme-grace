@@ -85,7 +85,7 @@ export default {
 h4 {
   color: var(--text-color);
   span {
-    background: var(--theme-color-1);
+    background: var(--theme-color);
     padding: 2px 5px;
     border-radius: 2px;
     font-size: 0.875rem;

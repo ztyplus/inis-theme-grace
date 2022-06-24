@@ -88,7 +88,7 @@ const routes = [
             {
                 name: 'config',
                 path: '/config',
-                meta: { keepAlive: false},
+                meta: { keepAlive: false,css: "config-page"},
                 component: () => import('@/views/pages/Config'),
             },
         ]
