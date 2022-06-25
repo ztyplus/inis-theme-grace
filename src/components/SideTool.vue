@@ -54,6 +54,7 @@ export default {
     const methods = {
       clearStorage() {
         inisHelper.clear.storage("grace_config");
+        inisHelper.clear.cookie("day");
         ElMessage({ message: "清除缓存成功！", type: "success" });
         location.reload();
       },
