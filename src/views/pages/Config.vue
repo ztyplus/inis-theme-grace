@@ -1,7 +1,7 @@
 <template>
   <div class="config text-left">
     <h3>主题配置</h3>
-    <el-collapse class="mt-4" v-model="activeNames">
+    <el-collapse class="mt-4" v-model="activeNames" :accordion="true">
       <el-collapse-item title="样式设置" name="1">
         <span class="item-text py-1 w-100">
           <strong>主题色：</strong>
@@ -79,6 +79,17 @@
           <span class="item-text py-1 mr-2"><strong>备案</strong></span>
           <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.beian" placeholder="请输入网站备案号" />
         </div>
+        <div class="flex mt-1 justify-center">
+          <span class="item-text py-1 mr-2"><strong>时间</strong></span>
+        <el-date-picker
+          v-model="grace_config.option.setYear"
+          type="year"
+          placeholder="建站时间"
+          :editable="false"
+          :clearable="false"
+          value-format="YYYY"
+        />
+        </div>
       </el-collapse-item>
       <el-collapse-item title="分类配置" name="4">
         <div class="flex mt-1">
@@ -107,7 +118,7 @@ import { inisHelper } from "@/utils/helper";
 export default {
   setup() {
     const state = reactive({
-      activeNames: ["1","2","3","4"],
+      activeNames: ["1"],
       login_token: null,
       grace_config: {
         style: {
@@ -126,6 +137,7 @@ export default {
           avatar: "",
           diaryId: "",
           albumId: "",
+          setYear: ""
         },
       },
       sortList: [],
@@ -180,6 +192,7 @@ export default {
               avatar: state.grace_config.option.avatar,
               diaryId: state.grace_config.option.diaryId,
               albumId: state.grace_config.option.albumId,
+              setYear: state.grace_config.option.setYear,
             },
           },
         };

@@ -45,6 +45,7 @@ export default {
           p_url: INIS.api + "/douyin-ztydouyin-api",
           mode: "douyin",
           url: url,
+          token: INIS.token
         };
         GET("proxy/get", { params }).then((res) => {
           if (res.data.data.code == 200) {
@@ -52,7 +53,7 @@ export default {
             state.parse = true;
             state.video_data = res.data.data.data;
           } else {
-            ElMessage({ message: "解析失败！", type: "error" });
+            ElMessage({ message: res.data.data.msg, type: "error" });
           }
         });
       },

@@ -23,17 +23,17 @@
             >登出</el-button
           >
           <el-divider direction="vertical" />
-          <el-tooltip :content="qq" placement="top">
+          <el-tooltip v-if="qq" :content="qq" placement="top">
             <span @click="methods.copy(qq)"
               ><svg-icon class="wh-100" file-name="qq"></svg-icon
             ></span>
           </el-tooltip>
-          <el-tooltip :content="wechat" placement="top">
+          <el-tooltip v-if="wechat" :content="wechat" placement="top">
             <span @click="methods.copy(wechat)"
               ><svg-icon class="wh-100" file-name="wechat"></svg-icon
             ></span>
           </el-tooltip>
-          <el-tooltip :content="email" placement="top">
+          <el-tooltip v-if="email" :content="email" placement="top">
             <span @click="methods.copy(email)"
               ><svg-icon class="wh-100" file-name="email"></svg-icon
             ></span>

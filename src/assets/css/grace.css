@@ -243,8 +243,18 @@ code li{
  .el-loading-mask {
   background-color: var(--card-bg-color)!important;
 }
-.el-loading-text {
+.config .el-input__prefix-inner {display: none;}
+.el-picker-panel {
+  background-color: var(--card-bg-color)!important;
   color: var(--text-color)!important;
+}
+.el-date-editor--year,.el-date-editor--year .el-input__wrapper {width: 100%!important;}
+.el-year-table tbody span,.el-date-picker__header-label,.el-date-picker__header .el-icon {
+  color: var(--text-color)!important;;
+}
+.el-popper {
+  background-color: var(--card-bg-color)!important;
+  border-color: var(--border-color)!important;
 }
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
