@@ -49,6 +49,7 @@ export default {
     const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
       day: (grace_config ? grace_config.option.day : true),
+      animation: (grace_config ? grace_config.option.animation : true),
       switchDay: false,
     });
     const methods = {
@@ -62,15 +63,17 @@ export default {
         inisHelper.to.scroll(0, 300);
       },
       getDay() {
-        methods.stop();
+        if(state.animation){
+          methods.stop();
+          state.switchDay = !state.switchDay;
+          setTimeout(() => {
+            state.switchDay = !state.switchDay;
+            methods.move();
+          }, 2000);
+        }
         state.day = !state.day;
-        state.switchDay = !state.switchDay;
         inisHelper.set.cookie("day", state.day, 7200);
         methods.swDay(state.day);
-        setTimeout(() => {
-          state.switchDay = !state.switchDay;
-          methods.move();
-        }, 2000);
       },
       config() {
         router.push({ name: "config" });

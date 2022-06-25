@@ -54,6 +54,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     min-height: 200px!important;
 }
 .el-input__wrapper {
+  box-shadow: 0 0 0 1px var(--input-border-color,var(--el-border-color)) inset!important;
   background-color: var(--card-bg-color)!important;
 }
 .visitor-info .el-form-item {

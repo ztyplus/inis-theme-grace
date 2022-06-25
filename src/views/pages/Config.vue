@@ -43,6 +43,14 @@
           <el-radio :label="true" border>白天</el-radio>
           <el-radio :label="false" border>黑夜</el-radio>
         </el-radio-group>
+        <span class="item-text py-1 mt-2 w-100">
+          <strong>日夜模式切换动画 </strong>
+        </span>
+        <el-radio-group v-model="grace_config.option.animation" size="small">
+          <el-radio :label="true" border>开启</el-radio>
+          <el-radio :label="false" border>关闭</el-radio>
+        </el-radio-group>
+
       </el-collapse-item>
       <el-collapse-item title="个人信息" name="2">
         <div class="flex mt-1">
@@ -137,7 +145,8 @@ export default {
           avatar: "",
           diaryId: "",
           albumId: "",
-          setYear: ""
+          setYear: "",
+          animation: true
         },
       },
       sortList: [],
@@ -193,6 +202,7 @@ export default {
               diaryId: state.grace_config.option.diaryId,
               albumId: state.grace_config.option.albumId,
               setYear: state.grace_config.option.setYear,
+              animation: state.grace_config.option.animation,
             },
           },
         };
@@ -200,6 +210,9 @@ export default {
           if (res.data.code == 200) {
             ElMessage({ message: "保存成功!", type: "success" });
             inisHelper.set.storage("grace_config",params.opt)
+            if(!state.grace_config.option.autoSwithch){
+              inisHelper.clear.cookie("day")
+            }
             location.reload();
           } else {
             ElMessage({ message: res.data.msg, type: "error" });

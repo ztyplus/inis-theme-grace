@@ -22,6 +22,7 @@
   --main-button-color: #9aa3af;
   --border-radius: 5px;
   --placeholder-color: #b3becb;
+  --input-border-color: #a6b5c6;
 }
 
 .dark {
@@ -52,6 +53,7 @@
   ), hsl(240, 2%, 13%);
   --border-gradient-onyx: linear-gradient( to bottom right, hsl(0, 0%, 25%) 0%, hsla(0, 0%, 25%, 0) 50% );
   --placeholder-color: #525d6c;
+  --input-border-color: #9cadc0;
 }
 * {
     padding: 0;
