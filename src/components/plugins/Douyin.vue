@@ -53,7 +53,7 @@ export default {
             state.parse = true;
             state.video_data = res.data.data.data;
           } else {
-            ElMessage({ message: res.data.data.msg, type: "error" });
+            ElMessage({ message: "解析失败！", type: "error" });
           }
         });
       },
