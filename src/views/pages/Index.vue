@@ -20,23 +20,9 @@
       </el-carousel>
     </div>
   </div>
-
-  <!-- <div class="card">
-    <h2 class="item-title">我的技能</h2>
-    <div class="kills mt-2">
-      <el-row :gutter="20" class="w-100">
-        <el-col :span="6" :xs="12" class="flex-center" v-for="(item,index) in skills" :key="index">
-          <el-progress type="dashboard" :status="item.status" :percentage="item.progress">
-            <template #default="{}">
-              <span class="percentage-value">{{ item.progress }}%</span>
-              <span class="percentage-label">{{item.skill}}</span>
-            </template>
-          </el-progress>
-        </el-col>
-      </el-row>  
-    </div>
-  </div> -->
-
+  <div v-if="TopList.length != 0">
+    <Music v-if="music"/>
+  </div>
   <div class="card">
     <div class="about article-content" v-html="About"></div>
   </div>
@@ -46,19 +32,20 @@
 import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import { useRouter } from "vue-router";
+import Music from "@/components/Music";
+import { inisHelper } from "@/utils/helper";
 export default {
-  name: "Index",
+  components: {
+    Music,
+  },
+
   setup() {
     const router = useRouter();
+    const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
+      music: (grace_config ? grace_config.option.music : false),
       TopList: [],
       About: "",
-      // skills: [
-      //   {'skill':'摄影','progress': 70,'status':'exception'},
-      //   {'skill':'吉他','progress': 60,'status':'success'},
-      //   {'skill':'电路','progress': 80,'status':'warning'},
-      //   {'skill':'编程','progress': 85,'status':''}
-      // ]
     });
     const methods = {
       initData() {
@@ -97,16 +84,6 @@ export default {
           params: { id },
         });
       },
-      // localStorage(){
-      //   let TopList = inisHelper.get.storage("TopList")
-      //   let About = inisHelper.get.storage("About")
-      //   if (TopList != "expire" && TopList != false) {
-      //       state.TopList = TopList.data
-      //   }else{inisHelper.clear.storage("TopList")}
-      //   if (About != "expire" && About != false) {
-      //       state.About = About.data.content
-      //   }else{inisHelper.clear.storage("About")}
-      // }
     };
     onMounted(() => {
       methods.initData();
@@ -128,6 +105,7 @@ export default {
 .item-title {
   color: var(--h1-color);
 }
+
 .layout-169:after {
   padding-top: 56.25%;
   content: "";

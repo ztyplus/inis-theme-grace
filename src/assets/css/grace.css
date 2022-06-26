@@ -270,9 +270,71 @@ code li{
 .el-year-table tbody span,.el-date-picker__header-label,.el-date-picker__header .el-icon {
   color: var(--text-color)!important;;
 }
-.el-popper {
+/* .el-popper {
   background-color: var(--card-bg-color)!important;
   border-color: var(--border-color)!important;
+} */
+.shadow-box {
+  display: block;
+  position: relative;
+  background: var(--card-bg-color);
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: var(--box-shadow-2);
+}
+.shadow-box::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  z-index: -1;
+}
+.el-slider__bar {
+  background-color: var(--theme-color-1)!important;
+}
+.play-music .el-slider {
+  height: 1.2rem !important;
+}
+.play-music .el-slider__runway {height: 3px!important;background-color: var(--border-color)!important;}
+ .play-music .el-slider__bar {height: 4px!important;}
+ .play-music .el-tooltip__trigger {height: .8rem!important;width: .8rem!important;}
+.play-music .el-slider__button {
+  border: solid 2px var(--theme-color)!important;
+}
+.play-music .el-slider__button-wrapper{height: 33px!important;}
+.vioce-control .el-slider__runway {
+  position: absolute!important;
+}
+.vioce-control .el-slider.is-vertical .el-slider__runway {
+  width: var(--el-slider-height);
+  height: 100%;
+  margin: 0 16px;
+  width: 4px;
+}
+.vioce-control .el-slider__bar {width: 4px!important;}
+.vioce-control .el-slider__button{
+  border: solid 2px var(--theme-color)!important;
+  width: 4px;
+  height: 4px;
+}
+.vioce-control .el-tooltip__trigger {height: .5rem!important;width: .5rem!important;}
+.vioce-control .el-slider__button-wrapper{width: 34px!important;}
+.music-list .el-divider--horizontal {
+  border-top: 1px var(--divider-color) var(--el-border-style);
+}
+.el-select-dropdown__list {
+  background-color: var(--card-bg-color)!important;
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+  background-color: var(--main-bg-color)!important;
+}
+.el-select__popper.el-popper {
+  background: var(--card-bg-color)!important;
+  border: 1px solid var(--border-color)!important;
+  box-shadow: none!important;
+}
+.el-select-dropdown__item.selected {
+  color: var(--theme-color)!important;
 }
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
@@ -300,6 +362,15 @@ code li{
     }
     .visitor-info .el-form-item {
       width: 100%;
+    }
+    .control svg {
+      margin: 0 .5rem!important;
+    }
+    .control {
+      justify-content: flex-start!important;
+    }
+    .music_info {
+      padding-right: 0!important;
     }
   }
 

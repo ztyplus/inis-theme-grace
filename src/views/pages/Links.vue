@@ -8,7 +8,7 @@
     <div class="link-post">
       <el-row :gutter="0" class="mt-6 mb-2">
         <el-col v-for="(item, index) in friendsList" :key="index" :span="12" :md="8">
-          <a class="link-box m-1 p-2 mb-4" :href="item.url" target="_blank">
+          <a class="link-box shadow-box m-1 p-2 mb-4" :href="item.url" target="_blank">
             <div class="avatar">
               <img class="transform wh-100" :src="item.head_img" />
             </div>
@@ -27,7 +27,7 @@
     <div class="link-post text-left">
       <el-row :gutter="0" class="mt-6 mb-2">
         <el-col v-for="(item, index) in websList" :key="index" :span="12" :md="8">
-          <a class="link-box m-1 p-2 mb-2" :href="item.url" target="_blank">
+          <a class="link-box shadow-box m-1 p-2 mb-2" :href="item.url" target="_blank">
             <div class="flex">
               <img class="transform" :src="item.head_img" />
               <h4 class="text-left h-1x pl-1">{{ item.name }}</h4>
@@ -96,12 +96,6 @@ export default {
 
 <style lang="less" scoped>
 .link-box {
-  display: block;
-  position: relative;
-  background: var(--card-bg-color);
-  padding: 15px;
-  border-radius: 14px;
-  box-shadow: var(--box-shadow-2);
   cursor: pointer;
   z-index: 1;
   .avatar {
@@ -129,14 +123,6 @@ export default {
     line-height: 1.5rem;
     height: 3rem;
   }
-}
-.link-box::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  // background: var(--bg-gradient-jet);
-  border-radius: inherit;
-  z-index: -1;
 }
 .link-box:hover img,
 .link-box:hover svg {

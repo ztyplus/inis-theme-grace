@@ -51,7 +51,7 @@ import { inisHelper } from "@/utils/helper";
 import useClipboard from "vue-clipboard3";
 import { reactive, toRefs } from "vue";
 import Login from "@/components/Login";
-import { mapGetters } from "vuex";
+import { mapGetters,useStore } from "vuex";
 import { useRouter } from "vue-router";
 export default {
   name: "Header",
@@ -61,6 +61,7 @@ export default {
   components: { Login },
   setup() {
     const router = useRouter();
+    const store = useStore();
     const { toClipboard } = useClipboard();
     const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
@@ -83,6 +84,7 @@ export default {
       },
       index() {
         router.push({ name: "index" });
+        store.dispatch("headCover", null);
       },
       swDialog() {
         state.showLogin = !state.showLogin;

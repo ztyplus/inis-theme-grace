@@ -50,6 +50,13 @@
           <el-radio :label="true" border>开启</el-radio>
           <el-radio :label="false" border>关闭</el-radio>
         </el-radio-group>
+        <span class="item-text py-1 mt-2 w-100">
+          <strong>开启首页歌单</strong>
+        </span>
+        <el-radio-group v-model="grace_config.option.music" size="small">
+          <el-radio :label="true" border>开启</el-radio>
+          <el-radio :label="false" border>关闭</el-radio>
+        </el-radio-group>
 
       </el-collapse-item>
       <el-collapse-item title="个人信息" name="2">
@@ -146,7 +153,8 @@ export default {
           diaryId: "",
           albumId: "",
           setYear: "",
-          animation: true
+          animation: true,
+          music: false
         },
       },
       sortList: [],
@@ -203,6 +211,7 @@ export default {
               albumId: state.grace_config.option.albumId,
               setYear: state.grace_config.option.setYear,
               animation: state.grace_config.option.animation,
+              music: state.grace_config.option.music,
             },
           },
         };

@@ -23,6 +23,7 @@
   --border-radius: 5px;
   --placeholder-color: #b3becb;
   --input-border-color: #a6b5c6;
+  --divider-color: #dcdfe6;
 }
 
 .dark {
@@ -54,6 +55,7 @@
   --border-gradient-onyx: linear-gradient( to bottom right, hsl(0, 0%, 25%) 0%, hsla(0, 0%, 25%, 0) 50% );
   --placeholder-color: #525d6c;
   --input-border-color: #9cadc0;
+  --divider-color: #9fa0a7;
 }
 * {
     padding: 0;
@@ -211,24 +213,40 @@ html,body {
   padding-top: 1rem!important;
 }
 .px-1 {
-  padding: 0 .5rem;
+  padding: 0 .5rem!important;
+  box-sizing: border-box;
+}
+.px-2 {
+  padding-left: 1rem!important;
+  padding-right: 1rem!important;
+  box-sizing: border-box;
+}
+.px-3 {
+  padding-left: 1.5rem!important;
+  padding-right: 1.5rem!important;
+  box-sizing: border-box;
+}
+.px-4 {
+  padding-left: 2rem!important;
+  padding-right: 2rem!important;
   box-sizing: border-box;
 }
 .py-1 {
-  padding: .5rem 0;
+  padding-top: .5rem!important;
+  padding-bottom: .5rem!important;
   box-sizing: border-box;
 }
 .py-2 {
-  padding: 1rem 0;
+  padding: 1rem 0!important;
   box-sizing: border-box;
 }
 .p-2 {
-  padding: 1rem;
+  padding: 1rem!important;
   box-sizing: border-box;
 }
 
 .px-6 {
-  padding: 0 3rem;
+  padding: 0 3rem!important;
   box-sizing: border-box;
 }
 .border-none {
@@ -330,6 +348,9 @@ html,body {
 }
 .text-right {
   text-align: right;
+}
+.text-center {
+  text-align: center;
 }
 .cursor-pointer {
   cursor: pointer;

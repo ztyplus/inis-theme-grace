@@ -71,8 +71,10 @@ export default {
         }else {
           let themeColor = grace_config.style.themeColor
           let themeColor1 = themeColor.replace(themeColor.split(",")[3],'0.5)')
-          state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};}\
-          :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};}\
+          let themeColor2 = themeColor.replace(themeColor.split(",")[3],'0.2)')
+          let themeColor3 = themeColor.replace(themeColor.split(",")[3],'0.1)')
+          state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};}\
+          :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};}\
           `
         }
         methods.welcome()

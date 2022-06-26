@@ -6,7 +6,7 @@
     <div class="link-post text-left">
       <el-row :gutter="0" class="mt-6 mb-2">
         <el-col :span="12" :md="8">
-          <div class="tool-box m-1 p-2 mb-2" @click="methods.goTool('douyin')">
+          <div class="tool-box shadow-box m-1 p-2 mb-2" @click="methods.goTool('douyin')">
             <div class="flex">
               <svg-icon
                 class="transform"
@@ -20,7 +20,7 @@
           </div>
         </el-col>
         <el-col :span="12" :md="8">
-          <div class="tool-box m-1 p-2 mb-2" @click="methods.goTool('hotsearch')">
+          <div class="tool-box shadow-box m-1 p-2 mb-2" @click="methods.goTool('hotsearch')">
             <div class="flex">
               <svg-icon
                 class="transform"
@@ -66,12 +66,6 @@ export default {
 
 <style lang="less" scoped>
 .tool-box {
-  display: block;
-  position: relative;
-  background: var(--card-bg-color);
-  padding: 15px;
-  border-radius: 14px;
-  box-shadow: var(--box-shadow-2);
   cursor: pointer;
   z-index: 1;
   .avatar {
@@ -94,14 +88,6 @@ export default {
     line-height: 1.5rem;
     height: 3rem;
   }
-}
-.tool-box::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  // background: var(--bg-gradient-jet);
-  border-radius: inherit;
-  z-index: -1;
 }
 .tool-box:hover img,
 .tool-box:hover svg {

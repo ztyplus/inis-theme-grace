@@ -1,9 +1,12 @@
 <template>
   <router-view></router-view>
+  <Audio />
 </template>
 
 <script>
+import Audio from "@/components/tool/Audio"
 export default {
+  components: { Audio },
   setup(){
     console.log("%cCopyright © "+ new Date().getFullYear() +"%c"+"相左BLOG",
       "color:white;background:#313a46;padding:3px 7px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;",
