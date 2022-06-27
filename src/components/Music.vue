@@ -111,9 +111,8 @@ export default {
     });
     watch(store.state.music_control, (val) => {
       state.progress = val.currentTime
-      state.volume = val.volume
     });
-    watch(store.state.music_pregres, (val) => {
+    watch(store.state.music_progress, (val) => {
       if(val.ended){
         if(state.mode == 0){
           methods.nextMusic()

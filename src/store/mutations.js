@@ -21,9 +21,9 @@ export default {
         state.music_control.currentTime = params;
     },
     PLAYENDED(state, params){
-        state.music_pregres.ended = params;
+        state.music_progress.ended = params;
     },
     VOLUME(state, params){
-        state.music_control.volume = params;
+        state.music.volume = params;
     },
 }

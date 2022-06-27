@@ -7,13 +7,13 @@ export default {
     music: {
         is_play: false,
         music_info: {},
+        volume: 0.7,
     },
     music_control: {
         duration: 0.00,
         currentTime: 0.00,
-        volume: 0.7,
     },
-    music_pregres: {
+    music_progress: {
         ended: false,
     }
 }
