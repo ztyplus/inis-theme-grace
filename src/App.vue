@@ -8,7 +8,7 @@ import Audio from "@/components/tool/Audio"
 export default {
   components: { Audio },
   setup(){
-    console.log("%cCopyright © "+ new Date().getFullYear() +"%c"+"相左BLOG",
+    console.log("%cCopyright © "+ new Date().getFullYear() +"%c"+INIS.title,
       "color:white;background:#313a46;padding:3px 7px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;",
       "color:white;background:#727cf5;padding:3px 7px;border-top-right-radius: 3px;border-bottom-right-radius: 3px;"
     )

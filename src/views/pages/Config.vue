@@ -2,29 +2,8 @@
   <div class="config text-left">
     <h3>主题配置</h3>
     <el-collapse class="mt-4" v-model="activeNames" :accordion="true">
-      <el-collapse-item title="样式设置" name="1">
-        <span class="item-text py-1 w-100">
-          <strong>主题色：</strong>
-        </span>
-        <div class="flex">
-          <el-color-picker
-            :show-alpha="true"
-            @active-change="methods.colorChange"
-            class="mr-2"
-            v-model="grace_config.style.themeColor"
-            :predefine="predefineColors"
-          />
-          <el-input
-            :input-style="{
-              'background-color': `${grace_config.style.themeColor}!important`,
-              cursor: 'pointer',
-            }"
-            :readonly="true"
-            :disabled="true"
-          />
-        </div>
-
-        <span class="item-text py-1 mt-2 w-100">
+      <el-collapse-item title="主题开关" name="1">
+        <span class="item-text py-1  w-100">
           <strong>自动切换夜间模式 </strong>(8:00-20:00为白天)
         </span>
         <el-radio-group v-model="grace_config.option.autoSwithch" size="small">
@@ -57,9 +36,24 @@
           <el-radio :label="true" border>开启</el-radio>
           <el-radio :label="false" border>关闭</el-radio>
         </el-radio-group>
+        <span class="item-text py-1 mt-2 w-100">
+          <strong>显示自建工具</strong>(目前仅有抖音解析与热搜)
+        </span>
+        <el-radio-group v-model="grace_config.option.tools" size="small">
+          <el-radio :label="true" border>开启</el-radio>
+          <el-radio :label="false" border>关闭</el-radio>
+        </el-radio-group>
 
       </el-collapse-item>
       <el-collapse-item title="个人信息" name="2">
+        <div class="flex mt-1">
+          <span class="item-text py-1 mr-2"><strong>昵称</strong></span>
+          <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.nickname" placeholder="请输入用户昵称" />
+        </div>
+        <div class="flex mt-1">
+          <span class="item-text py-1 mr-2"><strong>描述</strong></span>
+          <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.description" placeholder="请输入描述" />
+        </div>
         <div class="flex mt-1">
           <span class="item-text py-1 mr-2"><strong>头像</strong></span>
           <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.avatar" placeholder="" />
@@ -78,15 +72,31 @@
         </div>
       </el-collapse-item>
       <el-collapse-item title="站点配置" name="3">
-        <div class="flex mt-1">
+        <!-- <div class="flex mt-1">
           <span class="item-text py-1 mr-2"><strong>标题</strong></span>
-          <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.title" placeholder="请输入站点标题" />
+          <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.title" placeholder="请输入网站标题" />
+        </div> -->
+        <span class="item-text py-1 w-100">
+          <strong>主题色：</strong>
+        </span>
+        <div class="flex">
+          <el-color-picker
+            :show-alpha="true"
+            @active-change="methods.colorChange"
+            class="mr-2"
+            v-model="grace_config.style.themeColor"
+            :predefine="predefineColors"
+          />
+          <el-input
+            :input-style="{
+              'background-color': `${grace_config.style.themeColor}!important`,
+              cursor: 'pointer',
+            }"
+            :readonly="true"
+            :disabled="true"
+          />
         </div>
-        <div class="flex mt-1">
-          <span class="item-text py-1 mr-2"><strong>描述</strong></span>
-          <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.description" placeholder="请输入站点描述" />
-        </div>
-        <div class="flex mt-1">
+        <div class="flex mt-2">
           <span class="item-text py-1 mr-2"><strong>封面</strong></span>
           <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.cover" placeholder="头部默认封面" />
         </div>
@@ -137,7 +147,7 @@ export default {
       login_token: null,
       grace_config: {
         style: {
-          themeColor: "#79bbff",
+          themeColor: "rgb(121 187 255)",
         },
         option: {
           autoSwithch: true,
@@ -145,16 +155,18 @@ export default {
           qq: "",
           wechat: "",
           email: "",
-          title: "",
+          // title: "",
+          nickname: "",
           description: "",
-          cover: "",
+          cover: "",  
           beian: "",
           avatar: "",
           diaryId: "",
           albumId: "",
           setYear: "",
           animation: true,
-          music: false
+          music: false,
+          tools: false,
         },
       },
       sortList: [],
@@ -202,7 +214,8 @@ export default {
               qq: state.grace_config.option.qq,
               wechat: state.grace_config.option.wechat,
               email: state.grace_config.option.email,
-              title: state.grace_config.option.title,
+              // title: state.grace_config.option.title,
+              nickname: state.grace_config.option.nickname,
               description: state.grace_config.option.description,
               cover: state.grace_config.option.cover,
               beian: state.grace_config.option.beian,
@@ -212,6 +225,7 @@ export default {
               setYear: state.grace_config.option.setYear,
               animation: state.grace_config.option.animation,
               music: state.grace_config.option.music,
+              tools: state.grace_config.option.tools,
             },
           },
         };

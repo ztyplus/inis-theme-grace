@@ -96,12 +96,12 @@ const routes = [
 ]
   
 
-const router = createRouter({
-    // history: createWebHistory(),
-    history: createWebHashHistory(),
-    routes
-  })
+let history   = (INIS.route_hash) ? createWebHashHistory() : createWebHistory();
 
+const router = createRouter({
+  history,
+  routes
+})
 
 let is_login = inisHelper.get.storage("login")
 // 判断缓存是否存在且未过期

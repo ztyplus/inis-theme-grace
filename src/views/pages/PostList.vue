@@ -1,4 +1,17 @@
 <template>
+  <div class="text-right acslect">
+    <el-dropdown  @command="methods.selectCategory">
+      <span class="el-dropdown-link cursor-pointer">
+        <svg-icon file-name="acsort"></svg-icon>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item v-for="item in sortList" :key="item.id" :command="item.id">{{item.name}}</el-dropdown-item>
+          <el-dropdown-item command="all">全部</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </div>
   <div class="post-list">
     <el-row :gutter="20" class="mt-2">
       <el-col
@@ -39,6 +52,7 @@
     :page-size="8"
     :hide-on-single-page="true"
     @current-change="methods.handleCurrentChange"
+    :current-page="page"
   />
 </template>
 
@@ -47,7 +61,9 @@ import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import { useRouter } from "vue-router";
 import { inisHelper } from '@/utils/helper'
+import SvgIcon from '@/components/tool/SvgIcon.vue';
 export default {
+  components: { SvgIcon },
   setup() {
     const router = useRouter();
     const grace_config = inisHelper.get.storage("grace_config")
@@ -56,7 +72,9 @@ export default {
       page: 1,
       allpage: 0,
       albumId: "",
-      diaryId: ""
+      diaryId: "",
+      sortList: [],
+      sortId: null,
     });
     const methods = {
       initData() {
@@ -65,11 +83,16 @@ export default {
           state.diaryId = grace_config.option.diaryId
         }
         methods.getArticle();
+        methods.getSort()
       },
       getArticle() {
         state.ArticleList = [];
+        let where = `is_show,=,1;sort_id,<>,|${state.albumId}|;sort_id,<>,|${state.diaryId}|`;
+        if (state.sortId){
+          where = `is_show,=,1;sort_id,like,%|${state.sortId}|%;`
+        }
         let params = {
-          where: `is_show,=,1;sort_id,<>,|${state.albumId}|;sort_id,<>,|${state.diaryId}|`,
+          where,
           limit: 8,
           page: state.page,
         };
@@ -79,6 +102,18 @@ export default {
             state.ArticleList = res.data.data.data;
           }
         });
+      },
+      getSort(){
+        let params = {
+          limit: 99,
+          where: `is_show,=,1;id,<>,${state.albumId};id,<>,${state.diaryId}` 
+        }
+        GET("article-sort/sql", { params }).then((res) => {
+          if (res.data.code == 200) {
+            state.sortList = res.data.data.data;
+          }
+        });
+       
       },
       handleCurrentChange(val) {
         state.page = val;
@@ -90,6 +125,12 @@ export default {
           params: { id },
         });
       },
+      selectCategory(val){
+        state.page = 1
+        if(val == 'all') state.sortId = null
+        else state.sortId = val
+        methods.getArticle()
+      }
     };
     onMounted(() => {
       methods.initData();

@@ -85,7 +85,10 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     color: var(--card-title-color)!important;
 }
 .el-pager .is-active {
-    background-color:#409eff!important;
+    background-color:var(--theme-color)!important;
+}
+.el-pager li:hover {
+    background-color:var(--theme-color-1)!important;
 }
 .article .el-divider__text {
     background-color: var(--card-bg-color)!important;
@@ -334,6 +337,25 @@ code li{
   box-shadow: none!important;
 }
 .el-select-dropdown__item.selected {
+  color: var(--theme-color)!important;
+}
+.el-dropdown-menu {
+  background-color: var(--card-bg-color)!important;
+}
+.el-dropdown__popper.el-popper {
+  background: var(--card-bg-color)!important;
+  border: 1px solid var(--border-color)!important;
+  box-shadow: none!important;
+}
+.el-popper.is-light .el-popper__arrow::before {
+  background-color: var(--card-bg-color)!important;
+  border-color: var(--border-color)!important;
+}
+.el-dropdown-menu__item {
+  color: var(--h2-color)!important;
+}
+.el-dropdown-menu__item:hover {
+  background-color: var(--theme-color-2)!important;
   color: var(--theme-color)!important;
 }
 @media(max-width:550px) {

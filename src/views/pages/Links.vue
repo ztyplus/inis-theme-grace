@@ -1,13 +1,17 @@
 <template>
-  <Tools />
 
-  <div v-if="friendsList.length != 0">
+  <div class="card pt-2 article text-left mb-4">
+    <div class="about article-content" v-html="linksInfo"></div>
+  </div>
+
+
+  <div v-if="linkList.length != 0">
     <el-divider content-position="center"
-      ><span><h3>友情链接</h3></span></el-divider
+      ><span><h3>{{linkList[0].name}}</h3></span></el-divider
     >
     <div class="link-post">
       <el-row :gutter="0" class="mt-6 mb-2">
-        <el-col v-for="(item, index) in friendsList" :key="index" :span="12" :md="8">
+        <el-col v-for="(item, index) in linkList[0].data" :key="index" :span="12" :md="8">
           <a class="link-box shadow-box m-1 p-2 mb-4" :href="item.url" target="_blank">
             <div class="avatar">
               <img class="transform wh-100" :src="item.head_img" />
@@ -20,24 +24,31 @@
     </div>
   </div>
 
-  <div v-if="websList.length != 0">
-    <el-divider content-position="center" class="my-2"
-      ><span><h3>宝藏网站</h3></span></el-divider
-    >
-    <div class="link-post text-left">
-      <el-row :gutter="0" class="mt-6 mb-2">
-        <el-col v-for="(item, index) in websList" :key="index" :span="12" :md="8">
-          <a class="link-box shadow-box m-1 p-2 mb-2" :href="item.url" target="_blank">
-            <div class="flex">
-              <img class="transform" :src="item.head_img" />
-              <h4 class="text-left h-1x pl-1">{{ item.name }}</h4>
-            </div>
-            <p class="h-2x text-left pt-1">{{ item.description }}</p>
-          </a>
-        </el-col>
-      </el-row>
+  <div v-if="linkList.length >= 2">
+    <div v-for="(list,index) in linkList.slice(1,linkList.length)" :key="index">
+      <div v-if="list.count != 0">
+          <el-divider content-position="center" class="my-2"><span><h3>{{list.name}}</h3></span></el-divider>
+          <div class="link-post text-left">
+            <el-row :gutter="0" class="mt-4 mb-2">
+              <el-col v-for="(item, index) in list.data" :key="index" :span="12" :md="8">
+                <a class="link-box shadow-box m-1 p-2 mb-2" :href="item.url" target="_blank">
+                  <div class="flex">
+                    <img class="transform" :src="item.head_img" />
+                    <h4 class="text-left h-1x pl-1">{{ item.name }}</h4>
+                  </div>
+                  <p class="h-2x text-left pt-1">{{ item.description }}</p>
+                </a>
+              </el-col>
+            </el-row>
+          </div>
+      </div>
     </div>
   </div>
+
+  <div class="mt-4">
+    <Tools v-if="tools" />
+  </div>
+
 </template>
 
 <script>
@@ -45,43 +56,62 @@ import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import SvgIcon from "@/components/tool/SvgIcon.vue";
 import Tools from "@/components/Tools";
-import { useRouter } from "vue-router";
+import { inisHelper } from "@/utils/helper";
 export default {
   components: { SvgIcon, Tools },
   setup() {
-    const router = useRouter();
+    const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
-      friendsList: [],
-      toolsList: [],
-      websList: [],
+      tools: (grace_config && grace_config.option.tools ? grace_config.option.tools : false),
+      linksInfo: "",
+      sortList: [],
+      linkList: [],
     });
     const methods = {
       initData() {
-        methods.getLinks(1);
-        methods.getLinks(2);
-        methods.getLinks(3);
+        methods.getLinkSort();
+        methods.getlinksInfo();
       },
-      getLinks(sort_id) {
-        let params = {
-          where: `sort_id,=,${sort_id};`,
-          order: "create_time asc",
-          limit: 9999,
-        };
+      getLinkSort(){
+        let params = {limit: 9999,order: "create_time asc",}
+        GET("links-sort", {params}).then(res => {
+          if (res.data.code == 200) {
+            state.sortList = res.data.data.data
+            console.log('state.sortList: ', state.sortList);
+            // state.sortList = state.sortList.splice(state.sortList.findIndex(item => item.expand.count === 0), 1)
+            state.sortList.forEach((item,index) => {
+              methods.getLinks(item.id,index,item.name)
+            })
+          }
+        })
+      },
+      getLinks(sort_id,index,name) {
+        let params = {where: `sort_id,=,${sort_id};`,order: "create_time asc",limit: 9999,};
         GET("links/sql", { params }).then((res) => {
           if (res.data.code == 200) {
-            switch (sort_id) {
-              case 1:
-                state.friendsList = res.data.data.data;
-                break;
-              case 2:
-                state.toolsList = res.data.data.data;
-                break;
-              default:
-                state.websList = res.data.data.data;
-            }
+            res.data.data.index = index
+            res.data.data.name = name
+            state.linkList = state.linkList.concat(res.data.data)
+            state.linkList = state.linkList.sort(methods.sortBy('index'))
           }
         });
       },
+      sortBy (field) {
+        return (x, y) => {
+          return x[field] - y[field]
+        }
+      },
+      getlinksInfo(){
+        if (state.linksInfo == "") {
+          let params = { alias: "links" };
+          GET("page", { params }).then((res) => {
+            if (res.data.code == 200) {
+              state.linksInfo = res.data.data.content;
+              res.data.time = 3600;
+            }
+          });
+        }
+      }
     };
 
     onMounted(() => {
@@ -95,6 +125,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import url(@/assets/css/markdown.css);
 .link-box {
   cursor: pointer;
   z-index: 1;

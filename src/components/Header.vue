@@ -10,7 +10,7 @@
         />
       </div>
       <div class="headinfo">
-        <h3 @click="methods.index" class="title flex cursor-pointer">{{title}}</h3>
+        <h3 @click="methods.index" class="title flex cursor-pointer">{{nickname}}</h3>
         <div class="share flex p-1 pl-0">
           <el-button
             class="mr-1"
@@ -69,7 +69,7 @@ export default {
       qq: (grace_config && grace_config.option.qq ? grace_config.option.qq : ""),
       wechat: (grace_config && grace_config.option.wechat ? grace_config.option.wechat : ""),
       email: (grace_config && grace_config.option.email ? grace_config.option.email : ""),
-      title: (grace_config && grace_config.option.title ? grace_config.option.title : "相左"),
+      nickname: (grace_config && grace_config.option.nickname ? grace_config.option.nickname : "相左"),
       description: (grace_config && grace_config.option.description ? grace_config.option.description : "心有山海，静而不争"),
       avatar: (grace_config && grace_config.option.avatar ? grace_config.option.avatar : "/static/images/avatar.jpg"),
     });

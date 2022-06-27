@@ -215,7 +215,7 @@ export default {
         }else {
           state.index += 1
         }
-        methods.swMusic(state.musicList.songs[state.index].song_id,state.musicSheet.expand.type,state.index)
+        methods.swMusic(state.musicList.songs[state.index].song_id,state.musicList.info.expand.type,state.index)
       },
       preMusic(){
         if(state.index == 0){
@@ -223,7 +223,7 @@ export default {
         }else {
           state.index -= 1
         }
-        methods.swMusic(state.musicList.songs[state.index].song_id,state.musicSheet.expand.type,state.index)
+        methods.swMusic(state.musicList.songs[state.index].song_id,state.musicList.info.expand.type,state.index)
       },
       async swSheet(val){
         state.index = 0

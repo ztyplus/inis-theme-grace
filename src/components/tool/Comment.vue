@@ -67,7 +67,7 @@ export default {
           type: 'msg_wall',
         }
         // 不知道什么原因，提交POST请求有延迟，暂且搁下
-        POST("comments",params).then((res) => {
+        await POST("comments",params).then((res) => {
           // if(res.data.code == 200) {
           //   ElMessage({message: '留言成功',type: 'success',})
           // }
