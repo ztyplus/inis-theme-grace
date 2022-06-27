@@ -14,7 +14,9 @@
                   'url(' + (item.img_src ? item.img_src : 'static/images/note.jpg') + ')',
               }"
             ></div>
-            <span class="banner-title">{{ item.title }}</span>
+            <div class="text-left banner-title p-1">
+              <span class="p-1">{{ item.title }}</span>
+            </div>
           </div>
         </el-carousel-item>
       </el-carousel>
@@ -23,7 +25,7 @@
   <div v-if="TopList.length != 0">
     <Music v-if="music"/>
   </div>
-  <div class="card">
+  <div class="card pt-2">
     <div class="about article-content" v-html="About"></div>
   </div>
 </template>
@@ -140,11 +142,15 @@ export default {
 }
 .banner-title {
   position: absolute;
-  bottom: 1rem;
-  left: 1rem;
+  bottom: .5rem;
+  left: 0;
   font-weight: 600;
   color: #fff;
   z-index: 99;
   font-size: 1.2rem;
+  span {
+    background-color: var(--theme-color-3);
+    border-radius: var(--border-radius);
+  }
 }
 </style>

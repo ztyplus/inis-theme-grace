@@ -299,6 +299,7 @@ ul {
   margin-top: 0!important;
 }
 .music-box {
+  box-shadow: var(--box-shadow-3) !important;
   .title {
     color: var(--text-color);
   }
