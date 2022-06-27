@@ -50,7 +50,6 @@
     </div>
     <div class="music-list transform text-left" :class="!showSheet ? 'hide-music-list': ''">
       <el-divider v-show="showSheet" content-position="center" class="text-center mt-2">
-        <span class="text-center cursor-pointer">{{ musicList.info.title }}</span>
       </el-divider>
       <ul class="">
         <li
