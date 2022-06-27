@@ -50,9 +50,9 @@
     </div>
     <div class="music-list transform text-left" :class="!showSheet ? 'hide-music-list': ''">
       <el-divider v-show="showSheet" content-position="center" class="text-center mt-2">
-        <span class="text-center cursor-pointer">{{ musicSheet.title }}</span>
+        <span class="text-center cursor-pointer">{{ musicList.info.title }}</span>
       </el-divider>
-      <ul class="pr-1">
+      <ul class="">
         <li
           v-for="(item,index) in musicList.songs"
           :key="item.song_id"
@@ -67,7 +67,7 @@
         </div>
         </li>
       </ul>
-      <div class="sheet flex justify-center">
+      <div class="sheet flex justify-center mt-2">
         <span class="mr-2">歌单选择</span>
         <el-select v-model="sheetId" class="m-2 " placeholder="请选择歌单" @change="methods.swSheet">
         <el-option
@@ -251,8 +251,8 @@ export default {
 
 <style lang="less" scoped>
 ul {
-  overflow: auto;
   height: 400px;
+  overflow: auto;
   span {
     width: 2rem;
     display: inline-block;
@@ -267,15 +267,37 @@ ul {
     line-height: 2rem;
     height: 2rem;
   }
+
 }
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: none;
+}
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: none;
+  }
+  
+  ::-webkit-scrollbar-thumb:active {
+    background-color: none;
+  }
 .music-list {
+  overflow: auto;
+  overflow: hidden;
   margin-top: 1rem;
   color: var(--text-color);
+  height: 500px;
 }
 .hide-music-list {
   height: 0;
-  visibility: hidden;
-  opacity: 0;
+  // visibility: hidden;
+  // opacity: 0;
   margin-top: 0!important;
 }
 .music-box {
@@ -285,6 +307,7 @@ ul {
   .music_info {
     padding-left: 1rem;
     padding-right: 1rem;
+        box-sizing: border-box;
     width: calc(100% - 6rem);
     .control{
       svg {
