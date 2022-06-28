@@ -34,9 +34,9 @@ export default {
     const formRef = ref(null)
     const state = reactive({
       postForm: {
-        content: "",
-        nickname: "",
-        email: "",
+        content: "留言测试",
+        nickname: "Hello",
+        email: "admin@163.com",
         url: ""
       },
       type: ref(props.messageType),

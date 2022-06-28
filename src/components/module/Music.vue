@@ -86,9 +86,7 @@ import { reactive, toRefs,watch,onBeforeUnmount,ref } from "vue";
 import { mapGetters, useStore } from "vuex";
 import { onMounted } from "@vue/runtime-core";
 import { GET } from "@/utils/http/request";
-import SvgIcon from './tool/SvgIcon.vue';
 export default {
-  components: { SvgIcon },
   computed: {
     ...mapGetters(['duration','showVolume'])
   },

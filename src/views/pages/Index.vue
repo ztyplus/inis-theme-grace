@@ -34,7 +34,7 @@
 import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import { useRouter } from "vue-router";
-import Music from "@/components/Music";
+import Music from "@/components/module/Music";
 import { inisHelper } from "@/utils/helper";
 export default {
   components: {

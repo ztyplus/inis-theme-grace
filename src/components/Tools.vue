@@ -45,7 +45,7 @@
 import { reactive, toRefs } from "vue";
 import SvgIcon from "@/components/tool/SvgIcon.vue";
 import { useRouter } from "vue-router";
-import RouteView from "@/components/tool/RouteView";
+import RouteView from "@/components/module/RouteView";
 export default {
   components: { SvgIcon, RouteView },
   setup() {

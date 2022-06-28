@@ -4,7 +4,7 @@ window.INIS = {
     api: 'https://inis.ztyang.com/api',
 
     // 后端开启token验证后，需要将token填写到此处
-    token: '72240d0053243c6fd1bfaf8d04bd557a',
+    token: 'b3e023677f69a26cb1ca7b42e2205caf',
 
     // 站点标题
     title: '相左',

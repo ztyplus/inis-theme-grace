@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Audio from "@/components/tool/Audio"
+import Audio from "@/components/module/Audio"
 export default {
   components: { Audio },
   setup(){

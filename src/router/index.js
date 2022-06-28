@@ -75,13 +75,13 @@ const routes = [
                         name: 'douyin',
                         path: 'douyin',
                         meta: { keepAlive: true},
-                        component: () => import('@/components/plugins/Douyin'),
+                        component: () => import('@/components/module/Douyin'),
                     },
                     {
                         name: 'hotsearch',
                         path: 'hotsearch',
                         meta: { keepAlive: true},
-                        component: () => import('@/components/plugins/HotSearch'),
+                        component: () => import('@/components/module/HotSearch'),
                     },
                 ]
             },

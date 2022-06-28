@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import RouteView from "@/components/tool/RouteView";
+import RouteView from "@/components/module/RouteView";
 export default {
   name: "MainBox",
   components: { RouteView },

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Comment from "@/components/tool/Comment";
+import Comment from "@/components/Comment";
 import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 export default {
