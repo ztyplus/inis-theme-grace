@@ -1,7 +1,7 @@
 <template>
   <div class="music-box shadow-box">
     <div class="flex">
-      <div class="cover cursor-pointer" :class="play? 'rotate': ''" :style="{'background-image':`url(${music.cover})`}"></div>
+      <div v-if="music.cover" class="cover cursor-pointer" :class="play? 'rotate': ''" :style="{'background-image':`url(${music.cover})`}"></div>
       <div class="music_info text-left ">
         <div class="mt-1">
           <span class="title">{{music.name}}</span>

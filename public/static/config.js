@@ -9,9 +9,6 @@ window.INIS = {
     // 站点标题
     title: '相左',
 
-    // 路由模式 - true = 带 # 号路由 - 还在调整，不建议修改此项
-    // route_hash: false,
-
     version: '1.0.0',
 }
 

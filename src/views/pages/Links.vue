@@ -77,7 +77,6 @@ export default {
         GET("links-sort", {params}).then(res => {
           if (res.data.code == 200) {
             state.sortList = res.data.data.data
-            console.log('state.sortList: ', state.sortList);
             // state.sortList = state.sortList.splice(state.sortList.findIndex(item => item.expand.count === 0), 1)
             state.sortList.forEach((item,index) => {
               methods.getLinks(item.id,index,item.name)

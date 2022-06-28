@@ -61,6 +61,7 @@ export default {
       cover: (grace_config && grace_config.option.cover ? grace_config.option.cover : "static/images/default-bg.jpg"),
       title: INIS.title,
       beian: (grace_config && grace_config.option.beian ? grace_config.option.beian : null),
+      themeColor: (grace_config && grace_config.style.themeColor ? grace_config.style.themeColor : "rgb(121 187 255)"),
     })
     const methods = {
       initData(){
@@ -68,7 +69,7 @@ export default {
         if (!grace_config) {
             methods.getConfig()
         }else {
-          let themeColor = grace_config.style.themeColor
+          let themeColor = state.themeColor
           let themeColor1 = themeColor.replace(themeColor.split(",")[3],'0.5)')
           let themeColor2 = themeColor.replace(themeColor.split(",")[3],'0.2)')
           let themeColor3 = themeColor.replace(themeColor.split(",")[3],'0.1)')
