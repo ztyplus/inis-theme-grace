@@ -73,8 +73,9 @@ export default {
           let themeColor1 = themeColor.replace(themeColor.split(",")[3],'0.5)')
           let themeColor2 = themeColor.replace(themeColor.split(",")[3],'0.2)')
           let themeColor3 = themeColor.replace(themeColor.split(",")[3],'0.1)')
-          state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};}\
-          :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};}\
+          let themeColor4 = themeColor.replace(themeColor.split(",")[3],'0.05)')
+          state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
+          :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
           `
         }
         methods.welcome()

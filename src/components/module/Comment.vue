@@ -9,9 +9,9 @@
         <el-form-item prop="content">
           <el-input v-model="postForm.content" type="textarea" placeholder="说些什么吧..." />
         </el-form-item>
-        <svg-icon @click="methods.submit()" class="send cursor-pointer" width="3rem" height="3rem" file-name="comment"></svg-icon>
+        <svg-icon @click="methods.submit()" class="send cursor-pointer" width="2.5rem" height="2.5rem" file-name="comment"></svg-icon>
       </div>
-      <div class="visitor-info mt-4">
+      <div class="visitor-info mt-2">
         <el-form-item prop="nickname">
             <el-input v-model="postForm.nickname" placeholder="昵称"></el-input>
         </el-form-item>
@@ -29,17 +29,19 @@
 import { reactive,toRefs,ref } from 'vue'
 import { POST } from '@/utils/http/request'
 export default {
-  props: ["messageType"],
+  props: ["commentType","pid","articleId"],
   setup(props,ctx){
     const formRef = ref(null)
     const state = reactive({
       postForm: {
-        content: "留言测试",
-        nickname: "Hello",
-        email: "admin@163.com",
+        content: "",
+        nickname: "",
+        email: "",
         url: ""
       },
-      type: ref(props.messageType),
+      type: ref(props.commentType),
+      article_id: ref(props.articleId),
+      pid: ref(props.pid),
       isLoading: false,
       limit: 10,
       page: 1,
@@ -51,27 +53,23 @@ export default {
       }
     })
     const methods = {
-      initData(){
-
-      },
-      getComments(){
-
-      },
-      async send(pid=0){
+      async send(){
         let params = {
-          pid,
-          content:state.postForm.content,
+          pid: state.pid,
+          content:"<p>" + state.postForm.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>",
           nickname:state.postForm.nickname,
           email:state.postForm.email,
           url:state.postForm.url,
-          type: 'msg_wall',
+          type: state.type,
+          article_id: state.article_id ? parseInt(state.article_id) : null,
         }
-        // 不知道什么原因，提交POST请求有延迟，暂且搁下
+        // 不知道什么原因，提交POST请求有延迟，暂且搁下 
+        // 这是因为后端设置的邮件服务端口不对，邮件服务不正常导致 2022.06.28
         await POST("comments",params).then((res) => {
-          // if(res.data.code == 200) {
-          //   ElMessage({message: '留言成功',type: 'success',})
-          // }
-          // else ElMessage({message: res.data.msg,type: 'error',})
+          if(res.data.code == 200) {
+            ElMessage({message: '留言成功',type: 'success'})
+          }
+          else ElMessage({message: res.data.msg,type: 'error',})
         })
         state.postForm.content = ""
         ctx.emit('getWallmasg',)
@@ -84,7 +82,6 @@ export default {
         })
       }
     }
-
 
     return { ...toRefs(state),methods,formRef }
   }
@@ -99,6 +96,7 @@ export default {
 }
 .comment-texera {
   position: relative;
+  height: 100px;
   .send {
     position: absolute;
     bottom: .5rem;

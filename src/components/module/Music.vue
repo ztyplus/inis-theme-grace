@@ -49,8 +49,7 @@
       </div>
     </div>
     <div class="music-list transform text-left" :class="!showSheet ? 'hide-music-list': ''">
-      <el-divider v-show="showSheet" content-position="center" class="text-center mt-2">
-      </el-divider>
+      <el-divider v-show="showSheet" content-position="center" class="text-center mt-2"></el-divider>
       <ul class="">
         <li
           v-for="(item,index) in musicList.songs"
@@ -322,7 +321,7 @@ ul {
     }
   }
   .music-item {
-    background-color: var(--theme-color-3);
+    background-color: var(--theme-color-4);
     border-radius: var(--border-radius);
   }
 }

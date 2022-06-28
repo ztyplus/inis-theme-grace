@@ -60,7 +60,6 @@ export default {
           GET("article/sql", { params }).then((res) => {
             if (res.data.code == 200) {
               state.TopList = res.data.data.data;
-              res.data.data.time = 3600;
             }
           });
         }
@@ -72,7 +71,6 @@ export default {
           GET("page", { params }).then((res) => {
             if (res.data.code == 200) {
               state.About = res.data.data.content;
-              res.data.time = 3600;
             }
           });
         }
@@ -96,7 +94,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url(@/assets/css/markdown.css);
 .card {
   margin-bottom: 1.5rem;
   text-align: left;

@@ -49,10 +49,31 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-size: 1.5rem;
     color: var(--h1-color)!important;
 }
-.el-textarea__inner {
+.massage-box .el-textarea__inner  {
     background-color: var(--card-bg-color)!important;
-    min-height: 200px!important;
+    height: 100px;
 }
+.el-textarea__inner  {
+  height: 100px;
+    background-color: var(--card-bg-color)!important;
+}
+.article-comment .el-textarea__inner {
+  height: 120px;
+}
+.article-comment .visitor-info {
+  margin-top: 2rem!important;
+}
+.sendbx .el-textarea__inner  {
+    min-height: 150px!important;
+}
+.wallpanel .el-textarea__inner {
+    height: 200px;
+}
+
+.wallpanel .comment-texera {
+  height: 200px!important;
+}
+ 
 .el-input__wrapper {
   box-shadow: 0 0 0 1px var(--input-border-color,var(--el-border-color)) inset!important;
   background-color: var(--card-bg-color)!important;
@@ -322,8 +343,8 @@ code li{
 }
 .vioce-control .el-tooltip__trigger {height: .5rem!important;width: .5rem!important;}
 .vioce-control .el-slider__button-wrapper{width: 34px!important;}
-.music-list .el-divider--horizontal {
-  border-top: 1px var(--divider-color) var(--el-border-style);
+ .el-divider--horizontal {
+  border-top: 1px var(--divider-color) var(--el-border-style)!important;
 }
 .el-select-dropdown__list {
   background-color: var(--card-bg-color)!important;
@@ -358,6 +379,12 @@ code li{
   background-color: var(--theme-color-2)!important;
   color: var(--theme-color)!important;
 }
+.massage-box,
+.message-box {
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+}
+.msg-content p {padding-bottom: 5px;}
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;
@@ -367,7 +394,10 @@ code li{
       height: 60px!important;
       width: 60px !important;
     }
-    .el-message-box {
+    .el-message {
+      min-width: 250px!important;
+    }
+    .el-message-box{
       width: 95%!important;
     }
     .el-timeline-item__wrapper {

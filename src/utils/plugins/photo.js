@@ -4,7 +4,6 @@ const photo = {
     // 自定义图片灯箱指令
     Vue.directive('img-preview',(el)=>{
         el.querySelectorAll('img').forEach((img)=>{
-          console.log(img.src)
           let previewbox = document.createElement("span")
           img.classList.add('view-box')
           previewbox.classList.add('PhotoConsumer')

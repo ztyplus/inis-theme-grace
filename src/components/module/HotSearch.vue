@@ -32,7 +32,6 @@ export default {
         let params = {cache: false}
         GET("other/hot",{params}).then((res) => {
           if (res.data.code == 200) {
-            console.log(res.data.data);
             state.hotList = res.data.data.baidu;
           }
         });

@@ -59,9 +59,11 @@
     title="发布动态"
     @close="methods.colseDialog(false)"
   >
-    <el-form-item>
+    <div class="sendbx">
+      <el-form-item>
       <el-input v-model="talkcontent" type="textarea" placeholder="说些什么吧..." />
     </el-form-item>
+    </div>
 
     <!-- <el-upload
       :action="api_url"
@@ -146,7 +148,6 @@ export default {
       },
       async submit() {
         let location = await methods.loction();
-        console.log("location: ", location);
         if (state.talkcontent) {
           let params = {
             content:

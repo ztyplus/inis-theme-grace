@@ -11,7 +11,7 @@
     >
     <div class="link-post">
       <el-row :gutter="0" class="mt-6 mb-2">
-        <el-col v-for="(item, index) in linkList[0].data" :key="index" :span="12" :md="8">
+        <el-col v-show="item.is_show == 1" v-for="(item, index) in linkList[0].data" :key="index" :span="12" :md="8">
           <a class="link-box shadow-box m-1 p-2 mb-4" :href="item.url" target="_blank">
             <div class="avatar">
               <img class="transform wh-100" :src="item.head_img" />
@@ -30,8 +30,8 @@
           <el-divider content-position="center" class="my-2"><span><h3>{{list.name}}</h3></span></el-divider>
           <div class="link-post text-left">
             <el-row :gutter="0" class="mt-4 mb-2">
-              <el-col v-for="(item, index) in list.data" :key="index" :span="12" :md="8">
-                <a class="link-box shadow-box m-1 p-2 mb-2" :href="item.url" target="_blank">
+              <el-col v-show="item.is_show == 1" v-for="(item, index) in list.data" :key="index" :span="12" :md="8">
+                <a v-if="item.is_show == 1" class="link-box shadow-box m-1 p-2 mb-2" :href="item.url" target="_blank">
                   <div class="flex">
                     <img class="transform" :src="item.head_img" />
                     <h4 class="text-left h-1x pl-1">{{ item.name }}</h4>
@@ -77,7 +77,6 @@ export default {
         GET("links-sort", {params}).then(res => {
           if (res.data.code == 200) {
             state.sortList = res.data.data.data
-            // state.sortList = state.sortList.splice(state.sortList.findIndex(item => item.expand.count === 0), 1)
             state.sortList.forEach((item,index) => {
               methods.getLinks(item.id,index,item.name)
             })
@@ -124,7 +123,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url(@/assets/css/markdown.css);
 .link-box {
   cursor: pointer;
   z-index: 1;

@@ -21,7 +21,7 @@ const routes = [
             {
                 name: 'article',
                 path: '/article/:id',
-                meta: { keepAlive: false},
+                meta: { keepAlive: false,css: "article-pages"},
                 component: () => import('@/views/pages/Article'),
             },
             {
