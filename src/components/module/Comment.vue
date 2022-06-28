@@ -28,9 +28,11 @@
 <script>
 import { reactive,toRefs,ref } from 'vue'
 import { POST } from '@/utils/http/request'
+import { inisHelper } from '@/utils/helper'
 export default {
   props: ["commentType","pid","articleId"],
   setup(props,ctx){
+    const login_storage = inisHelper.get.storage("login")
     const formRef = ref(null)
     const state = reactive({
       postForm: {
@@ -52,6 +54,10 @@ export default {
         email:[{ required: true, message: '请输入正确的邮箱地址', type:"email", trigger: 'blur' }],
       }
     })
+    if (login_storage != "expire" && login_storage != false){
+      state.postForm.nickname = login_storage.user.nickname
+      state.postForm.email = login_storage.user.email
+    }
     const methods = {
       async send(){
         let params = {
