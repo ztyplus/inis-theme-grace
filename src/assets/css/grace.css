@@ -386,8 +386,7 @@ code li{
 }
 .msg-content p {padding-bottom: 5px;font-size: .9rem;}
 .submsg p {
-  font-size: .9rem;
-  color: var(--h2-color);
+  font-size: .875rem;
 }
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {

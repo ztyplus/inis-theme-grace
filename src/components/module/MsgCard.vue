@@ -9,7 +9,9 @@
         <img :src="item.expand.head_img" class="cursor-pointer" @click="methods.goUrl(item.url)" />
         <div class="info pl-1 w-100">
           <div>
-            <div class="name h-60">{{ item.nickname }}</div>
+            <div class="name h-60">{{ item.nickname }}
+              <span v-if="(item.opt.level && item.opt.level == 'admin')" class="author mr-1">作者</span>
+            </div>
             <span
               style="display: inline-block; vertical-align: text-top"
               class="item-text h-40"
@@ -41,7 +43,8 @@
           <div class="info pl-1 w-100">
             <div>
               <div class="name h-60">
-                {{ submsg.nickname }}
+                {{ submsg.nickname }} 
+                <span v-if="submsg.level && submsg.level == 'admin'" class="author mr-1">作者</span>
                 <span class="relyto">@{{ submsg.replyto }}</span>
               </div>
               <span
@@ -141,6 +144,7 @@ export default defineComponent({
               head_img: item.expand.head_img,
               pid: item.pid,
               replyto: item.expand.pid.nickname,
+              level: item.opt.level ? item.opt.level : 'user',
             });
             methods.recursion(item.son, arr);
           });
@@ -196,6 +200,14 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+.author {
+  display: inline-block;
+  background-color: rgb(254, 44, 85);
+  color: #ffffff;
+  font-size: 10px!important;
+  padding: 2px 4px;
+  border-radius: var(--border-radius);
+}
 .msg-head {
   img {
     height: 2.5rem;

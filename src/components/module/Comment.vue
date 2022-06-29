@@ -39,7 +39,8 @@ export default {
         content: "",
         nickname: "",
         email: "",
-        url: ""
+        url: "",
+        level: "user"
       },
       type: ref(props.commentType),
       article_id: ref(props.articleId),
@@ -57,6 +58,7 @@ export default {
     if (login_storage != "expire" && login_storage != false){
       state.postForm.nickname = login_storage.user.nickname
       state.postForm.email = login_storage.user.email
+      state.postForm.level = login_storage.user.level
     }
     const methods = {
       async send(){
@@ -68,6 +70,10 @@ export default {
           url:state.postForm.url,
           type: state.type,
           article_id: state.article_id ? parseInt(state.article_id) : null,
+          opt: {
+            like: 0,
+            level: state.postForm.level
+          }
         }
         // 不知道什么原因，提交POST请求有延迟，暂且搁下 
         // 这是因为后端设置的邮件服务端口不对，邮件服务不正常导致 2022.06.28
