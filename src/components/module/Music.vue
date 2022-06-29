@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="music-list transform text-left" :class="!showSheet ? 'hide-music-list': ''">
-      <el-divider v-show="showSheet" content-position="center" class="text-center mt-2"></el-divider>
+      <!-- <el-divider v-show="showSheet" content-position="center" class="text-center mt-2"></el-divider> -->
       <ul class="">
         <li
           v-for="(item,index) in musicList.songs"

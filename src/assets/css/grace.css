@@ -267,7 +267,16 @@ code li{
   border-top: 1px solid var(--border-color);
   border-bottom: none;
 }
-.config .el-color-picker {margin-right: .5rem;}
+.el-color-picker__panel {
+  background-color: var(--card-bg-color)!important;
+  border-color: var(--border-color)!important;
+}
+.el-color-picker {width: 100%;}
+.el-color-picker__trigger {
+  width: 100%!important;
+  padding: 0!important;
+}
+.el-color-picker .el-color-picker__icon {display: none!important;}
 .config .el-input__wrapper {
   padding: 0!important;
   border-bottom: none!important;
@@ -294,10 +303,14 @@ code li{
 .el-year-table tbody span,.el-date-picker__header-label,.el-date-picker__header .el-icon {
   color: var(--text-color)!important;;
 }
-/* .el-popper {
-  background-color: var(--card-bg-color)!important;
-  border-color: var(--border-color)!important;
-} */
+.shadow-box-3 {
+  display: block;
+  position: relative;
+  background: var(--card-bg-color);
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: var(--box-shadow-3);
+}
 .shadow-box {
   display: block;
   position: relative;
@@ -387,6 +400,13 @@ code li{
 .msg-content p {padding-bottom: 5px;font-size: .9rem;}
 .submsg p {
   font-size: .875rem;
+}
+.el-form-item__label {
+  color: var(--text-color)!important;
+}
+.el-button--primary {
+  background-color: var(--theme-color)!important;
+  /* border-color: var(--theme-color)!important; */
 }
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {

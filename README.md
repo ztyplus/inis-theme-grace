@@ -32,3 +32,13 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## 版本更新记录
+
+- 2022.06.28(1.0.1)
+  - 添加评论功能
+  - 添加自建工具**头像生成器**
+  - N多细节优化
+  
+
+

@@ -78,6 +78,12 @@ const routes = [
                         component: () => import('@/components/module/Douyin'),
                     },
                     {
+                        name: 'avatar',
+                        path: 'avatar',
+                        meta: { keepAlive: false},
+                        component: () => import('@/components/module/Avatar'),
+                    },
+                    {
                         name: 'hotsearch',
                         path: 'hotsearch',
                         meta: { keepAlive: true},

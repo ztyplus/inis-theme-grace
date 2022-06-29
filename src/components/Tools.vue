@@ -19,6 +19,22 @@
             <p class="h-2x text-left pt-1">解析抖音无水印视频</p>
           </div>
         </el-col>
+
+        <el-col :span="12" :md="8">
+          <div class="tool-box shadow-box m-1 p-2 mb-2" @click="methods.goTool('avatar')">
+            <div class="flex">
+              <svg-icon
+                class="transform"
+                width="3rem"
+                height="3rem"
+                file-name="avatars"
+              ></svg-icon>
+              <h4 class="text-left h-1x pl-1">头像生成器</h4>
+            </div>
+            <p class="h-2x text-left pt-1">生成各类头像</p>
+          </div>
+        </el-col>
+
         <el-col :span="12" :md="8">
           <div class="tool-box shadow-box m-1 p-2 mb-2" @click="methods.goTool('hotsearch')">
             <div class="flex">

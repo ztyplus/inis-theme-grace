@@ -37,7 +37,7 @@
           <el-radio :label="false" border>关闭</el-radio>
         </el-radio-group>
         <span class="item-text py-1 mt-2 w-100">
-          <strong>显示自建工具</strong>(目前仅有抖音解析与热搜)
+          <strong>显示自建工具</strong>
         </span>
         <el-radio-group v-model="grace_config.option.tools" size="small">
           <el-radio :label="true" border>开启</el-radio>
@@ -76,27 +76,17 @@
           <span class="item-text py-1 mr-2"><strong>标题</strong></span>
           <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.title" placeholder="请输入网站标题" />
         </div> -->
-        <span class="item-text py-1 w-100">
-          <strong>主题色：</strong>
-        </span>
-        <div class="flex">
+        <div class="flex mt-2">
+          <span class="item-text py-1 mr-2"><strong>主色</strong></span>
           <el-color-picker
-            :show-alpha="true"
+            :show-alpha="false"
             @active-change="methods.colorChange"
-            class="mr-2"
+            class="mr-2 w-100"
             v-model="grace_config.style.themeColor"
             :predefine="predefineColors"
           />
-          <el-input
-            :input-style="{
-              'background-color': `${grace_config.style.themeColor}!important`,
-              cursor: 'pointer',
-            }"
-            :readonly="true"
-            :disabled="true"
-          />
         </div>
-        <div class="flex mt-2">
+        <div class="flex mt-1">
           <span class="item-text py-1 mr-2"><strong>封面</strong></span>
           <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.cover" placeholder="头部默认封面" />
         </div>

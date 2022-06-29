@@ -274,6 +274,9 @@ html,body {
 .flex {
     display: flex;
 }
+.flex-wrap {
+    flex-wrap: wrap;
+}
 .layout-169:after {
   padding-top: 56.25%;
   content: '';

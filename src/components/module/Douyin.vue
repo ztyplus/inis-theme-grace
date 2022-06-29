@@ -1,7 +1,7 @@
 <template>
   <h3>抖音解析</h3>
   <div class="flex mt-4">
-    <el-input v-model="link" placeholder="请输入视频地址" />
+    <el-input v-model="link" placeholder="请输入抖音分享链接" />
     <el-button class="ml-2" type="primary" @click="methods.parse(link)">解析</el-button>
   </div>
   <div v-if="parse" class="mt-2 w-100 text-left">
