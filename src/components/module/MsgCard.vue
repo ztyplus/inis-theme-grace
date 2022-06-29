@@ -1,5 +1,4 @@
 <template>
-<!-- <el-divider v-if="commentList.length != 0" content-position="center" class="text-center mt-2"></el-divider> -->
   <div
     class="message-box p-2 mt-2 text-left"
     v-for="(item, index) in commentList"
@@ -22,7 +21,7 @@
           >
         </div>
       </div>
-      <div class="msg-content text-left pt-2" v-html="item.expand.html"></div>
+      <div class="msg-content text-left pt-2" v-html='"<p>" + item.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>"'></div> 
     </div>
     <Comment
       v-if="replyId == item.id"
@@ -56,7 +55,7 @@
             >
           </div>
         </div>
-        <div class="msg-content text-left pt-2" v-html="submsg.html"></div>
+        <div class="msg-content text-left pt-2" v-html='"<p>" + submsg.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>"'></div>
         <Comment
           v-if="replyId == submsg.id"
           :pid="pid"
@@ -138,6 +137,7 @@ export default defineComponent({
               nickname: item.nickname,
               create_time: item.create_time,
               html: item.expand.html,
+              content: item.content,
               head_img: item.expand.head_img,
               pid: item.pid,
               replyto: item.expand.pid.nickname,

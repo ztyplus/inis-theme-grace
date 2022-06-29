@@ -138,7 +138,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     border-top: 1px var(--border-dashed-color) dashed!important;
 }
 .talk-content p{
-    color: var(--h3-color);
+    color: var(--text-color);
     line-height: 1.5rem;
     padding: 0 0 .5rem;
   }
@@ -384,7 +384,11 @@ code li{
   background-color: var(--card-bg-color);
   border-radius: var(--border-radius);
 }
-.msg-content p {padding-bottom: 5px;}
+.msg-content p {padding-bottom: 5px;font-size: .9rem;}
+.submsg p {
+  font-size: .9rem;
+  color: var(--h2-color);
+}
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;

@@ -26,7 +26,7 @@
         </div>
       </div>
       <el-divider border-style="dashed" />
-      <div class="talk-content text-left" v-html="talk.content"></div>
+      <div class="talk-content text-left" v-html='"<p>" + talk.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>"'></div>
       <div class="talk-info text-left mt-2 flex">
         <span class="justify-center pr-1">
           <svg-icon file-name="os" fill="var(--h2-color)"></svg-icon>
@@ -150,10 +150,7 @@ export default {
         let location = await methods.loction();
         if (state.talkcontent) {
           let params = {
-            content:
-              "<p>" +
-              state.talkcontent.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") +
-              "</p>",
+            content: state.talkcontent,
             "login-token": state.login_token,
             type: "moving",
             opt: location,

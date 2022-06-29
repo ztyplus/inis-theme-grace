@@ -62,7 +62,7 @@ export default {
       async send(){
         let params = {
           pid: state.pid,
-          content:"<p>" + state.postForm.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>",
+          content: state.postForm.content,
           nickname:state.postForm.nickname,
           email:state.postForm.email,
           url:state.postForm.url,

@@ -93,6 +93,11 @@ const routes = [
             },
         ]
     },
+    {
+        path: '/:pathMatch(.*)*',
+        name: '404',
+        component: () => import('@/views/pages/404')
+    },
 ]
   
 
