@@ -41,6 +41,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     border-radius: var(--border-radius)!important; 
     background-color: var(--card-bg-color)!important;
 }
+
 .sendtalk-box .el-dialog__footer {
   padding-bottom: 0!important;
 }
@@ -134,7 +135,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     width: 100%;
 }
 .talk-box .el-divider {
-    margin: 1rem 0;
+    margin: .5rem 0 1rem;
     border-top: 1px var(--border-dashed-color) dashed!important;
 }
 .talk-content p{
@@ -365,6 +366,7 @@ code li{
 .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
   background-color: var(--main-bg-color)!important;
 }
+
 .el-select__popper.el-popper {
   background: var(--card-bg-color)!important;
   border: 1px solid var(--border-color)!important;
@@ -384,6 +386,18 @@ code li{
 .el-popper.is-light .el-popper__arrow::before {
   background-color: var(--card-bg-color)!important;
   border-color: var(--border-color)!important;
+}
+.el-popper.el-popper__arrow::before {
+  background-color: var(--theme-color)!important;
+  border-color: var(--theme-color-2)!important;
+}
+.el-popper {
+  background-color: var(--theme-color)!important;
+  border-color: var(--theme-color-1)!important;
+}
+.el-popper .el-popper__arrow:before {
+  background-color: var(--theme-color)!important;
+  border-color: var(--theme-color-1)!important;
 }
 .el-dropdown-menu__item {
   color: var(--h2-color)!important;
@@ -406,8 +420,12 @@ code li{
 }
 .el-button--primary {
   background-color: var(--theme-color)!important;
-  /* border-color: var(--theme-color)!important; */
+  border-color: var(--theme-color-1)!important;
 }
+.tool .el-button {
+  background-color: var(--theme-color-1)!important;
+}
+.comment-texera .el-textarea__inner {resize: none!important;}
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;
@@ -490,6 +508,9 @@ code li{
     }
     .main,.talk-box {
       padding: .8rem!important;
+    }
+    .talk-box .delete_talk{
+      right: .8rem!important;
     }
   }
   @media(min-width:768px) {

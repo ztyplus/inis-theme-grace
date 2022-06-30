@@ -3,7 +3,8 @@
 预览: [演示站](https://www.ztyang.com)
 
 ## 页面展示
-![](demo/demo1.png)
+![](https://qiniu.ztyang.com/img/20220630181441.png)
+
 
 ## 安装使用
 
@@ -39,6 +40,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - 添加评论功能
   - 添加自建工具**头像生成器**
   - N多细节优化
+
+- 2022.06.30(1.0.2)
+  - 修复主题色选色BUG
+  - 修复头像生成器label宽度不够问题
+  - 优化markdown二级标题圆角和下划线缝隙问题
+  - 删除音乐歌单分割线和调节高度
+  - 头像生成器增加滑块提示
+  - 一些细节优化
   
 
+## 打赏
 
+<img src="https://qiniu.ztyang.com/img/20220630183610.jpg" width="40%" /> <img src="https://qiniu.ztyang.com/img/20220630183626.jpg" width="40%" />

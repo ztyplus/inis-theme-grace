@@ -25,7 +25,7 @@
   </div>
 
   <div class="avatar-option shadow-box-3 mt-2">
-    <el-form :model="option" label-width="40px">
+    <el-form :model="option" label-width="50px">
       <el-form-item label="背景">
         <div class="flex w-100">
           <el-color-picker
@@ -42,7 +42,6 @@
           <span class="item-text pr-1">0</span>
           <el-slider 
             v-model="option.rotate" 
-            :show-tooltip="false"
             size="small"
             :max="360"
             @input="methods.rotate"
@@ -56,7 +55,6 @@
           <span class="item-text pr-1">0</span>
           <el-slider 
             v-model="option.radius" 
-            :show-tooltip="false"
             size="small"
             :max="50"
             @input="methods.radius"

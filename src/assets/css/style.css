@@ -19,7 +19,6 @@
   --box-shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.10);
   --box-shadow-3: 0 0 30px hsla(0, 0%, 0%, 0.10);
   --border-dashed-color: #E4E7ED;
-  --main-button-color: #9aa3af;
   --border-radius: 5px;
   --placeholder-color: #b3becb;
   --input-border-color: #a6b5c6;
@@ -43,7 +42,6 @@
   /* --theme-color:  #79bbff; */
   --border-color:  #606266;
   --border-dashed-color: #A8ABB2;
-  --main-button-color: #38485d;
   --box-shadow: 5px 5px 20px 5px rgb(11 12 12 / 55%);
   --box-shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
   --box-shadow-3: 0 0 30px hsla(0, 0%, 0%, 0.25);
@@ -360,6 +358,10 @@ html,body {
 }
 .br-50 {
   border-radius: 50%;
+}
+.flex-sb {
+  display: flex;
+  justify-content: space-between;
 }
 ::-webkit-scrollbar {
     width: 4px;

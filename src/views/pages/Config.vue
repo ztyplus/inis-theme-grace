@@ -82,6 +82,7 @@
             :show-alpha="false"
             @active-change="methods.colorChange"
             class="mr-2 w-100"
+            color-format="hex"
             v-model="grace_config.style.themeColor"
             :predefine="predefineColors"
           />

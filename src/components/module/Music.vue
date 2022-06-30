@@ -287,7 +287,7 @@ ul {
   overflow: hidden;
   margin-top: 1rem;
   color: var(--text-color);
-  height: 500px;
+  height: 450px;
 }
 .hide-music-list {
   height: 0;

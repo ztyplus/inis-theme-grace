@@ -132,7 +132,6 @@ export default {
   width: 100%;
   height: 100%;
   padding: 5px;
-  background-color: var(--main-button-color);
   border: none;
 }
 .tool {

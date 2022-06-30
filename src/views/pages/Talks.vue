@@ -4,28 +4,17 @@
       <div class="talk-head text-left flex">
         <img :src="talk.expand.user.head_img" class="br-50" />
         <div class="info pl-1 w-100">
-          <div>
-            <div class="talk-name h-60">{{ talk.nickname }}</div>
-            <span
+              <div class="talk-name h-60">{{ talk.nickname }}</div>
+            <div class="w-100 flex-sb">
+              <span
               style="display: inline-block; vertical-align: text-top"
               class="item-text h-40"
-              >{{ methods.natureTime(talk.create_time) }}</span
-            >
-          </div>
-          <div v-if="is_login">
-            <el-tooltip effect="dark" content="删除" placement="top">
-              <span @click="methods.deleteTalk(talk.id)"
-                ><svg-icon
-                  class="cursor-pointer ml-1"
-                  file-name="delete"
-                  fill="var(--h2-color)"
-                ></svg-icon
-              ></span>
-            </el-tooltip>
-          </div>
+              >{{ methods.natureTime(talk.create_time) }}</span>
+              <span class="item-text">{{talk.create_time}}</span>
+            </div>
         </div>
       </div>
-      <el-divider border-style="dashed" />
+      <el-divider border-style="dashed"></el-divider>
       <div class="talk-content text-left" v-html='"<p>" + talk.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>"'></div>
       <div class="talk-info text-left mt-2 flex">
         <span class="justify-center pr-1">
@@ -40,6 +29,17 @@
           <svg-icon file-name="ip" fill="var(--h2-color)"></svg-icon>
           <span class="item-text">{{ methods.getAddr(talk.opt) }}</span>
         </span>
+      </div>
+      <div class="delete_talk">
+      <el-tooltip v-if="is_login" effect="dark" content="删除" placement="top">
+        <span @click="methods.deleteTalk(talk.id)"
+          ><svg-icon
+            class="cursor-pointer ml-1"
+            file-name="delete"
+            fill="var(--h2-color)"
+          ></svg-icon
+        ></span>
+      </el-tooltip>
       </div>
     </div>
   </div>
@@ -300,6 +300,14 @@ export default {
       font-size: 0.875rem;
       font-weight: 600;
     }
+  }
+  .delete_talk {
+    position: absolute;
+    top: .5rem;
+    right: 1.875rem;
+  }
+  .delete_talk:hover svg {
+    fill: var(--theme-color);
   }
 }
 </style>

@@ -70,14 +70,17 @@ export default {
             methods.getConfig()
         }else {
           let themeColor = state.themeColor
-          let themeColor1 = themeColor.replace(themeColor.split(",")[3],'0.5)')
-          let themeColor2 = themeColor.replace(themeColor.split(",")[3],'0.2)')
-          let themeColor3 = themeColor.replace(themeColor.split(",")[3],'0.1)')
-          let themeColor4 = themeColor.replace(themeColor.split(",")[3],'0.05)')
+          let themeColor1 = inisHelper.color(themeColor,0.5,'rgba').rgba
+          let themeColor2 = inisHelper.color(themeColor,0.2,'rgba').rgba
+          let themeColor3 = inisHelper.color(themeColor,0.1,'rgba').rgba
+          let themeColor4 = inisHelper.color(themeColor,0.05,'rgba').rgba
           state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
           :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
           `
         }
+        // rgb转rgba
+        // let themeColor = state.themeColor
+
         methods.welcome()
       },
       getConfig(){

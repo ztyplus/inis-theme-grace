@@ -38,11 +38,12 @@
     content: "";
     left: 0;
     width: 100%;
+    margin-top: -1px;
     border-bottom: 2px solid var(--theme-color);
 }
 .article-content  h2 {
     padding: 0 0.5rem;
-    border-radius: 5px 5px 0 0;
+    border-radius: 3px 3px 0 0;
     display: inline-block;
     background: var(--theme-color);
     font-size: 1.3rem;
