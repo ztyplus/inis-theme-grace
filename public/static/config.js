@@ -1,6 +1,6 @@
 window.INIS = {
 
-    // API地址 - 填写后端域名
+    // API地址 - 填写后端域名 请严格按照以下格式填写
     api: 'https://inis.ztyang.com/api',
 
     // 后端开启token验证后，需要将token填写到此处
@@ -9,6 +9,6 @@ window.INIS = {
     // 站点标题
     title: '相左',
 
-    version: '1.0.2',
+    version: '1.0.3',
 }
 

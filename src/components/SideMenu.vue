@@ -1,5 +1,5 @@
 <template>
-  <el-affix :offset="20">
+  <el-affix target=".el-aside">
     <div class="aside">
       <el-menu
         class="el-menu-vertical"
@@ -41,7 +41,7 @@
         <div class="btn_switch_bg">
           <svg class="svg_icon" viewBox="0 0 9 59" width="9" height="59">
             <path
-              fill="var(--main-button-color)"
+              fill="var(--theme-color)"
               d="M3.8,5.1C1.7,4.3,0.2,2.4,0,0h0v5v4v41v5v3.9c0.6-1.9,2.1-3.4,4-4v0c2.9-0.7,5-3.2,5-6.3v-37  C9,8.4,6.8,5.7,3.8,5.1z"
             ></path>
           </svg>

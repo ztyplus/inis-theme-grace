@@ -48,8 +48,17 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - 删除音乐歌单分割线和调节高度
   - 头像生成器增加滑块提示
   - 一些细节优化
+
+- 2022.07.01(1.0.3)
+  - 修改歌单音量控制条显示方案
+  - 文章列表增加分类、标签和浏览量显示
+  - 删除很丑的日记框border
+  - 修复侧边菜单栏拖动窗口卡顿问题
+  - 删除歌单列表序号，更干净简洁
+  - 修复无置顶文章不显示歌单问题
+
   
 
 ## 打赏
 
-<img src="https://qiniu.ztyang.com/img/20220630183610.jpg" width="40%" /> <img src="https://qiniu.ztyang.com/img/20220630183626.jpg" width="40%" />
+<img src="https://qiniu.ztyang.com/img/20220630183610.jpg" width="40%" height="600px" /> <img src="https://qiniu.ztyang.com/img/20220630183626.jpg" width="40%" height="600px" />

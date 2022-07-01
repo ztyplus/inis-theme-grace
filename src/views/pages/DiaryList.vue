@@ -116,6 +116,7 @@ p {
   height: 1.5rem;
   padding: 5px 1rem;
   display: inline-block;
-  background-color: var(--main-bg-color);
+  background-color: var(--card-bg-color);
+  box-shadow: var(--box-shadow-2);
 }
 </style>

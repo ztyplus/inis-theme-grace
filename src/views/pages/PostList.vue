@@ -28,15 +28,26 @@
                 class="wh-100 transform"
                 :src="item.img_src ? item.img_src : 'static/images/default-bg.jpg'"
               />
+              <div class="views flex post-sort justify-center">
+                  <svg-icon  file-name="view" class="" height=".8rem" width=".8rem"></svg-icon>
+                  <span class="viewinfo ml-1">{{item.views}}</span>
+              </div>
             </div>
           </div>
           <div class="blog-content">
-            <div class="artivle-meta">
-              <p class="blog-category text-left justify-center">
-                <span>{{ item.expand.sort[0].name }}</span>
-                <span class="dot mx-1"></span>
-                <span>发布于{{ item.create_time.split(" ")[0] }}</span>
-              </p>
+            <div class="article-meta text-left">
+              <div v-if="item.expand.sort.length != 0" class="mt-1 post-sort text-left justify-center">
+                <svg-icon  file-name="arcsort" class="" height=".8rem" width=".8rem"></svg-icon>
+                <span class="ml-1 item" v-for="(sort,index) in item.expand.sort" :key="index">{{sort.name}}</span>
+              </div>
+              <div v-if="item.expand.tag.length != 0" class="mt-1 post-sort text-left justify-center">
+                <svg-icon  file-name="tags" class="" height=".8rem" width=".8rem"></svg-icon>
+                <span class="ml-1 item" v-for="(tag,index) in item.expand.tag" :key="index">{{tag.name}}</span>
+              </div>
+              <div class=" mt-1 post-sort text-left justify-center">
+                <svg-icon  file-name="date" class="" height=".84rem" width=".84rem"></svg-icon>
+                <span class="ml-1 item">{{ item.create_time.split(" ")[0] }}</span>
+              </div>
             </div>
             <h4 class="text-left my-1 h-1x">{{ item.title }}</h4>
             <p class="desc text-left h-2x">{{ item.description }}</p>
@@ -182,8 +193,35 @@ export default {
   align-items: center;
   gap: 7px;
   margin-bottom: 10px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.article-meta::-webkit-scrollbar {
+    opacity: 0;
+    display: none;
 }
 .post-card:hover .cover img {
   transform: scale(1.08);
+}
+.post-sort {
+  display: inline-block;
+  width:fit-content;
+  padding: 2px 6px 3px;
+  border-radius: var(--border-radius);
+  background-color: var(--theme-color-3);
+  .item {
+    color: var(--theme-color)!important;
+    line-height: .8rem;
+    font-size: .8rem!important;
+  }
+}
+.views {
+  background-color: var(--theme-color-2);
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  font-size: .8rem;
+  color: #eee;
 }
 </style>

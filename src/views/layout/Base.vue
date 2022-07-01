@@ -122,9 +122,23 @@ export default {
         if(item) return item
         else return ""
       },
+
+      // 侧栏响应式防抖
+      debounce(fn,delay){
+        let timerID = null
+        return function(){
+          if (timerID != null) clearTimeout(timerID) 
+          timerID = setTimeout(fn,delay)
+        }
+      },
     }
+    
     onMounted(()=>{
       methods.initData()
+      var func = methods.debounce(()=>{
+        state.windowWidth= document.documentElement.clientWidth
+      },10)
+      window.onresize = func
     })
     return { ...toRefs(state), methods }
   }

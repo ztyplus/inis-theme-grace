@@ -22,7 +22,7 @@
       </el-carousel>
     </div>
   </div>
-  <div v-if="TopList.length != 0">
+  <div v-if="About != ''">
     <Music v-if="music"/>
   </div>
   <div class="card pt-2">

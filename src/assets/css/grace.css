@@ -121,8 +121,9 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
   background: var(--card-bg-color)!important;
 }
 .diary-list .el-card {
+  border: none!important;
   border-radius: var(--border-radius)!important;
-  box-shadow: var(--box-shadow-2)!important;
+  box-shadow: var(--box-shadow-3)!important;
 }
 .article-content img,.diary-content img{
     display: block;
@@ -342,7 +343,23 @@ code li{
 .play-music .el-slider__button-wrapper{height: 33px!important;}
 .vioce-control .el-slider__runway {
   position: absolute!important;
+  -webkit-transition: all 0.3s!important;
+  -moz-transition: all 0.3s!important;
+  -o-transition: all 0.3s!important;
+  -ms-transition: all 0.3s!important;
+  transition: all 0.3s!important;
 }
+.vioce-control:hover .el-slider__runway{
+  height: 3.5rem!important;
+}
+.vioce-control:hover .vioce-bar{
+  bottom: 2.5rem;
+  height: 2.5rem;
+  opacity: 1;
+  visibility: visible;
+}
+
+
 .vioce-control .el-slider.is-vertical .el-slider__runway {
   width: var(--el-slider-height);
   height: 100%;

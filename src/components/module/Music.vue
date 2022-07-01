@@ -29,11 +29,10 @@
           <span class="item-text pl-1">{{methods.toTime(duration)}}</span>
           <div class="vioce-control cursor-pointer">
             <el-slider 
-              v-show="showVolume"
               class="vioce-bar"
               v-model="volume" 
               vertical 
-              height="3.5rem"
+              height="0"
               :max="1"
               :show-tooltip="false"
               :step="0.05"
@@ -57,7 +56,7 @@
           class="cursor-pointer my-1 music-item p-1 justify-center"
           @click="methods.swMusic(item.song_id, musicList.info.expand.type,index)"
         >
-        <span >{{index + 1}}</span>
+        <!-- <span >{{index + 1}}</span> -->
         <img :src="item.cover" class="mr-1">
         <div class="flex w-100" style="justify-content: space-between;">
           <p class="h-1x music-name">{{ item.name }}</p>
@@ -344,6 +343,7 @@ ul {
   position: absolute;
   bottom: 2.5rem;
   height: 2.5rem;
-  // width: 4px;
+  opacity: 0;
+  visibility: hidden;
 }
 </style>
