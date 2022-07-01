@@ -61,4 +61,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 打赏
 
-<img src="https://qiniu.ztyang.com/img/20220630183610.jpg" width="40%" height="600px" /> <img src="https://qiniu.ztyang.com/img/20220630183626.jpg" width="40%" height="600px" />
+<img src="https://qiniu.ztyang.com/img/20220630183610.jpg" width="45%" height="500px" /> <img src="https://qiniu.ztyang.com/img/20220630183626.jpg" width="45%" height="500px" />
