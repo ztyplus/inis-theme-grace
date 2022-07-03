@@ -206,18 +206,9 @@ export default {
       newVersion(){
         // 生成随机字符串
         let random = Math.random().toString(36).substr(2);
-        axios.get('https://www.ztyang.com/static/config.js?'+ random, {params:{id:1}}).then(res => {
-          if(res.status == 200){
-            let js_data = res.data.split("=")[1]
-            let reg = /("([^\\\"]*(\\.)?)*")|('([^\\\']*(\\.)?)*')|(\/{2,}.*?(\r|\n|$))|(\/\*(\n|.)*?\*\/)/g;
-            js_data = js_data.replace(reg, function(word) { 
-              // 去除注释后的文本 
-              return /^\/{2,}/.test(word) || /^\/\*/.test(word) ? "" : word; 
-            });
-            js_data = eval("(" + js_data + ")")
-            if(js_data.version){
-              state.newVersion = js_data.version
-            }
+        axios.get('https://inis.cc/api/theme?id=11?'+ random).then(res => {
+          if(res.data.code == 200){
+            state.newVersion = res.data.data.data[0].opt.version
           }
         })
       },
