@@ -38,33 +38,13 @@
   - 主题配置页增加新版本更新提示
 
 
-## 安装使用
+## 使用方法
 
-```
-npm install
-```
+> 主题基于 Vue3 + element-plus 进行开发
 
-### Compiles and hot-reloads for development
+1. 将源码下载下来自行打包上传网站根目录
+2. 下载静态文件[disk.zip](/dist.zip)上传至网站根目录解压，更改config.js对应内容即可
 
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ## 打赏
