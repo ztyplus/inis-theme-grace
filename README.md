@@ -48,5 +48,7 @@
 
 
 ## 打赏
+厚着脸皮求打赏，您的赞赏是我最大的动力😋 😋 😋
 
-<img src="https://qiniu.ztyang.com/img/20220630183610.jpg" width="45%" height="500px" /> <img src="https://qiniu.ztyang.com/img/20220630183626.jpg" width="45%" height="500px" />
+![](https://qiniu.ztyang.com/img/Snipaste_2022-07-03_14-43-12.png)
+
