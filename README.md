@@ -43,7 +43,7 @@
 > 主题基于 Vue3 + element-plus 进行开发
 
 1. 将源码下载下来自行打包上传网站根目录
-2. 下载静态文件[disk.zip](/dist.zip)上传至网站根目录解压，更改config.js对应内容即可
+2. 下载静态文件[disk.zip](https://raw.githubusercontent.com/ztyangt/inis-theme-grace/main/dist.zip)上传至网站根目录解压，更改config.js对应内容即可
 
 
 
