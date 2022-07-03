@@ -135,8 +135,8 @@ export default {
   border: none;
 }
 .tool {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   margin-bottom: 0.5rem;
 }
 .fade-enter,

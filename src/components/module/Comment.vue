@@ -5,7 +5,7 @@
     ref="formRef" 
     :status-icon="true"
     >
-      <div class="comment-texera mt-3">
+      <div class="comment-texera mt-1">
         <el-form-item prop="content">
           <el-input v-model="postForm.content" type="textarea" placeholder="说些什么吧..." />
         </el-form-item>
@@ -34,11 +34,12 @@ export default {
   setup(props,ctx){
     const login_storage = inisHelper.get.storage("login")
     const formRef = ref(null)
+    const commentUser = inisHelper.get.storage('commentUser')
     const state = reactive({
       postForm: {
         content: "",
-        nickname: "",
-        email: "",
+        nickname: commentUser ? commentUser.nickname : "",
+        email: commentUser ? commentUser.email : "",
         url: "",
         level: "user"
       },
@@ -80,6 +81,11 @@ export default {
         await POST("comments",params).then((res) => {
           if(res.data.code == 200) {
             ElMessage({message: '留言成功',type: 'success'})
+            let commentUser = {
+              nickname: state.postForm.nickname,
+              email: state.postForm.email
+            }
+            inisHelper.set.storage("commentUser",commentUser)
           }
           else ElMessage({message: res.data.msg,type: 'error',})
         })
@@ -108,11 +114,16 @@ export default {
 }
 .comment-texera {
   position: relative;
-  height: 100px;
+  height: 105px;
   .send {
     position: absolute;
-    bottom: .5rem;
+    bottom: .7rem;
     right: .5rem;
   }
+}
+.el-form {
+  border: 1px solid var(--theme-color-1);
+  padding: 0 .5rem;
+  border-radius: var(--border-radius);
 }
 </style>

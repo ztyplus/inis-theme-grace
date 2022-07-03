@@ -1,5 +1,5 @@
 <template>
-  <div class="massage-box p-2">
+  <div class="massage-box">
     <div class="msghead flex-center mt-1">
       <svg-icon width="2rem" height="2rem" file-name="envelope"></svg-icon>
       <h2 class="pl-2">给我留言</h2>
@@ -55,5 +55,8 @@ export default {
 <style lang="less" scoped>
 h2 {
   color: var(--h2-color);
+}
+.massage-box {
+  padding: 1rem;
 }
 </style>

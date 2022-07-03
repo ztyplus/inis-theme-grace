@@ -22,7 +22,7 @@
           <span>字数{{ article.font_count }}</span>
         </div>
         <el-divider content-position="right" class="my-2">
-          <span>★ 更新于{{ methods.natureTime(article.create_time) }}</span>
+          <span class="item-text">★ 更新于{{ methods.natureTime(article.create_time) }}</span>
         </el-divider>
       </div>
       <div
@@ -69,7 +69,7 @@
 </div>
 <div v-if="article && article.opt.comments.show == 'true'" class="article-box p-2 mt-2">
   <h3 class="text-left cot-title">发表评论</h3>
-  <div class="article-comment">
+  <div class="article-comment mt-2">
     <Comment v-if="article && article.opt.comments.allow == 'true'" :articleId="articleId" commentType="article" @getWallmasg="methods.getFirst()" />
   </div>
   <MsgCard ref="msgCard" :articleId="articleId" :allow="article.opt.comments.allow" commentType="article"/>

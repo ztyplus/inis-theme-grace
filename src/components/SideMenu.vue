@@ -150,15 +150,19 @@ export default {
     transition: none;
   }
   .el-menu-item:hover {
-    background-color: var(--main-bg-color);
+    background-color: var(--theme-color-1);
   }
   .is-active {
-    background-image: linear-gradient(142.17deg, #79bbff 6.66%, #337ecc 91.48%);
+    // background-image: linear-gradient(142.17deg, #79bbff 6.66%, #337ecc 91.48%);
+    background-color:var(--theme-color);
     box-shadow: inset -0.25rem -0.25rem 0.3125rem rgb(0 0 0 / 10%),
       inset 0.25rem 0.25rem 0.3125rem rgb(255 255 255 / 23%);
     span {
       color: #fff;
     }
+  }
+  .is-active:hover {
+    background-color: var(--theme-color);
   }
   .el-menu-item * {
     vertical-align: middle;

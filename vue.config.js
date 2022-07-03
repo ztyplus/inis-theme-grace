@@ -59,7 +59,7 @@ module.exports = defineConfig({
     // proxy: {
     //   '/ks': {
     //       // target: SLYT.api + '/',//后端接口地址
-    //       target: 'http://119.91.207.234:5012/',//后端接口地址
+    //       target: 'http://',//后端接口地址
     //       changeOrigin: true,//是否允许跨越
     //       pathRewrite: {
     //           '^/ks': '/'//重写,

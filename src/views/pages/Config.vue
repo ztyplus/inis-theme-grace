@@ -1,7 +1,16 @@
 <template>
   <div class="config text-left">
-    <h3>主题配置</h3>
-    <el-collapse class="mt-4" v-model="activeNames" :accordion="true">
+    <h3>主题配置 V{{version}}</h3>
+    <div v-if="version < newVersion" class="mt-2">
+      <el-alert
+      title="新版本提示！"
+      type="warning"
+      :description="'当前版本为 V' + version + '，最新版本为 V' + newVersion + '，请前往INIS社区下载更新！'"
+      effect="dark"
+      show-icon
+      />
+    </div>
+    <el-collapse class="mt-2" v-model="activeNames" :accordion="true">
       <el-collapse-item title="主题开关" name="1">
         <span class="item-text py-1  w-100">
           <strong>自动切换夜间模式 </strong>(8:00-20:00为白天)
@@ -88,7 +97,7 @@
           />
         </div>
         <div class="flex mt-1">
-          <span class="item-text py-1 mr-2"><strong>封面</strong></span>
+          <span class="item-text py-1 mr-2"><strong>头图</strong></span>
           <el-input :input-style="{'align-items': 'center'}" v-model="grace_config.option.cover" placeholder="头部默认封面" />
         </div>
         <div class="flex mt-1">
@@ -128,6 +137,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { GET, POST } from "@/utils/http/request";
 import { reactive, toRefs, onMounted } from "vue";
 import { inisHelper } from "@/utils/helper";
@@ -136,6 +146,8 @@ export default {
     const state = reactive({
       activeNames: ["1"],
       login_token: null,
+      version:INIS.version,
+      newVersion:null,
       grace_config: {
         style: {
           themeColor: "rgb(121 187 255)",
@@ -174,6 +186,7 @@ export default {
     const methods = {
       initData() {      
         state.login_token = inisHelper.get.storage("login")["login-token"];
+        methods.newVersion()
         methods.getConfig()
         methods.getID()
       },
@@ -187,6 +200,24 @@ export default {
             inisHelper.set.storage('grace_config',config)
           }else {
             ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
+          }
+        })
+      },
+      newVersion(){
+        // 生成随机字符串
+        let random = Math.random().toString(36).substr(2);
+        axios.get('https://www.ztyang.com/static/config.js?'+ random, {params:{id:1}}).then(res => {
+          if(res.status == 200){
+            let js_data = res.data.split("=")[1]
+            let reg = /("([^\\\"]*(\\.)?)*")|('([^\\\']*(\\.)?)*')|(\/{2,}.*?(\r|\n|$))|(\/\*(\n|.)*?\*\/)/g;
+            js_data = js_data.replace(reg, function(word) { 
+              // 去除注释后的文本 
+              return /^\/{2,}/.test(word) || /^\/\*/.test(word) ? "" : word; 
+            });
+            js_data = eval("(" + js_data + ")")
+            if(js_data.version){
+              state.newVersion = js_data.version
+            }
           }
         })
       },

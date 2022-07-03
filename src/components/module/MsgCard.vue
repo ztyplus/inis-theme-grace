@@ -1,6 +1,6 @@
 <template>
   <div
-    class="message-box p-2 mt-2 text-left"
+    class="message-box mt-2 text-left"
     v-for="(item, index) in commentList"
     :key="index"
   >
@@ -255,6 +255,7 @@ export default defineComponent({
 }
  .message-box {
   box-shadow: var(--box-shadow-2);
+  padding: 1rem;
 } 
 .submsg {
   border-radius: var(--border-radius);

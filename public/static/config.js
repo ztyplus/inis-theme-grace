@@ -9,6 +9,7 @@ window.INIS = {
     // 站点标题
     title: '相左',
 
-    version: '1.0.3',
+    // 请勿擅自修改此处
+    version: '1.0.4',
 }
 

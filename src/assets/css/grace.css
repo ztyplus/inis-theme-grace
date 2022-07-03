@@ -50,9 +50,18 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     font-size: 1.5rem;
     color: var(--h1-color)!important;
 }
-.massage-box .el-textarea__inner  {
-    background-color: var(--card-bg-color)!important;
+.massage-box .el-textarea__inner,.article-comment .el-textarea__inner,.message-box .el-textarea__inner {
+    background-color: var(--theme-color-3)!important;
+    border: none!important; 
     height: 100px;
+    border-radius: var(--border-radius)!important;
+    box-shadow: none!important;
+}
+.massage-box .el-input__wrapper,.article-comment .el-input__wrapper,.message-box .el-input__wrapper   {
+    background-color: var(--theme-color-3)!important;
+    border: none!important; 
+    border-radius: var(--border-radius)!important;
+    box-shadow: none!important;
 }
 .el-textarea__inner  {
   height: 100px;
@@ -60,6 +69,9 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 }
 .article-comment .el-textarea__inner {
   height: 120px;
+}
+.article-comment .svg-icon {
+  bottom: 0rem!important;
 }
 .article-comment .visitor-info {
   margin-top: 2rem!important;
@@ -260,7 +272,7 @@ code li{
   box-shadow: var(--box-shadow-3);
   border-radius: var(--border-radius);
 }
-.config svg {color: var(--h1-color);}
+/* .config svg {color: var(--h1-color);} */
 .config .el-collapse {
   border: none!important;
 }
@@ -303,7 +315,7 @@ code li{
 }
 .el-date-editor--year,.el-date-editor--year .el-input__wrapper {width: 100%!important;}
 .el-year-table tbody span,.el-date-picker__header-label,.el-date-picker__header .el-icon {
-  color: var(--text-color)!important;;
+  color: var(--text-color)!important;
 }
 .shadow-box-3 {
   display: block;
@@ -482,6 +494,15 @@ code li{
     .music_info {
       padding-right: 0!important;
     }
+    .container {
+      /* padding: 0 .5rem !important; */
+    }
+    .massage-box {
+      padding: .5rem !important;
+    }
+    .message-box {
+      padding: .5rem!important;
+    }
   }
 
   @media(max-width:992px) {
@@ -528,6 +549,11 @@ code li{
     }
     .talk-box .delete_talk{
       right: .8rem!important;
+    }
+    .tool {
+      height: 30px!important;
+      width: 30px!important;
+      margin-bottom: 0.5rem;
     }
   }
   @media(min-width:768px) {
