@@ -10,7 +10,7 @@
         <div class="info pl-1 w-100">
           <div>
             <div class="name h-60">{{ item.nickname }}
-              <span v-if="(item.opt.level && item.opt.level == 'admin')" class="author mr-1">作者</span>
+              <span v-if="( item.opt && 'level' in item.opt && item.opt.level == 'admin')" class="author mr-1">作者</span>
             </div>
             <span
               style="display: inline-block; vertical-align: text-top"
