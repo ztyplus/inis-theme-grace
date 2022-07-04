@@ -1,7 +1,14 @@
 <template>
-  <div class="card" v-if="TopList.length != 0">
+  <div class="card">
     <div class="layout-169 text-center mt-2">
-      <el-carousel :interval="5000" indicator-position="none">
+
+      <el-skeleton class="banner cover" :loading="topSkeleton" animated>
+        <template #template>
+          <el-skeleton-item variant="image" class="wh-100" />
+        </template>
+      </el-skeleton>
+
+      <el-carousel v-if="!topSkeleton" :interval="5000" indicator-position="none">
         <el-carousel-item v-for="(item, index) in TopList" :key="index">
           <div
             class="banner cursor-pointer"
@@ -22,11 +29,10 @@
       </el-carousel>
     </div>
   </div>
-  <div v-if="About != ''">
-    <Music v-if="music"/>
-  </div>
+  <Music v-if="music"/>
   <div class="card pt-2">
-    <div class="about article-content" v-html="About"></div>
+    <el-skeleton class="pt-2" :rows="10" :loading="aboutSkeleton" animated/>    
+    <div v-if="!aboutSkeleton" class="about article-content" v-html="About"></div>
   </div>
 </template>
 
@@ -47,6 +53,8 @@ export default {
     const state = reactive({
       music: (grace_config ? grace_config.option.music : false),
       TopList: [],
+      topSkeleton: true,
+      aboutSkeleton: true,
       About: "",
     });
     const methods = {
@@ -60,6 +68,7 @@ export default {
           GET("article/sql", { params }).then((res) => {
             if (res.data.code == 200) {
               state.TopList = res.data.data.data;
+              state.topSkeleton = false;
             }
           });
         }
@@ -71,6 +80,7 @@ export default {
           GET("page", { params }).then((res) => {
             if (res.data.code == 200) {
               state.About = res.data.data.content;
+              state.aboutSkeleton = false;
             }
           });
         }
@@ -135,6 +145,7 @@ export default {
   background-position: 50% 50%;
   display: block;
   background-size: cover;
+  overflow: hidden;
   background-color: rgba(120, 120, 120, 0.1);
 }
 .banner-title {

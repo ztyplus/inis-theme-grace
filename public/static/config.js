@@ -4,12 +4,12 @@ window.INIS = {
     api: 'https://inis.ztyang.com/api',
 
     // 后端开启token验证后，需要将token填写到此处
-    token: '52eb30aaffa78578bdd1f8e793e3d14c',
+    token: '621f525a3b76f3a5a25e4e765ace5c41',
 
     // 站点标题
     title: '相左',
 
     // 请勿擅自修改此处
-    version: '1.0.4',
+    version: '1.0.5',
 }
 

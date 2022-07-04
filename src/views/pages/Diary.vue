@@ -1,6 +1,22 @@
 <template>
-  <!-- <i-link src="static/css/font.css"></i-link> -->
-  <div v-if="diary_data" class="diary">
+
+    <div class="diary" v-if="loading">
+      <el-skeleton class="text-left m-0 pt-2 pb-0 border-none h2s" :loading="loading" animated>
+        <template #template>
+          <el-skeleton-item variant="h1" style="width: 60% " class="h2s"/>
+        </template>
+      </el-skeleton>
+      <el-skeleton class="meta text-left pt-1" :loading="loading" animated>
+        <template #template>
+          <el-skeleton-item variant="text" style="width: 5rem; height: 1rem" class="mr-1"/>
+          <el-skeleton-item variant="text" style="width: 4rem; height: 1rem" class="mr-1"/>
+          <el-skeleton-item variant="text" style="width: 4rem; height: 1rem" class="mr-1"/>
+        </template>
+      </el-skeleton>
+      <el-skeleton class="article-content text-left my-2 pt-2" :rows="22" :loading="loading" animated/>
+    </div>
+
+  <div v-if="!loading" class="diary">
     <div v-if="diary_data.code == 200">
       <div class="head">
         <h2 class="text-left m-0 pt-2 pb-0 border-none">{{ diary_data.data.title }}</h2>
@@ -64,6 +80,7 @@ export default {
   setup() {
     const route = useRoute();
     const state = reactive({
+      loading:true,
       diary_data: null,
       password: null,
     });
@@ -80,6 +97,7 @@ export default {
         GET("article", { params }).then((res) => {
           if (res.status == 200) {
             state.diary_data = res.data;
+            state.loading = false
             if (password && res.data.code == 200) {
               inisHelper.set.cookie(`diaryPassword_${route.params.id}`, password, 7200);
             }

@@ -1,8 +1,20 @@
 <template>
-  <div class="music-box shadow-box">
+
+  <div class="music-box shadow-box" v-if="musicSkeleton">
     <div class="flex">
-      <div v-if="music.cover" class="cover cursor-pointer" :class="play? 'rotate': ''" :style="{'background-image':`url(${music.cover})`}"></div>
-      <div class="music_info text-left ">
+        <el-skeleton :loading="musicSkeleton" class="cover" style="--el-skeleton-circle-size: 6rem;width:6rem"  animated>
+          <template #template>
+            <el-skeleton-item variant="circle" />
+          </template>
+        </el-skeleton>
+        <el-skeleton :loading="musicSkeleton" :rows="2" animated class="text-left music_info pt-1" style="height: 6rem" />
+    </div>
+  </div>
+
+  <div v-if="!musicSkeleton" class="music-box shadow-box">
+    <div class="flex">
+      <div class="cover cursor-pointer" :class="play? 'rotate': ''" :style="{'background-image':`url(${music.cover})`}"></div>
+      <div class="text-left music_info">
         <div class="mt-1">
           <span class="title">{{music.name}}</span>
           <span class="singer item-text">    演唱：{{music.author}}</span>
@@ -46,6 +58,7 @@
           <span @click="methods.Collapse" class="ml-1 cursor-pointer"><svg-icon fileName="playlist" height="1.5rem" width="1.5rem"></svg-icon></span>
         </div>
       </div>
+        
     </div>
     <div class="music-list transform text-left" :class="!showSheet ? 'hide-music-list': ''">
       <!-- <el-divider v-show="showSheet" content-position="center" class="text-center mt-2"></el-divider> -->
@@ -91,6 +104,7 @@ export default {
   setup() {
     const store = useStore();
     const state = reactive({
+      musicSkeleton: true,
       mode: 0,
       play: false,
       musicSheetList: [], //歌单列表
@@ -149,6 +163,7 @@ export default {
           if (res.data.code == 200) {
             state.musicList = res.data.data;
             state.sheetLength = res.data.data.songs.length;
+            state.musicSkeleton = false
           }
         });
       },

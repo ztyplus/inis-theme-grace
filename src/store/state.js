@@ -16,4 +16,5 @@ export default {
     music_progress: {
         ended: false,
     }
+    
 }

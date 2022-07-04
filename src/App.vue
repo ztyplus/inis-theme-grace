@@ -15,10 +15,3 @@ export default {
   }
 }
 </script>
-
-
-<style>
-@import url(@/assets/css/grace.css);
-@import url(@/assets/css/style.css);
-@import url(@/assets/css/markdown.css);
-</style>

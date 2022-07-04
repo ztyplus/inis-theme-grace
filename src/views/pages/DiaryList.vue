@@ -1,5 +1,17 @@
 <template>
-  <el-timeline class="text-left diary-list">
+  <el-timeline class="text-left diary-list" v-if="loading">
+    <el-timeline-item
+      v-for="(index) in 6"
+      :key="index"
+      placement="top"
+      :hollow="true"
+      type="primary"
+    >
+      <el-card><el-skeleton class="article-content text-left my-2 pt-2" :rows="2" :loading="loading" animated/></el-card>
+    </el-timeline-item>
+  </el-timeline>
+
+  <el-timeline v-if="!loading" class="text-left diary-list">
     <el-timeline-item
       v-for="(item, index) in ArticleList"
       :key="index"
@@ -40,6 +52,7 @@ export default {
     const router = useRouter();
     const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
+      loading: true,
       diaryId: null,
       page: 1,
       allpage: 1,
@@ -65,6 +78,7 @@ export default {
             state.ArticleList = state.ArticleList.concat(res.data.data.data);
             if (state.page >= state.allpage) state.stopLoding = true;
             state.isLoading = false;
+            state.loading = false
           }
         });
       },

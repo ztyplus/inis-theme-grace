@@ -1,6 +1,6 @@
 <template>
 <div class="article-box p-2">
-  <div v-if="article_data.code == 200">
+  <div>
     <div class="demo-image__preview">
       <el-image-viewer
         v-if="imgVisible"
@@ -11,9 +11,24 @@
         @switch="methods.switchViewer"
       />
     </div>
-    <div v-if="article" class="article">
+    <div class="article" v-if="loading">
+      <el-skeleton class="text-left m-0 pt-2 pb-0 border-none h2s" :loading="loading" animated>
+        <template #template>
+          <el-skeleton-item variant="h1" style="width: 60% " class="h2s"/>
+        </template>
+      </el-skeleton>
+      <el-skeleton class="meta text-left pt-1" :loading="loading" animated>
+        <template #template>
+          <el-skeleton-item variant="text" style="width: 5rem; height: 1rem" class="mr-1"/>
+          <el-skeleton-item variant="text" style="width: 4rem; height: 1rem" class="mr-1"/>
+          <el-skeleton-item variant="text" style="width: 4rem; height: 1rem" class="mr-1"/>
+        </template>
+      </el-skeleton>
+      <el-skeleton class="article-content text-left my-2 pt-2" :rows="22" :loading="loading" animated/>
+    </div>
+    <div v-if="!loading" class="article">
       <div class="head">
-        <h2 class="text-left m-0 pt-2 pb-0 border-none">{{ article.title }}</h2>
+        <h2 class="text-left m-0 pt-2 pb-0 border-none h2s">{{ article.title }}</h2>
         <div class="meta text-left pt-1">
           <span>发布{{ article.create_time.split(" ")[0] }}</span>
           <el-divider direction="vertical" />
@@ -28,7 +43,7 @@
       <div
         class="article-content text-left my-2 py-1"
         v-code-highlight
-        v-html="article.content"
+        v-html='article_html'
         @click="methods.imagePreview"
       ></div>
 
@@ -91,9 +106,11 @@ export default {
     const route = useRoute();
     const store = useStore();
     const state = reactive({
+      loading: true,
       msgCard : ref(null),
       password:null,
       article_data:"",
+      article_html:"",
       article: null,
       imgVisible: false,
       initialIndex: 0,
@@ -114,12 +131,23 @@ export default {
           state.article_data = res.data
           if (res.data.code == 200) {
             state.article = res.data.data;
+            state.article_html = state.article.content.replaceAll("[X]", "[√]").replaceAll("[ ]", "[X]");
+            state.article_html = state.article_html.replaceAll("btn ", "el-button ").replaceAll("btn-primary","el-button--primary").replaceAll("btn-success","el-button--success");
+            state.article_html = state.article_html.replaceAll("btn-rounded", "is-round").replaceAll("btn-warning","el-button--warning").replaceAll("btn-danger","el-button--danger").replaceAll("btn-outline-success","el-button--success is-plain")
+            state.article_html = state.article_html.replaceAll("btn-outline-info","el-button--info is-plain").replaceAll("btn-outline-danger","el-button--danger is-plain").replaceAll("btn-outline-warning","el-button--warning is-plain")
+            state.article_html = state.article_html.replaceAll("btn-outline-info","el-button--info is-plain").replaceAll("btn-outline-danger","el-button--danger is-plain").replaceAll("btn-outline-warning","el-button--warning is-plain")
+            var reg = /:\/\/(.*?)\//g
+            var domain = reg.exec(INIS.api)[1];
+               state.article_html = state.article_html.replace(/:[a-z]+:/g, function (match, capture) {
+              return `<img class="emoji-img" src="//${domain}/storage/random/emoji/qq/${match.replaceAll(":","")}.gif" align="absmiddle">`;
+            });
             res.data.data.expand.images.forEach((element) => {
               state.imgList.push(element.src);
             });
             if (password && res.data.code == 200) {
               inisHelper.set.cookie(`articlePassword_${route.params.id}`, password, 7200);
             }
+            state.loading = false
             store.dispatch("headCover", res.data.data.img_src);
           }
         });
@@ -129,7 +157,7 @@ export default {
         return inisHelper.time.nature(time, 5);
       },
       imagePreview(e) {
-        if (e.target.nodeName == "IMG") {
+        if (e.target.nodeName == "IMG" && e.target.className != "emoji-img") {
           state.imgList.forEach((item, index) => {
             if (e.target.src.indexOf(item) !== -1) {
               state.initialIndex = index;
@@ -147,6 +175,7 @@ export default {
       getFirst(){
         state.msgCard.methods.getFirst();
       },
+   
     };
     onMounted(() => {
       methods.initData();
@@ -175,5 +204,7 @@ h2 {
 .cot-title {
   color: var(--h2-color)
 }
-
+.h2s {
+  height: 2rem;
+}
 </style>

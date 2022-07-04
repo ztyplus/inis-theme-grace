@@ -13,7 +13,49 @@
     </el-dropdown>
   </div>
   <div class="post-list">
-    <el-row :gutter="20" class="mt-2">
+
+    <el-row v-if="loading" :gutter="20" class="mt-2">
+      <el-col
+        :span="12"
+        mobile
+        class="flex-center"
+        v-for="index in 8"
+        :key="index"
+      >
+        <div class="post-card mb-2 cursor-pointer">
+          <div class="layout-169">
+            <div class="layout-card cover">
+              <el-skeleton class="wh-100" :loading="loading" animated>
+                <template #template>
+                  <el-skeleton-item variant="image" class="wh-100" />
+                </template>
+              </el-skeleton>
+            </div>
+          </div>
+          <div class="blog-content">
+            <el-skeleton class="article-meta text-left" :loading="loading" animated>
+              <template #template>
+                    <el-skeleton-item variant="text" style="width: 15%" class="mt-1 mr-1 post-sort "/>
+                    <el-skeleton-item variant="text" style="width: 15%" class="mt-1 mr-1 post-sort " />
+                    <el-skeleton-item variant="text" style="width: 15%" class="mt-1 post-sort " />
+              </template>
+            </el-skeleton>
+            <el-skeleton class="text-left my-1 h-1x h4" :loading="loading" animated>
+              <template #template>
+                <el-skeleton-item variant="h1" style="width: 100% " class=""/>
+              </template>
+            </el-skeleton>
+            <el-skeleton class="desc text-left h-2x p" :loading="loading" animated>
+              <template #template>
+                <el-skeleton-item variant="h1" style="width: 100% " class=""/>
+                <el-skeleton-item variant="h1" style="width: 100% " class=""/>
+              </template>
+            </el-skeleton>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row v-if="!loading" :gutter="20" class="mt-2">
       <el-col
         :span="12"
         mobile
@@ -49,7 +91,7 @@
                 <span class="ml-1 item">{{ item.create_time.split(" ")[0] }}</span>
               </div>
             </div>
-            <h4 class="text-left my-1 h-1x">{{ item.title }}</h4>
+            <h4 class="text-left my-1 h-1x h4">{{ item.title }}</h4>
             <p class="desc text-left h-2x">{{ item.description }}</p>
           </div>
         </div>
@@ -79,6 +121,7 @@ export default {
     const router = useRouter();
     const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
+      loading: true,
       ArticleList: [],
       page: 1,
       allpage: 0,
@@ -111,6 +154,7 @@ export default {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;
             state.ArticleList = res.data.data.data;
+            state.loading = false
           }
         });
       },
@@ -205,6 +249,7 @@ export default {
   transform: scale(1.08);
 }
 .post-sort {
+  height: 1.2rem;
   display: inline-block;
   width:fit-content;
   padding: 2px 6px 3px;

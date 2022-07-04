@@ -1,5 +1,12 @@
 <template>
-  <div class="talks w-100" v-if="talkList.length != 0">
+
+  <div v-if="loading" class="talks w-100">
+    <div class="talk-box main-card mb-2" v-for="(index) in 8" :key="index">
+      <el-skeleton class="article-content text-left my-2 pt-2" :rows="2" :loading="loading" animated/>
+    </div>
+  </div>
+
+  <div class="talks w-100" v-if="!loading">
     <div class="talk-box main-card mb-2" v-for="(talk, index) in talkList" :key="index">
       <div class="talk-head text-left flex">
         <img :src="talk.expand.user.head_img" class="br-50" />
@@ -43,6 +50,10 @@
       </div>
     </div>
   </div>
+
+
+
+
   <div class="more-load cursor-pointer" @click="methods.loadTalks">
     <div class="justify-center h-100">
       <svg-icon file-name="more" :class="isLoading ? 'rotate' : ''"></svg-icon>
@@ -106,6 +117,7 @@ export default {
   setup() {
     const store = useStore();
     const state = reactive({
+      loading: true,
       upload_headers: {},
       upload_data: { mode: "upload" },
       talkList: [],
@@ -143,6 +155,7 @@ export default {
             state.page = Math.ceil(state.talkList.length / state.limit);
             if (state.page >= state.allpage) state.stopLoding = true;
             state.isLoading = false;
+            state.loading = false;
           }
         });
       },
