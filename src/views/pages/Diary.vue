@@ -48,7 +48,7 @@
       >
         <el-form>
           <el-form-item>
-            <el-input v-model="password" placeholder="请输入日记密码">
+            <el-input v-model="password" type="password" placeholder="请输入日记密码">
               <template #prefix>
                 <svg-icon file-name="password" fill="var(--h2-color)"></svg-icon>
               </template>

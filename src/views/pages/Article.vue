@@ -28,7 +28,7 @@
     </div>
     <div v-if="!loading" class="article">
       <div class="head">
-        <h2 class="text-left m-0 pt-2 pb-0 border-none h2s">{{ article.title }}</h2>
+        <h2 class="text-left m-0 pt-2 pb-0 border-none">{{ article.title }}</h2>
         <div class="meta text-left pt-1">
           <span>发布{{ article.create_time.split(" ")[0] }}</span>
           <el-divider direction="vertical" />
@@ -63,7 +63,7 @@
     >
       <el-form>
         <el-form-item>
-          <el-input v-model="password" placeholder="请输入文章密码">
+          <el-input v-model="password" type="password" placeholder="请输入文章密码">
             <template #prefix>
               <svg-icon file-name="password" fill="var(--h2-color)"></svg-icon>
             </template>

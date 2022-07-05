@@ -150,7 +150,6 @@ export default {
           limit: 8,
           page: state.page,
         };
-        console.log(params);
         GET("article/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;

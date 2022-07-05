@@ -490,6 +490,9 @@ hr {
 .article-content .nav-item {
   cursor: pointer;
 }
+.article-content p img {
+  border-radius: var(--border-radius);
+}
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;
