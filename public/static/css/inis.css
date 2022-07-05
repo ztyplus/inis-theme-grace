@@ -16,7 +16,7 @@
   text-align: center;
   width: 21px;
 }
-.alert-info{background-color: #eef6fd !important;}
+.alert-info{background-color: var(--theme-color-3) !important;}
 .alert{border-top: unset;border-right: unset;border-bottom: unset;}
 .alert-danger{ background-color: #fedee545!important;}
 .alert-success{background-color: #cef5ea85!important;}
@@ -55,14 +55,14 @@ a.bg-danger:focus,a.bg-danger:hover,button.bg-danger:focus,button.bg-danger:hove
 a.bg-light:focus,a.bg-light:hover,button.bg-light:focus,button.bg-light:hover{background-color:rgba(195,210,220,.8)!important}
 .bg-dark{background-color:rgba(49,58,70,.8)!important}
 a.bg-dark:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover{background-color:rgba(28,33,40,.8)!important}
-.bg-white{background-color:rgba(255,255,255,.8)!important}
+.bg-white{background-color:var(--theme-color-4)!important}
 .bg-transparent{background-color:transparent!important}
 .alert {
   position: relative;
   padding: 0.75rem 1.25rem;
   margin-bottom: 1rem;
-  border: 1px solid transparent;
   border-radius: 0.25rem;
+  background-color: var(--theme-color-4);
 }
 .text-xl-right{text-align:right!important}
 .text-xl-center{text-align:center!important}
@@ -90,7 +90,7 @@ a.text-warning:focus,a.text-warning:hover{color:#b38400!important}
 a.text-danger:focus,a.text-danger:hover{color:#f81240!important}
 .text-light{color:#e3eaef!important}
 a.text-light:focus,a.text-light:hover{color:#b2c5d3!important}
-.text-dark{color:var(--h2-color)!important}
+.text-dark{color:var(--h3-color)!important}
 a.text-dark:focus,a.text-dark:hover{color:#121519!important}
 .text-body{color:#6c757d!important}
 .text-muted{color:#98a6ad!important}
@@ -338,4 +338,3 @@ a.badge-dark.focus,a.badge-dark:focus{outline:0;-webkit-box-shadow:0 0 0 .2rem r
 .badge{display:inline-block;padding:.25em .4em;font-size:75%;font-weight:700;line-height:1;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25rem;-webkit-transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out}
 @media (prefers-reduced-motion:reduce){.badge{-webkit-transition:none;transition:none}
 }a.badge:focus,a.badge:hover{text-decoration:none}
-

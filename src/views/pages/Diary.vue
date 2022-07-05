@@ -97,6 +97,7 @@ export default {
         GET("article", { params }).then((res) => {
           if (res.status == 200) {
             state.diary_data = res.data;
+            document.title =  INIS.title + " - " + state.diary_data.data.title
             state.loading = false
             if (password && res.data.code == 200) {
               inisHelper.set.cookie(`diaryPassword_${route.params.id}`, password, 7200);

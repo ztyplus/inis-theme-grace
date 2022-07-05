@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="indexcard">
     <div class="layout-169 text-center mt-2">
 
       <el-skeleton class="banner cover" :loading="topSkeleton" animated>
@@ -30,9 +30,9 @@
     </div>
   </div>
   <Music v-if="music"/>
-  <div class="card pt-2">
+  <div class="indexcard pt-2">
     <el-skeleton class="pt-2" :rows="10" :loading="aboutSkeleton" animated/>    
-    <div v-if="!aboutSkeleton" class="about article-content" v-html="About"></div>
+    <div v-if="!aboutSkeleton" class="about article-content" v-html="About" @click="methods.clickEvent"></div>
   </div>
 </template>
 
@@ -94,7 +94,40 @@ export default {
           params: { id },
         });
       },
+      addClass(element,csName){
+        if(!methods.hasClass(element,csName)){ element.className+=' '+csName; }
+      },
+      hasClass(element,csName){ return 　element.className.match(RegExp('(\\s|^)'+csName+'(\\s|$)'));  },
+      clickEvent(e) {
+        if (e.target.nodeName == "IMG" && e.target.className != "emoji-img") {
+          state.imgList.forEach((item, index) => {
+            if (e.target.src.indexOf(item) !== -1) {
+              state.initialIndex = index;
+            }
+          });
+          state.imgVisible = true;
+        }else if (e.target.nodeName == "LI" && e.target.className == "nav-item"){
+          var list = e.target.parentNode.querySelectorAll('li')
+          list.forEach((item) => {
+            item.children[0].classList.remove("active")
+          })
+          e.target.children[0].classList.add("active");
+          var tab = e.target.children[0].href.split("#")[1]
+          if(tab){
+            var tabdom = document.getElementById(tab)
+            tabdom.parentNode.childNodes.forEach((item) => {
+              if(item.nodeName == "DIV"){
+                item.setAttribute("class","tab-pane")
+              }
+            })
+            if (tabdom.classList.value.indexOf("show active") == -1) {
+              methods.addClass(tabdom, "show active");
+            }
+          }
+        }
+      },
     };
+
     onMounted(() => {
       methods.initData();
     });
@@ -104,7 +137,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.card {
+.indexcard {
   margin-bottom: 1.5rem;
   text-align: left;
 }

@@ -223,7 +223,7 @@ p::-webkit-selection {
   font-family: 'font1';
   font-weight: normal;
   text-align: justify;
-  background-image: url(@/assets/images/underline.svg);
+  background-image: url(/static/images/underline.svg);
 }
 .diary p {
   color: var(--text-color);
@@ -384,8 +384,14 @@ code li{
   opacity: 1;
   visibility: visible;
 }
-
-
+hr {
+  margin: 1rem 0;
+  color: var(--theme-color-2)!important;
+  background-color: var(--theme-color)!important;
+  border: 0;
+  opacity: 1;
+  height: 1px;
+}
 .vioce-control .el-slider.is-vertical .el-slider__runway {
   width: var(--el-slider-height);
   height: 100%;
@@ -478,7 +484,12 @@ code li{
 .p .el-skeleton__item {
   height: 1rem;
 }
-
+.article-content .nav-item a {
+  pointer-events: none;
+}
+.article-content .nav-item {
+  cursor: pointer;
+}
 @media(max-width:550px) {
     .post-list .el-row .el-col,.album-list .el-row .el-col,.link-post .el-row .el-col {
       max-width: 100%!important;

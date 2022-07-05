@@ -65,6 +65,7 @@ export default {
         GET("article", { params }).then((res) => {
           if (res.data.code == 200) {
             state.album = res.data.data;
+            document.title =  INIS.title + " - " + state.album.title
             state.albumlist = res.data.data.expand.images;
             let timestamp = inisHelper.date.to.time(res.data.data.create_time);
             state.create_time = inisHelper.time.nature(timestamp, 5);

@@ -5,7 +5,7 @@
       <h2 class="pl-2">给我留言</h2>
     </div>
 
-    <div class="card text-left">
+    <div class="indexcard text-left">
       <div class="about article-content" v-html="msgwallInfo"></div>
     </div>
 

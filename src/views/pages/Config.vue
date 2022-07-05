@@ -204,7 +204,6 @@ export default {
         })
       },
       newVersion(){
-        // 生成随机字符串
         let random = Math.random().toString(36).substr(2);
         axios.get('https://inis.cc/api/theme?id=11?'+ random).then(res => {
           if(res.data.code == 200){

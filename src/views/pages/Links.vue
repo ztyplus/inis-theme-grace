@@ -1,7 +1,7 @@
 <template>
 
-  <div class="card pt-2 article text-left mb-4">
-    <div class="about article-content" v-html="linksInfo"></div>
+  <div class="indexcard pt-2 article text-left mb-4">
+    <div class="about article-content" v-html="linksInfo" @click="methods.clickEvent"></div>
   </div>
 
 
@@ -99,6 +99,38 @@ export default {
           return x[field] - y[field]
         }
       },
+      addClass(element,csName){
+        if(!methods.hasClass(element,csName)){ element.className+=' '+csName; }
+      },
+      hasClass(element,csName){ return 　element.className.match(RegExp('(\\s|^)'+csName+'(\\s|$)'));  },
+      clickEvent(e) {
+        if (e.target.nodeName == "IMG" && e.target.className != "emoji-img") {
+          state.imgList.forEach((item, index) => {
+            if (e.target.src.indexOf(item) !== -1) {
+              state.initialIndex = index;
+            }
+          });
+          state.imgVisible = true;
+        }else if (e.target.nodeName == "LI" && e.target.className == "nav-item"){
+          var list = e.target.parentNode.querySelectorAll('li')
+          list.forEach((item) => {
+            item.children[0].classList.remove("active")
+          })
+          e.target.children[0].classList.add("active");
+          var tab = e.target.children[0].href.split("#")[1]
+          if(tab){
+            var tabdom = document.getElementById(tab)
+            tabdom.parentNode.childNodes.forEach((item) => {
+              if(item.nodeName == "DIV"){
+                item.setAttribute("class","tab-pane")
+              }
+            })
+            if (tabdom.classList.value.indexOf("show active") == -1) {
+              methods.addClass(tabdom, "show active");
+            }
+          }
+        }
+      },
       getlinksInfo(){
         if (state.linksInfo == "") {
           let params = { alias: "links" };
@@ -116,7 +148,7 @@ export default {
       methods.initData();
     });
     return {
-      ...toRefs(state),
+      ...toRefs(state),methods
     };
   },
 };

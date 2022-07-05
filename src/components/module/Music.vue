@@ -348,7 +348,7 @@ ul {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  border: 1px solid var(--border-color);
+  // border: 1px solid var(--border-color);
   overflow: hidden;
 }
 .vioce-control {

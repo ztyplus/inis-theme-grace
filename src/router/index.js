@@ -9,13 +9,13 @@ const routes = [
             {
                 name: 'index',
                 path: '/',
-                meta: { keepAlive: true},
+                meta: { keepAlive: true,title: "首页"},
                 component: () => import('@/views/pages/Index'),
             },
             {
                 name: 'post',
                 path: '/post',
-                meta: { keepAlive: true},
+                meta: { keepAlive: true,title: "文章"},
                 component: () => import('@/views/pages/PostList'),
             },
             {
@@ -27,7 +27,7 @@ const routes = [
             {
                 name: 'diarylist',
                 path: '/diarylist',
-                meta: { keepAlive: true},
+                meta: { keepAlive: true,title: "日记"},
                 component: () => import('@/views/pages/DiaryList'),
             },
             {
@@ -39,7 +39,7 @@ const routes = [
             {
                 name: 'albumlist',
                 path: '/albumlist',
-                meta: { keepAlive: true},
+                meta: { keepAlive: true,title: "相册"},
                 component: () => import('@/views/pages/AlbumList'),
             },
             {
@@ -51,42 +51,43 @@ const routes = [
             {
                 name: 'talks',
                 path: '/talks',
-                meta: { keepAlive: true,css: "talk-pages"},
+                meta: { keepAlive: true,css: "talk-pages",title: "动态"},
                 component: () => import('@/views/pages/Talks'),
             },
             {
                 name: 'links',
                 path: '/links',
-                meta: { keepAlive: true},
+                meta: { keepAlive: true,title: "链接"},
                 component: () => import('@/views/pages/Links'),
             },
             {
                 name: 'msgwall',
                 path: '/msgwall',
-                meta: { keepAlive: true,css:"message-pages"},
+                meta: { keepAlive: true,css:"message-pages",title: "留言墙"},
                 component: () => import('@/views/pages/MsgWall'),
             },
             {
                 name: 'tools',
                 path: 'tools',
+                meta: { title: "工具"},
                 component: () => import('@/components/Tools'),
                 children: [
                     {
                         name: 'douyin',
                         path: 'douyin',
-                        meta: { keepAlive: true},
+                        meta: { keepAlive: true,title: "抖音解析"},
                         component: () => import('@/components/module/Douyin'),
                     },
                     {
                         name: 'avatar',
                         path: 'avatar',
-                        meta: { keepAlive: false},
+                        meta: { keepAlive: false,title: "头像生成器"},
                         component: () => import('@/components/module/Avatar'),
                     },
                     {
                         name: 'hotsearch',
                         path: 'hotsearch',
-                        meta: { keepAlive: true},
+                        meta: { keepAlive: true,title: "百度热搜"},
                         component: () => import('@/components/module/HotSearch'),
                     },
                 ]
@@ -94,7 +95,7 @@ const routes = [
             {
                 name: 'config',
                 path: '/config',
-                meta: { keepAlive: false,css: "config-page"},
+                meta: { keepAlive: false,css: "config-page",title: "主题配置"},
                 component: () => import('@/views/pages/Config'),
             },
         ]
@@ -123,10 +124,9 @@ if (is_login != "expire" && is_login != false) {
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-
-// if (to.meta.title) {
-//     document.title = to.meta.title ? to.meta.title : defaultTitle;
-// }
+    if (to.meta.title) {
+        document.title = INIS.title + " - " + (to.meta.title ? to.meta.title : defaultTitle);
+    }
 
 if (!is_login) {
     if (to.name == "config") {

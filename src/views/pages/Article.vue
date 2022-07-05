@@ -44,7 +44,7 @@
         class="article-content text-left my-2 py-1"
         v-code-highlight
         v-html='article_html'
-        @click="methods.imagePreview"
+        @click="methods.clickEvent"
       ></div>
 
     </div>
@@ -131,6 +131,7 @@ export default {
           state.article_data = res.data
           if (res.data.code == 200) {
             state.article = res.data.data;
+            document.title =  INIS.title + " - " + state.article.title
             state.article_html = state.article.content.replaceAll("[X]", "[√]").replaceAll("[ ]", "[X]");
             state.article_html = state.article_html.replaceAll("btn ", "el-button ").replaceAll("btn-primary","el-button--primary").replaceAll("btn-success","el-button--success");
             state.article_html = state.article_html.replaceAll("btn-rounded", "is-round").replaceAll("btn-warning","el-button--warning").replaceAll("btn-danger","el-button--danger").replaceAll("btn-outline-success","el-button--success is-plain")
@@ -156,7 +157,11 @@ export default {
         const time = inisHelper.date.to.time(date);
         return inisHelper.time.nature(time, 5);
       },
-      imagePreview(e) {
+      addClass(element,csName){
+        if(!methods.hasClass(element,csName)){ element.className+=' '+csName; }
+      },
+      hasClass(element,csName){ return 　element.className.match(RegExp('(\\s|^)'+csName+'(\\s|$)'));  },
+      clickEvent(e) {
         if (e.target.nodeName == "IMG" && e.target.className != "emoji-img") {
           state.imgList.forEach((item, index) => {
             if (e.target.src.indexOf(item) !== -1) {
@@ -164,6 +169,24 @@ export default {
             }
           });
           state.imgVisible = true;
+        }else if (e.target.nodeName == "LI" && e.target.className == "nav-item"){
+          var list = e.target.parentNode.querySelectorAll('li')
+          list.forEach((item) => {
+            item.children[0].classList.remove("active")
+          })
+          e.target.children[0].classList.add("active");
+          var tab = e.target.children[0].href.split("#")[1]
+          if(tab){
+            var tabdom = document.getElementById(tab)
+            tabdom.parentNode.childNodes.forEach((item) => {
+              if(item.nodeName == "DIV"){
+                item.setAttribute("class","tab-pane")
+              }
+            })
+            if (tabdom.classList.value.indexOf("show active") == -1) {
+              methods.addClass(tabdom, "show active");
+            }
+          }
         }
       },
       closeImg() {

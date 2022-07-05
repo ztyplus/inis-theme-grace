@@ -144,7 +144,7 @@ export default defineComponent({
               head_img: item.expand.head_img,
               pid: item.pid,
               replyto: item.expand.pid.nickname,
-              level: item.opt.level ? item.opt.level : 'user',
+              level: (item.opt && 'level' in item.opt) ? item.opt.level : 'user',
             });
             methods.recursion(item.son, arr);
           });

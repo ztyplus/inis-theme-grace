@@ -26,7 +26,7 @@ export default {
   components: { SvgIcon },
   setup() {
     const state = reactive({
-      link: "// link:'3.56 PXm:/ 看司藤小姐走路，明明就是正统的民国大家闺秀的样子！婀娜多姿，纤纤玉步，太美了%%司藤 %%景甜  %%须尽欢 %%我们别再一拍两散   https://v.douyin.com/YPsa5cT/ 复制此链接，打开Dou音搜索，直接观看视频！',",
+      link: "6.61 anQ:/ 那天，一个特殊的日子 雪下个不停 https://v.douyin.com/YcGhHKP/ 复制此链接，打开Dou音搜索，直接观看视频！",
       // link:'3.56 PXm:/ 看司藤小姐走路，明明就是正统的民国大家闺秀的样子！婀娜多姿，纤纤玉步，太美了%%司藤 %%景甜  %%须尽欢 %%我们别再一拍两散   https://v.douyin.com/YPsa5cT/ 复制此链接，打开Dou音搜索，直接观看视频！',
       parse: false,
       video_data: {},
@@ -48,7 +48,7 @@ export default {
           token: INIS.token
         };
         GET("proxy/get", { params }).then((res) => {
-          console.log('res: ', res);
+          console.log('res: ', res.data.data);
           if (res.data.data.code == 200) {
             ElMessage({ message: "解析成功！", type: "success" });
             state.parse = true;

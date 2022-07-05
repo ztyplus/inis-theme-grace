@@ -61,26 +61,23 @@ export default {
       cover: (grace_config && grace_config.option.cover ? grace_config.option.cover : "static/images/default-bg.jpg"),
       title: INIS.title,
       beian: (grace_config && grace_config.option.beian ? grace_config.option.beian : null),
-      themeColor: (grace_config && grace_config.style.themeColor ? grace_config.style.themeColor : "rgb(121 187 255)"),
+      themeColor: (grace_config && grace_config.style.themeColor ? grace_config.style.themeColor : "#79bbff"),
     })
     const methods = {
       initData(){
         let grace_config = inisHelper.get.storage('grace_config')
+        
         if (!grace_config) {
             methods.getConfig()
-        }else {
-          let themeColor = state.themeColor
-          let themeColor1 = inisHelper.color(themeColor,0.5,'rgba').rgba
-          let themeColor2 = inisHelper.color(themeColor,0.2,'rgba').rgba
-          let themeColor3 = inisHelper.color(themeColor,0.1,'rgba').rgba
-          let themeColor4 = inisHelper.color(themeColor,0.05,'rgba').rgba
-          state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
-          :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
-          `
         }
-        // rgb转rgba
-        // let themeColor = state.themeColor
-
+        let themeColor = state.themeColor
+        let themeColor1 = inisHelper.color(themeColor,0.5,'rgba').rgba
+        let themeColor2 = inisHelper.color(themeColor,0.2,'rgba').rgba
+        let themeColor3 = inisHelper.color(themeColor,0.1,'rgba').rgba
+        let themeColor4 = inisHelper.color(themeColor,0.05,'rgba').rgba
+        state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
+        :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
+        `
         methods.welcome()
       },
       getConfig(){
