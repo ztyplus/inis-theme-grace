@@ -132,7 +132,7 @@ export default {
     });
     const methods = {
       initData() {
-        if (grace_config && grace_config.option.albumId && grace_config.option.diaryId) {
+        if (grace_config && (grace_config.option.albumId || grace_config.option.diaryId)) {
           state.albumId = grace_config.option.albumId
           state.diaryId = grace_config.option.diaryId
         }
@@ -150,6 +150,7 @@ export default {
           limit: 8,
           page: state.page,
         };
+        console.log(params);
         GET("article/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;
