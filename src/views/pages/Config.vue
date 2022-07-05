@@ -150,7 +150,7 @@ export default {
       newVersion:null,
       grace_config: {
         style: {
-          themeColor: "rgb(121 187 255)",
+          themeColor: "#79bbff",
         },
         option: {
           autoSwithch: true,
