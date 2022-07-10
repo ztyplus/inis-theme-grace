@@ -39,7 +39,7 @@
         :key="submsg.id"
       >
         <div class="msg-head flex">
-          <img :src="submsg.head_img" class="br-50 cursor-pointer" @click="methods.goUrl(item.url)" />
+          <img :src="submsg.head_img" class="br-50 cursor-pointer" @click="methods.goUrl(submsg.url)" />
           <div class="info pl-1 w-100">
             <div>
               <div class="name h-60">

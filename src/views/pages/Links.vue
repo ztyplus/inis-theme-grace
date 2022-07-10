@@ -45,9 +45,6 @@
     </div>
   </div>
 
-  <div class="mt-4">
-    <Tools v-if="tools" />
-  </div>
 
 </template>
 
@@ -55,10 +52,10 @@
 import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import SvgIcon from "@/components/tool/SvgIcon.vue";
-import Tools from "@/components/Tools";
+// import Tools from "@/components/Tools";
 import { inisHelper } from "@/utils/helper";
 export default {
-  components: { SvgIcon, Tools },
+  components: { SvgIcon },
   setup() {
     const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({

@@ -60,6 +60,7 @@ export default {
       state.postForm.nickname = login_storage.user.nickname
       state.postForm.email = login_storage.user.email
       state.postForm.level = login_storage.user.level
+      state.postForm.url = login_storage.user.address_url
     }
     const methods = {
       async send(){

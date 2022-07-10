@@ -8,7 +8,7 @@
         <span>浏览{{ album.views }}</span>
       </div>
       <el-divider content-position="right" class="my-2">
-        <span>★ 更新于{{ create_time }}</span>
+        <span class="item-text">★ 更新于{{ create_time }}</span>
       </el-divider>
     </div>
 
@@ -67,7 +67,7 @@ export default {
             state.album = res.data.data;
             document.title =  INIS.title + " - " + state.album.title
             state.albumlist = res.data.data.expand.images;
-            let timestamp = inisHelper.date.to.time(res.data.data.create_time);
+            let timestamp = inisHelper.date.to.time(res.data.data.update_time);
             state.create_time = inisHelper.time.nature(timestamp, 5);
             store.dispatch("headCover", res.data.data.img_src);
           }

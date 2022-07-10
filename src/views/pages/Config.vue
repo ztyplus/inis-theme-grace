@@ -1,15 +1,30 @@
 <template>
   <div class="config text-left">
-    <h3>主题配置 V{{version}}</h3>
-    <div v-if="version < newVersion" class="mt-2">
-      <el-alert
-      title="新版本提示！"
-      type="warning"
-      :description="'当前版本为 V' + version + '，最新版本为 V' + newVersion + '，请前往INIS社区下载更新！'"
+    <h3 class="mb-2">主题配置 V{{version}}</h3>
+
+      <el-popover
+      v-if="version < newVersion" class="mt-2"
+      :width="400"
       effect="dark"
-      show-icon
-      />
-    </div>
+      :title="versionInfo.version_title + '-V' + versionInfo.version"
+      placement="bottom-start"
+      popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
+    >
+      <template #reference>
+        <el-alert
+        title="版本更新提示！"
+        type="warning"
+        :description="'当前版本为 V' + version + '，最新版本为 V' + newVersion "
+        effect="dark"
+        show-icon
+        />
+      </template>
+      <template #default>
+        <div style="color:#eeeeee" v-html="versionInfo.version_content.replaceAll('\n','<br>')"></div>
+        <div class="mt-2 text-right"><el-button type="success" @click="methods.update(versionInfo.update_url)">下载新版本</el-button></div>
+      </template>
+    </el-popover>
+
     <el-collapse class="mt-2" v-model="activeNames" :accordion="true">
       <el-collapse-item title="主题开关" name="1">
         <span class="item-text py-1  w-100">
@@ -45,13 +60,13 @@
           <el-radio :label="true" border>开启</el-radio>
           <el-radio :label="false" border>关闭</el-radio>
         </el-radio-group>
-        <span class="item-text py-1 mt-2 w-100">
+        <!-- <span class="item-text py-1 mt-2 w-100">
           <strong>显示自建工具</strong>
         </span>
         <el-radio-group v-model="grace_config.option.tools" size="small">
           <el-radio :label="true" border>开启</el-radio>
           <el-radio :label="false" border>关闭</el-radio>
-        </el-radio-group>
+        </el-radio-group> -->
 
       </el-collapse-item>
       <el-collapse-item title="个人信息" name="2">
@@ -148,6 +163,7 @@ export default {
       login_token: null,
       version:INIS.version,
       newVersion:null,
+      versionInfo: {},
       grace_config: {
         style: {
           themeColor: "#79bbff",
@@ -207,6 +223,8 @@ export default {
         let random = Math.random().toString(36).substr(2);
         axios.get('https://inis.cc/api/theme?id=11?'+ random).then(res => {
           if(res.data.code == 200){
+            state.versionInfo = res.data.data.data[0].opt
+            console.log('state.versionInfo: ', state.versionInfo);
             state.newVersion = res.data.data.data[0].opt.version
           }
         })
@@ -267,6 +285,10 @@ export default {
       colorChange(val) {
         state.grace_config.style.themeColor = val;
       },
+      update(url)
+      {
+        window.open(url,"_blank")
+      }
     };
     onMounted(() => {
       methods.initData();

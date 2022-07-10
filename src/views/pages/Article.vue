@@ -37,7 +37,7 @@
           <span>字数{{ article.font_count }}</span>
         </div>
         <el-divider content-position="right" class="my-2">
-          <span class="item-text">★ 更新于{{ methods.natureTime(article.create_time) }}</span>
+          <span class="item-text">★ 更新于{{ methods.natureTime(article.update_time) }}</span>
         </el-divider>
       </div>
       <div

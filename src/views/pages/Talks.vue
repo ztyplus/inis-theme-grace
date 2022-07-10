@@ -23,6 +23,19 @@
       </div>
       <el-divider border-style="dashed"></el-divider>
       <div class="talk-content text-left" v-html='"<p>" + talk.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>"'></div>
+      <div v-if="talk.opt.hasOwnProperty('uploadfile')" class="talkimg flex flex-wrap">
+        <photo-provider
+         :photoClosable="true"
+        :shouldTransition="true"
+        :default-backdrop-opacity="0.9"
+      >
+        <photo-consumer v-for="(item, index) in talk.opt.uploadfile" :key="index" :src="item.url" :intro="item.name" class="talkimgbox" :class="talk.opt.uploadfile.length == 1 ? '' : 'layout-100'">
+          <div :class="talk.opt.uploadfile.length == 1 ? '' : 'layout-card'">
+                <img :src="item.url" :class="talk.opt.uploadfile.length == 1 ? '' : 'wh-100'" />
+          </div>
+        </photo-consumer>
+        </photo-provider>
+      </div>
       <div class="talk-info text-left mt-2 flex">
         <span class="justify-center pr-1">
           <svg-icon file-name="os" fill="var(--h2-color)"></svg-icon>
@@ -76,12 +89,12 @@
     </el-form-item>
     </div>
 
-    <!-- <el-upload
+    <el-upload
       :action="api_url"
       list-type="picture-card"
       :file-list="fileList"
       :multiple="false"
-      accept="image/*,video/*"
+      accept="image/*"
       :limit="9"
       :on-exceed="methods.exceed"
       :headers="upload_headers"
@@ -93,11 +106,11 @@
       :before-upload="methods.beforeUpload"
     >
     <svg-icon file-name="plus"></svg-icon>
-  </el-upload> -->
+  </el-upload>
 
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="methods.submit">发布</el-button>
+        <el-button type="primary" @click="methods.submit" style="width:100px">发布</el-button>
       </span>
     </template>
   </el-dialog>
@@ -129,13 +142,14 @@ export default {
       api_url: INIS.api + "/file",
       fileList: [],
       upload_url: [],
-      limit: 12,
+      limit: 20,
       login_token: null,
+      uploadEnd : true
     });
     const methods = {
       initData() {
         state.login_token = inisHelper.get.storage("login")["login-token"];
-        state.upload_headers = { "login-token": state.login_token };
+        state.upload_headers = { "login-token": state.login_token,token: INIS.token };
         methods.getTalks(1);
       },
       getTalks(page, limit = state.limit, del = false) {
@@ -160,32 +174,44 @@ export default {
         });
       },
       async submit() {
-        let location = await methods.loction();
-        if (state.talkcontent) {
-          let params = {
-            content: state.talkcontent,
-            "login-token": state.login_token,
-            type: "moving",
-            opt: location,
-          };
-          POST("comments", params).then((res) => {
-            if (res.data.code == 200) {
-              ElMessage({ message: "发布成功", type: "success" });
-              state.talkcontent = null;
-              methods.getTalks(1);
-              store.dispatch("swTalk", false);
-            } else ElMessage({ message: res.data.msg, type: "error" });
-          });
-        } else {
-          ElMessage({ message: "内容为空", type: "warning" });
+        if (state.uploadEnd){
+          let location = await methods.loction();
+          console.log('location: ', location);
+          if (state.talkcontent) {
+            let params = {
+              content: state.talkcontent,
+              "login-token": state.login_token,
+              type: "moving",
+              opt: {
+                address: location,
+                uploadfile: state.upload_url
+              },
+            };
+            POST("comments", params).then((res) => {
+              if (res.data.code == 200) {
+                ElMessage({ message: "发布成功", type: "success" });
+                state.talkcontent = null;
+                methods.getTalks(1);
+                store.dispatch("swTalk", false);
+                state.fileList = []
+                state.upload_url = []
+              } else ElMessage({ message: res.data.msg, type: "error" });
+            });
+          } else {
+            ElMessage({ message: "内容为空", type: "warning" });
+          }
+        }else{
+          ElMessage({ message: "图片上传未结束，请稍后！", type: "warning" });
         }
       },
       getAddr(opt) {
         let addr = "";
-        if (opt) {
-          if (opt.province) addr += opt.province;
-          if (opt.city) addr += opt.city;
-          if (opt.district) addr += opt.district;
+        let address = opt
+        if(opt.hasOwnProperty('address')) address = opt.address
+        if (address) {
+          if (address.province) addr += address.province;
+          if (address.city) addr += address.city;
+          if (address.district) addr += address.district;
         }
         if (addr != "") {
           return addr;
@@ -250,15 +276,16 @@ export default {
       },
 
       handleSuccess(res, file) {
-        // console.log(res.data,file.name)
         if (res.code == 200) {
           state.upload_url.push({
             url: res.data,
             name: file.name,
           });
+          state.uploadEnd = true
         } else {
+          state.uploadEnd = false
           ElNotification({
-            title: "文件添加失败",
+            title: "文件信息获取失败",
             message: res.msg,
             type: "warning",
           });
@@ -266,18 +293,27 @@ export default {
         // console.log(state.upload_url)
       },
       beforeUpload(rawFile) {
+        state.uploadEnd = false
         // console.log("beforeUpload",rawFile)
-        setTimeout(() => {}, 1000);
+        // setTimeout(() => {}, 1000);
       },
       handleRemove(file, fileList) {
-        state.upload_url.splice(file.name, 1);
-        console.log("删除后2", state.upload_url);
+        state.upload_url.forEach((item,index)=>{
+          if(file.name == item.name){
+            state.upload_url.splice(index, 1);
+          }
+        })
+        // console.log("删除后2", fileList);
       },
       handleError(err, file) {
-        console.log("上传失败");
+          ElNotification({
+            title: "失败",
+            message: "文件上传失败",
+            type: "error",
+          });
       },
       handleStart(e) {
-        console.log(e);
+        // console.log(e);
         // state.fileList = []
       },
     };
@@ -321,6 +357,33 @@ export default {
   }
   .delete_talk:hover svg {
     fill: var(--theme-color);
+  }
+}
+.talkimg{
+  width: 400px;
+  max-width: 400px;
+  .talkimgbox{
+    width: 33.33%;
+    position: relative;
+    img {
+      padding: 1px;
+      box-sizing: border-box;
+      max-height: 400px;
+      max-width: 100%;
+    }
+  }
+  .talkimgbox:nth-last-child(2):first-child ~ .talkimgbox,
+  .talkimgbox:nth-last-child(2):first-child ,
+  .talkimgbox:nth-last-child(4):first-child ~ .talkimgbox,
+  .talkimgbox:nth-last-child(4):first-child {
+    width: 50%!important;
+  }
+  .talkimgbox:nth-last-child(1):first-child {
+    width: 400px;
+    text-align: left;
+  }
+  .maxw100 {
+    max-width: 100%;
   }
 }
 </style>

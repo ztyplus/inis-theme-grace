@@ -66,32 +66,32 @@ const routes = [
                 meta: { keepAlive: true,css:"message-pages",title: "留言墙"},
                 component: () => import('@/views/pages/MsgWall'),
             },
-            {
-                name: 'tools',
-                path: 'tools',
-                meta: { title: "工具"},
-                component: () => import('@/components/Tools'),
-                children: [
-                    {
-                        name: 'douyin',
-                        path: 'douyin',
-                        meta: { keepAlive: true,title: "抖音解析"},
-                        component: () => import('@/components/module/Douyin'),
-                    },
-                    {
-                        name: 'avatar',
-                        path: 'avatar',
-                        meta: { keepAlive: false,title: "头像生成器"},
-                        component: () => import('@/components/module/Avatar'),
-                    },
-                    {
-                        name: 'hotsearch',
-                        path: 'hotsearch',
-                        meta: { keepAlive: true,title: "百度热搜"},
-                        component: () => import('@/components/module/HotSearch'),
-                    },
-                ]
-            },
+            // {
+            //     name: 'tools',
+            //     path: 'tools',
+            //     meta: { title: "工具"},
+            //     component: () => import('@/components/Tools'),
+            //     children: [
+            //         {
+            //             name: 'douyin',
+            //             path: 'douyin',
+            //             meta: { keepAlive: true,title: "抖音解析"},
+            //             component: () => import('@/components/module/Douyin'),
+            //         },
+            //         {
+            //             name: 'avatar',
+            //             path: 'avatar',
+            //             meta: { keepAlive: false,title: "头像生成器"},
+            //             component: () => import('@/components/module/Avatar'),
+            //         },
+            //         {
+            //             name: 'hotsearch',
+            //             path: 'hotsearch',
+            //             meta: { keepAlive: true,title: "百度热搜"},
+            //             component: () => import('@/components/module/HotSearch'),
+            //         },
+            //     ]
+            // },
             {
                 name: 'config',
                 path: '/config',
