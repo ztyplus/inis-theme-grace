@@ -150,6 +150,8 @@ export default {
             }
             state.loading = false
             store.dispatch("headCover", res.data.data.img_src);
+          }else{
+            inisHelper.clear.cookie(`articlePassword_${route.params.id}`)
           }
         });
       },

@@ -8,7 +8,7 @@
       :style="{'background-image': 'url('+(head_cover?head_cover:cover)+')'}"
       ></div>
       <div v-if="$route.name == 'diary'" class="headimg"
-      :style="{'background-image': 'url(static/images/note.jpg)'}"
+      :style="{'background-image': 'url('+(head_cover?head_cover:'static/images/note.jpg')+')'}"
       ></div>
     </div>
     <div class="container">

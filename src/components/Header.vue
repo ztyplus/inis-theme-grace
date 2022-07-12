@@ -69,8 +69,8 @@ export default {
       qq: (grace_config && grace_config.option.qq ? grace_config.option.qq : ""),
       wechat: (grace_config && grace_config.option.wechat ? grace_config.option.wechat : ""),
       email: (grace_config && grace_config.option.email ? grace_config.option.email : ""),
-      nickname: (grace_config && grace_config.option.nickname ? grace_config.option.nickname : "相左"),
-      description: (grace_config && grace_config.option.description ? grace_config.option.description : "心有山海，静而不争"),
+      nickname: (grace_config && grace_config.option.nickname ? grace_config.option.nickname : INIS.title),
+      description: (grace_config && grace_config.option.description ? grace_config.option.description : ""),
       avatar: (grace_config && grace_config.option.avatar ? grace_config.option.avatar : "/static/images/avatar.jpg"),
     });
     const methods = {

@@ -75,10 +75,12 @@ import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import iLink from "@/components/tool/Link";
 import { inisHelper } from "@/utils/helper";
+import { useStore } from "vuex"
 export default {
   components: { iLink },
   setup() {
     const route = useRoute();
+    const store = useStore();
     const state = reactive({
       loading:true,
       diary_data: null,
@@ -97,11 +99,15 @@ export default {
         GET("article", { params }).then((res) => {
           if (res.status == 200) {
             state.diary_data = res.data;
+            store.dispatch("headCover", res.data.data.img_src)
             document.title =  INIS.title + " - " + state.diary_data.data.title
             state.loading = false
+            // console.log('res.data: ', res.data.data.img_src);
             if (password && res.data.code == 200) {
               inisHelper.set.cookie(`diaryPassword_${route.params.id}`, password, 7200);
             }
+          }else{
+            inisHelper.clear.cookie(`diaryPassword_${route.params.id}`)
           }
         });
       },

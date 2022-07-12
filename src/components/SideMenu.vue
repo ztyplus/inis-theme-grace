@@ -30,7 +30,7 @@
         </el-menu-item>
         <el-menu-item index="links" @click="methods.close('links')">
           <svg-icon file-name="links"></svg-icon>
-          <span>链接</span>
+          <span>友链</span>
         </el-menu-item>
         <el-menu-item index="msgwall" @click="methods.close('msgwall')">
           <svg-icon file-name="msgwall"></svg-icon>

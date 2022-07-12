@@ -176,7 +176,6 @@ export default {
       async submit() {
         if (state.uploadEnd){
           let location = await methods.loction();
-          console.log('location: ', location);
           if (state.talkcontent) {
             let params = {
               content: state.talkcontent,

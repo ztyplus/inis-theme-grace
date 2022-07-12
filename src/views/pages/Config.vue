@@ -224,7 +224,6 @@ export default {
         axios.get('https://inis.cc/api/theme?id=11?'+ random).then(res => {
           if(res.data.code == 200){
             state.versionInfo = res.data.data.data[0].opt
-            console.log('state.versionInfo: ', state.versionInfo);
             state.newVersion = res.data.data.data[0].opt.version
           }
         })
