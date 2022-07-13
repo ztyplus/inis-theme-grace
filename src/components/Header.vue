@@ -71,7 +71,7 @@ export default {
       email: (grace_config && grace_config.option.email ? grace_config.option.email : ""),
       nickname: (grace_config && grace_config.option.nickname ? grace_config.option.nickname : INIS.title),
       description: (grace_config && grace_config.option.description ? grace_config.option.description : ""),
-      avatar: (grace_config && grace_config.option.avatar ? grace_config.option.avatar : "/static/images/avatar.jpg"),
+      avatar: (grace_config && grace_config.option.avatar ? grace_config.option.avatar : "/static/images/user.png"),
     });
     const methods = {
       copy(msg) {
