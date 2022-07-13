@@ -11,6 +11,6 @@ window.INIS = {
     title: '相左',
 
     // 请勿擅自修改此处
-    version: '1.0.7',
+    version: '1.0.8',
 }
 

@@ -63,7 +63,7 @@
     >
       <el-form>
         <el-form-item>
-          <el-input v-model="password" type="password" placeholder="请输入文章密码">
+          <el-input v-model="password" type="password" placeholder="请输入文章密码" @keyup.enter="methods.getArticle(password)">
             <template #prefix>
               <svg-icon file-name="password" fill="var(--h2-color)"></svg-icon>
             </template>
@@ -223,7 +223,7 @@ h2 {
   }
 }
 .article-box {
-      background-color: var(--card-bg-color);
+    background-color: var(--card-bg-color);
     border-radius: var(--border-radius);
 }
 .cot-title {

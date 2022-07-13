@@ -153,6 +153,11 @@ export default {
         GET("article/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;
+            // let ArticleList = res.data.data.data;
+            // console.log('ArticleList: ', ArticleList);
+            // ArticleList.forEach(element => {
+            //   console.log(element.opt.auth)
+            // });
             state.ArticleList = res.data.data.data;
             state.loading = false
           }

@@ -18,6 +18,7 @@ export default {
 }
 .talk-pages,
 .article-pages,
+.links-pages,
 .message-pages {
   box-shadow: none;
   padding: 0 !important;

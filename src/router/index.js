@@ -57,7 +57,7 @@ const routes = [
             {
                 name: 'links',
                 path: '/links',
-                meta: { keepAlive: true,title: "链接"},
+                meta: { keepAlive: true,title: "友链",css:"links-pages"},
                 component: () => import('@/views/pages/Links'),
             },
             {

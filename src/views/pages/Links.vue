@@ -1,16 +1,12 @@
 <template>
 
-  <div class="indexcard pt-2 article text-left mb-4">
-    <div class="about article-content" v-html="linksInfo" @click="methods.clickEvent"></div>
-  </div>
-
-
-  <div v-if="linkList.length != 0">
+<div class="links-box">
+  <div class="p-1" v-if="linkList.length != 0">
     <el-divider content-position="center"
       ><span><h3>{{linkList[0].name}}</h3></span></el-divider
     >
     <div class="link-post">
-      <el-row :gutter="0" class="mt-6 mb-2">
+      <el-row :gutter="0" class="mt-6">
         <el-col v-show="item.is_show == 1" v-for="(item, index) in linkList[0].data" :key="index" :span="12" :md="8">
           <a class="link-box shadow-box m-1 p-2 mb-4" :href="item.url" target="_blank">
             <div class="avatar">
@@ -24,7 +20,7 @@
     </div>
   </div>
 
-  <div v-if="linkList.length >= 2">
+  <div class="p-1" v-if="linkList.length >= 2">
     <div v-for="(list,index) in linkList.slice(1,linkList.length)" :key="index">
       <div v-if="list.count != 0">
           <el-divider content-position="center" class="my-2"><span><h3>{{list.name}}</h3></span></el-divider>
@@ -44,21 +40,36 @@
       </div>
     </div>
   </div>
+</div>
 
+
+<div class="links-box p-2 mt-2">
+
+  <div class="indexcard article text-left mb-4">
+    <div class="links-content article-content" v-html="linksInfo" @click="methods.clickEvent"></div>
+  </div>
+
+    <div class="wallpanel">
+      <Comment commentType="links" @getWallmasg="methods.getFirst()" />
+    </div>
+    <MsgCard ref="msgCard" commentType="links"/>
+</div>
 
 </template>
 
 <script>
-import { reactive, toRefs, onMounted } from "vue";
+import { reactive, toRefs, onMounted,ref } from "vue";
 import { GET } from "@/utils/http/request";
 import SvgIcon from "@/components/tool/SvgIcon.vue";
-// import Tools from "@/components/Tools";
+import MsgCard from "@/components/module/MsgCard";
+import Comment from "@/components/module/Comment";
 import { inisHelper } from "@/utils/helper";
 export default {
-  components: { SvgIcon },
+  components: { SvgIcon,Comment,MsgCard  },
   setup() {
     const grace_config = inisHelper.get.storage("grace_config")
     const state = reactive({
+      msgCard : ref(null),
       tools: (grace_config && grace_config.option.tools ? grace_config.option.tools : false),
       linksInfo: "",
       sortList: [],
@@ -81,7 +92,7 @@ export default {
         })
       },
       getLinks(sort_id,index,name) {
-        let params = {where: `sort_id,=,${sort_id};`,order: "create_time asc",limit: 9999,};
+        let params = {where: `sort_id,=,${sort_id};is_show,=,1`,order: "create_time asc",limit: 9999,};
         GET("links/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             res.data.data.index = index
@@ -127,6 +138,9 @@ export default {
             }
           }
         }
+      },
+      getFirst(){
+        state.msgCard.methods.getFirst();
       },
       getlinksInfo(){
         if (state.linksInfo == "") {
@@ -181,6 +195,9 @@ export default {
     height: 3rem;
   }
 }
+.links-content {
+  padding-top: .5rem!important;
+}
 .link-box:hover img,
 .link-box:hover svg {
   transform: scale(1.08);
@@ -190,5 +207,9 @@ export default {
 }
 .flex {
   align-items: center;
+}
+.links-box {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
 }
 </style>

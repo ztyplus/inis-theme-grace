@@ -112,7 +112,7 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
   color: var(--h2-color)!important;
 }
 .el-dialog {
-    padding: 0 1rem 2rem;
+    padding: 0 1rem 1rem;
     background-color: var(--card-bg-color)!important;
 }
 .sendtalk-box {
