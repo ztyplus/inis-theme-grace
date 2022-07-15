@@ -47,7 +47,7 @@
             <div class="layout-card cover">
               <img
                 class="wh-100 transform"
-                :src="item.img_src ? item.img_src : 'static/images/default-bg.jpg'"
+                :src="item.img_src ? item.img_src : randomImg"
               />
             </div>
           </div>
@@ -83,8 +83,10 @@ import { inisHelper } from '@/utils/helper'
 export default {
   setup() {
     const router = useRouter();
-    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.storage("grace_config")
+    const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
+      randomImg: INIS.api + '/file/random?id=' + Math.random().toString(36).substr(2),
       loading: true,
       ArticleList: [],
       page: 1,

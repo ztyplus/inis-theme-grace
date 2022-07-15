@@ -18,7 +18,7 @@
               class="wh-100 cover"
               :style="{
                 'background-image':
-                  'url(' + (item.img_src ? item.img_src : 'static/images/note.jpg') + ')',
+                  'url(' + (item.img_src ? item.img_src : randomImg) + ')',
               }"
             ></div>
             <div class="text-left banner-title p-1">
@@ -49,8 +49,10 @@ export default {
 
   setup() {
     const router = useRouter();
-    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.storage("grace_config")
+    const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
+      randomImg: INIS.api + '/file/random?id=' + Math.random().toString(36).substr(2),
       music: (grace_config ? grace_config.option.music : false),
       TopList: [],
       topSkeleton: true,

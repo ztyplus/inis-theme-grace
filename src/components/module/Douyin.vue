@@ -48,7 +48,6 @@ export default {
           token: INIS.token
         };
         GET("proxy/get", { params }).then((res) => {
-          console.log('res: ', res.data.data);
           if (res.data.data.code == 200) {
             ElMessage({ message: "解析成功！", type: "success" });
             state.parse = true;

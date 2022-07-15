@@ -108,11 +108,11 @@ const routes = [
 ]
   
 
-// let history   = (INIS.route_hash) ? createWebHashHistory() : createWebHistory();
-// let history   = (INIS.route_hash) ? createWebHashHistory() : createWebHistory();
+let history   = (INIS.route_hash) ? createWebHashHistory() : createWebHistory();
 
 const router = createRouter({
-  history:createWebHashHistory(),
+//   history:createWebHashHistory(),
+  history,
   routes
 })
 

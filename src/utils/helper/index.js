@@ -25,32 +25,35 @@ class helper{
         const page          = {name:()=>this.getPageName()}
         const strCount      = {count:(string,search)=>this.getStringCount(string,search)}
         const getStorage    = (namespace,key) => this.getStorage(namespace,key)
+        const getSessionStorage    = (namespace,key) => this.getSessionStorage(namespace,key)
         const getBrowser    = (all) => this.getBrowser(all)
         const getRandomNum  = {num:(min,max) => this.getRandomNum(min,max)}
         const getKeyName    = {name:(keycode)=>this.getKeyName(keycode)}
         
         // 链式操作 get 属性
-        this.get         = { cookie:getCookie, query, page, string:strCount, storage:getStorage, browser:getBrowser, random:getRandomNum, key:getKeyName }
+        this.get         = { cookie:getCookie, query, page, string:strCount, sessionStorage:getSessionStorage, storage:getStorage, browser:getBrowser, random:getRandomNum, key:getKeyName }
 
 
 
         /* 定义 set 方法 */
         const setCookie  = (name,value,second)   => this.setCookie(name,value,second)
         const setStorage = (namespace,key,value) => this.setStorage(namespace,key,value)
+        const setSessionStorage = (namespace,key,value) => this.setSessionStorage(namespace,key,value)
         const css        = (classOrId,css,cover) => this.setCss(classOrId,css,cover)
         const copyText   = {text: (text,remark)  => this.setCopyText(text,remark)}
         const setLinks   = (url,type,tag)        => this.setLinks(url,type,tag)
         
         // 链式操作 set 属性
-        this.set         = { cookie:setCookie, storage:setStorage, css, copy:copyText, links:setLinks }
+        this.set         = { cookie:setCookie,sessionStorage:setSessionStorage, storage:setStorage, css, copy:copyText, links:setLinks }
 
 
 
-        /* 定义 clear 方法 */
+        /* 定义 has 方法 */
         const hasStorage = (key)  => this.hasStorage(key)
+        const hasSessionStorage = (key)  => this.hasSessionStorage(key)
         
         // 链式操作 has 属性
-        this.has         = { storage:hasStorage }
+        this.has         = { storage:hasStorage,session:hasSessionStorage }
 
 
 
@@ -58,9 +61,10 @@ class helper{
         /* 定义 clear 方法 */
         const clearCookie  = (name) => this.clearCookie(name)
         const clearStorage = (key)  => this.clearStorage(key)
+        const clearSessionStorage = (key)  => this.clearSessionStorage(key)
         
         // 链式操作 delete 属性
-        this.clear      = { cookie:clearCookie, storage:clearStorage }
+        this.clear      = { cookie:clearCookie, storage:clearStorage,sessionStorage:clearSessionStorage }
 
 
 
@@ -546,6 +550,121 @@ class helper{
         if (this.isEmpty(key)) console.warn('请给一个localStorage的key值')
         else {
             localStorage.removeItem(key)
+            result = true
+        }
+        
+        return result
+    }
+
+
+    /**
+     * @name 获取sessionStorage数据
+     * @param {string} namespace [sessionStorage的key值]
+     * @param {string} key [sessionStorage的value中JSON对象的key值]
+     * @return {string}
+     */
+    getSessionStorage(namespace, key = true)
+    {
+        let result = false
+        if (this.isEmpty(namespace)) console.warn('请输入需要查询的key!')
+        else {
+            
+            let storage = sessionStorage.getItem(namespace)
+            
+            if (!this.isEmpty(storage)) {
+                
+                if (typeof key == "boolean" && key) {
+                    
+                    result = JSON.parse(storage)
+                    
+                } else if (typeof key == "boolean") result = storage
+                else {
+                    
+                    storage = JSON.parse(storage)
+                    
+                    if (this.isEmpty(storage[key])) result = null
+                    else {
+                        result = storage[key]
+                    }
+                }
+            }
+        }
+        return result
+    }
+
+    /**
+     * @name 设置sessionStorage数据
+     * @param {string} namespace [sessionStorage的key值]
+     * @param {string || object} key [sessionStorage的value中JSON对象的key值]
+     * @param {string} value [sessionStorage的value中JSON对象的value值]
+     * @return {boolean}
+     */
+    setSessionStorage(namespace, key, value)
+    {
+        // 返回结果
+        let result = false
+        
+        if (this.isEmpty(namespace)) console.warn('请输入需要存储的key名称！')
+        else if (this.isEmpty(key))  console.warn('键值key不得为空！')
+        else {
+            
+            let storage  = sessionStorage.getItem(namespace)
+            
+            // 如果不存在，则新建
+            if (!storage) storage = {}
+            else storage = JSON.parse(storage)
+            
+            if (typeof key == 'string') {
+                
+                // 如果不存在，则新建
+                if (!storage[key]) storage[key] = {}
+                
+                if (typeof value == 'object') {
+                    
+                    for (let item in value) {
+                        storage[key][item] = value[item]
+                    }
+                    
+                } else storage[key]["value"] = value
+                
+            } else if (typeof key == 'object') for (let item in key) {
+                storage[item] = key[item]
+            }
+            
+            result = true
+            sessionStorage.setItem(namespace, JSON.stringify(storage))
+        }
+        
+        return result
+    }
+
+    /**
+     * @name 判断缓存是否存在
+     * @param {string} key
+     * @return {object}
+     */
+    hasSessionStorage(key)
+    {
+        let result = false
+        
+        if (this.isEmpty(key)) console.warn('请给一个sessionStorage的key值')
+        else if (sessionStorage.getItem(key) != null) result = true
+        
+        return result
+    }
+
+     /**
+     * @name 清除指定缓存
+     * @param {string} key
+     * @return {object}
+     */
+    clearSessionStorage(key)
+    {
+        let result = false
+        
+        if (this.isEmpty(key)) console.warn('请给一个sessionStorage的key值')
+        else {
+            sessionStorage.removeItem(key)
             result = true
         }
         

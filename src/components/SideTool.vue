@@ -1,5 +1,10 @@
 <template>
   <div class="sidetool">
+    <div v-if="is_login" class="tool">
+      <el-button type="primary" plain @click="methods.admin">
+        <svg-icon class="wh-100" file-name="inisadmin"></svg-icon>
+      </el-button>
+    </div>
     <div v-if="is_login && $route.name == 'talks'" class="tool">
       <el-button type="primary" plain @click="methods.send">
         <svg-icon class="wh-100" file-name="send"></svg-icon>
@@ -46,7 +51,8 @@ export default {
   setup() {
     const router = useRouter();
     const store = useStore();
-    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.storage("grace_config")
+    const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       day: (grace_config ? grace_config.option.day : true),
       animation: (grace_config ? grace_config.option.animation : true),
@@ -54,7 +60,8 @@ export default {
     });
     const methods = {
       clearStorage() {
-        inisHelper.clear.storage("grace_config");
+        // inisHelper.clear.storage("grace_config");
+        inisHelper.clear.sessionStorage("grace_config");
         inisHelper.clear.cookie("day");
         ElMessage({ message: "清除缓存成功！", type: "success" });
         location.reload();
@@ -77,6 +84,9 @@ export default {
       },
       config() {
         router.push({ name: "config" });
+      },
+      admin(){
+        window.open(INIS.api.split('api')[0], "_blank");
       },
       swDay(day) {
         if (day) document.body.removeAttribute("class", "dark");

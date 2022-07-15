@@ -1,19 +1,19 @@
 <template>
   <div class="text-right acslect">
-    <el-dropdown  @command="methods.selectCategory">
-      <span class="el-dropdown-link cursor-pointer">
-        <svg-icon file-name="acsort"></svg-icon>
-      </span>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item v-for="item in sortList" :key="item.id" :command="item.id">{{item.name}}</el-dropdown-item>
-          <el-dropdown-item command="all">全部</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
   </div>
   <div class="post-list">
-
+    <div class="flex">
+      <el-select v-model="sortId" class="mr-1" @change="methods.selectCategory" placeholder="选择分类" style="width: 10rem">
+      <el-option
+        v-for="item in sortList"
+        :key="item.id"
+        :label="item.name"
+        :value="item.id"
+      />
+      <el-option label="全部" :value="false" />
+    </el-select>
+  <el-input v-model="keyword" placeholder="输入关键词搜索文章" @keyup.enter="methods.search" />
+    </div>
     <el-row v-if="loading" :gutter="20" class="mt-2">
       <el-col
         :span="12"
@@ -68,7 +68,7 @@
             <div class="layout-card cover">
               <img
                 class="wh-100 transform"
-                :src="item.img_src ? item.img_src : 'static/images/default-bg.jpg'"
+                :src="item.img_src ? item.img_src : randomImg"
               />
               <div class="views flex post-sort justify-center">
                   <svg-icon  file-name="view" class="" height=".8rem" width=".8rem"></svg-icon>
@@ -119,8 +119,11 @@ export default {
   components: { SvgIcon },
   setup() {
     const router = useRouter();
-    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.storage("grace_config")
+    const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
+      randomImg: INIS.api + '/file/random?id=' + Math.random().toString(36).substr(2),
+      keyword: null,
       loading: true,
       ArticleList: [],
       page: 1,
@@ -163,6 +166,34 @@ export default {
           }
         });
       },
+      search(){
+        state.ArticleList = []
+        state.page = 1
+        let params = {
+          value:state.keyword,
+          limit: 8,
+          sort_id: state.sortId?state.sortId: null,
+          page: state.page,
+        };
+        GET("search/article", { params }).then((res) => {
+          if (res.data.code == 200) {
+            state.allpage = res.data.data.page;
+            let ArticleList = res.data.data.data;
+            ArticleList.forEach((element,index) => {
+              element.expand.sort.forEach(el=>{
+                if(el.id == state.diaryId || el.id == state.albumId){
+                  ArticleList.splice(index,1)
+                }
+              })
+            });
+            state.ArticleList = ArticleList;
+            if(state.ArticleList.length == 0){
+              ElNotification({title: '提示',message:'未搜索到相关文章',type: 'info',}) 
+            }
+            state.loading = false
+          }
+        });
+      },
       getSort(){
         let params = {
           limit: 99,
@@ -171,6 +202,7 @@ export default {
         GET("article-sort/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             state.sortList = res.data.data.data;
+              
           }
         });
        

@@ -12,30 +12,22 @@
       </el-divider>
     </div>
 
+  <div class="w-100 text-left">
     <photo-provider
       :photoClosable="true"
       :shouldTransition="true"
       :default-backdrop-opacity="0.9"
       :loop="true"
     >
-      <el-row :gutter="0">
-        <el-col
-          v-for="(item, index) in albumlist"
-          :key="index"
-          :span="12"
-          :xs="24"
-          :md="8"
-        >
+      <photo-consumer v-for="(item, index) in albumlist" :key="index" :intro="item.src" class="item" :src="item.src">
           <div class="imgbox layout-169 m-1">
             <div class="layout-card cursor-pointer">
-              <photo-consumer :intro="item.src" class="item" :src="item.src">
-                <img :src="item.src" class="view-box wh-100 transform" />
-              </photo-consumer>
+                <div class="wh-100 backcover cursor-pointer" :style="{'background-image': 'url('+item.src+')'}"></div>
             </div>
           </div>
-        </el-col>
-      </el-row>
+        </photo-consumer>
     </photo-provider>
+  </div>
   </div>
 </template>
 

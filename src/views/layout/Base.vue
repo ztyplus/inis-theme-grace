@@ -51,33 +51,27 @@ export default {
     ]),
   },
   setup(){
-    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.storage("grace_config")
+    const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       isCollapse: true,
       windowWidth: document.documentElement.clientWidth,
       year:new Date().getFullYear(),
       grace_css: "",
       setYear: (grace_config && grace_config.option.setYear ? grace_config.option.setYear : ""),
-      cover: (grace_config && grace_config.option.cover ? grace_config.option.cover : "static/images/default-bg.jpg"),
+      cover: (grace_config && grace_config.option.cover ? grace_config.option.cover : ""),
       title: INIS.title,
       beian: (grace_config && grace_config.option.beian ? grace_config.option.beian : null),
       themeColor: (grace_config && grace_config.style.themeColor ? grace_config.style.themeColor : "#79bbff"),
     })
     const methods = {
       initData(){
-        let grace_config = inisHelper.get.storage('grace_config')
-        
+        // let grace_config = inisHelper.get.storage("grace_config")
+        let grace_config = inisHelper.get.sessionStorage("grace_config")
         if (!grace_config) {
             methods.getConfig()
         }
-        let themeColor = state.themeColor
-        let themeColor1 = inisHelper.color(themeColor,0.5,'rgba').rgba
-        let themeColor2 = inisHelper.color(themeColor,0.2,'rgba').rgba
-        let themeColor3 = inisHelper.color(themeColor,0.1,'rgba').rgba
-        let themeColor4 = inisHelper.color(themeColor,0.05,'rgba').rgba
-        state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
-        :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
-        `
+        methods.setConfig()
         methods.welcome()
       },
       getConfig(){
@@ -86,7 +80,8 @@ export default {
           if(res.data.code == 200){
             let config = res.data.data.opt
             config = JSON.parse(JSON.stringify(config).replaceAll('"false"','false').replaceAll('"true"','true'))
-            inisHelper.set.storage('grace_config',config)
+            // inisHelper.set.storage('grace_config',config)
+            inisHelper.set.sessionStorage('grace_config',config)
             location.reload()
           }else {
             ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
@@ -95,6 +90,20 @@ export default {
       },
       close(val){
         state.isCollapse = !state.isCollapse
+      },
+      setConfig(){
+          let grace_config = inisHelper.get.sessionStorage("grace_config")
+          state.themeColor = (grace_config.style.themeColor ? grace_config.style.themeColor : "#79bbff")
+          let themeColor = state.themeColor
+          let themeColor1 = inisHelper.color(themeColor,0.5,'rgba').rgba
+          let themeColor2 = inisHelper.color(themeColor,0.2,'rgba').rgba
+          let themeColor3 = inisHelper.color(themeColor,0.1,'rgba').rgba
+          let themeColor4 = inisHelper.color(themeColor,0.05,'rgba').rgba
+          state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
+          :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
+          `
+          state.setYear = (grace_config.option.setYear ? grace_config.option.setYear : "")
+          state.cover= (grace_config.option.cover ? grace_config.option.cover : INIS.api + '/file/random')
       },
       welcome(){
         if(!inisHelper.get.cookie("wellcome")){
@@ -134,7 +143,7 @@ export default {
       methods.initData()
       var func = methods.debounce(()=>{
         state.windowWidth= document.documentElement.clientWidth
-      },10)
+      },100)
       window.onresize = func
     })
     return { ...toRefs(state), methods }

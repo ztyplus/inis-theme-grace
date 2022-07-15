@@ -31,7 +31,10 @@
       >
         <photo-consumer v-for="(item, index) in talk.opt.uploadfile" :key="index" :src="item.url" :intro="item.name" class="talkimgbox" :class="talk.opt.uploadfile.length == 1 ? '' : 'layout-100'">
           <div :class="talk.opt.uploadfile.length == 1 ? '' : 'layout-card'">
-                <img :src="item.url" :class="talk.opt.uploadfile.length == 1 ? '' : 'wh-100'" />
+            <img :src="item.url" v-if="talk.opt.uploadfile.length == 1" />
+            <div class="talkimgbox1 wh-100">
+              <div class="wh-100 backcover cursor-pointer" :style="{'background-image': 'url('+item.url+')'}"></div>
+            </div>
           </div>
         </photo-consumer>
         </photo-provider>
@@ -384,5 +387,9 @@ export default {
   .maxw100 {
     max-width: 100%;
   }
+}
+.talkimgbox1 {
+  padding: 1px;
+  box-sizing: border-box;
 }
 </style>

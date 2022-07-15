@@ -22,7 +22,7 @@
           <el-button class="mr-1" type="success" v-if="is_login" @click="methods.logout"
             >登出</el-button
           >
-          <el-divider direction="vertical" />
+            <el-divider direction="vertical" />
           <el-tooltip v-if="qq" :content="qq" placement="top">
             <span @click="methods.copy(qq)"
               ><svg-icon class="wh-100" file-name="qq"></svg-icon
@@ -63,7 +63,7 @@ export default {
     const router = useRouter();
     const store = useStore();
     const { toClipboard } = useClipboard();
-    const grace_config = inisHelper.get.storage("grace_config")
+    const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       showLogin: false,
       qq: (grace_config && grace_config.option.qq ? grace_config.option.qq : ""),
@@ -71,7 +71,7 @@ export default {
       email: (grace_config && grace_config.option.email ? grace_config.option.email : ""),
       nickname: (grace_config && grace_config.option.nickname ? grace_config.option.nickname : INIS.title),
       description: (grace_config && grace_config.option.description ? grace_config.option.description : ""),
-      avatar: (grace_config && grace_config.option.avatar ? grace_config.option.avatar : "/static/images/user.png"),
+      avatar: (grace_config && grace_config.option.avatar ? grace_config.option.avatar : "data:image/svg+xml;base64,PHN2ZyB0PSIxNjU3ODUyNjkzNTkxIiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzMDQiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiI+PHBhdGggZD0iTTkxNC4yODU3MTQgODAyLjg1NzE0M3EwIDY4LjU3MTQyOS00MS43MTQyODUgMTA4LjI4NTcxNHQtMTEwLjg1NzE0MyAzOS43MTQyODZIMjYyLjI4NTcxNHEtNjkuMTQyODU3IDAtMTEwLjg1NzE0My0zOS43MTQyODZUMTA5LjcxNDI4NiA4MDIuODU3MTQzcTAtMzAuMjg1NzE0IDItNTkuMTQyODU3dDgtNjIuMjg1NzE1VDEzNC44NTcxNDMgNjE5LjQyODU3MXQyNC41NzE0MjgtNTUuNzE0Mjg1IDM1LjQyODU3Mi00Ni4yODU3MTUgNDguODU3MTQzLTMwLjU3MTQyOFQzMDcuNDI4NTcxIDQ3NS40Mjg1NzFxNS4xNDI4NTcgMCAyNCAxMi4yODU3MTV0NDIuNTcxNDI5IDI3LjQyODU3MSA2MS43MTQyODYgMjcuNDI4NTcyVDUxMiA1NTQuODU3MTQzdDc2LjI4NTcxNC0xMi4yODU3MTQgNjEuNzE0Mjg2LTI3LjQyODU3MiA0Mi41NzE0MjktMjcuNDI4NTcxIDI0LTEyLjI4NTcxNXEzNC44NTcxNDMgMCA2My43MTQyODUgMTEuNDI4NTcydDQ4Ljg1NzE0MyAzMC41NzE0MjggMzUuNDI4NTcyIDQ2LjI4NTcxNSAyNC41NzE0MjggNTUuNzE0Mjg1IDE1LjE0Mjg1NyA2MiA4IDYyLjI4NTcxNSAyIDU5LjE0Mjg1N3ogbS0xODIuODU3MTQzLTUxMC4yODU3MTRxMCA5MC44NTcxNDMtNjQuMjg1NzE0IDE1NS4xNDI4NTdUNTEyIDUxMiAzNTYuODU3MTQzIDQ0Ny43MTQyODYgMjkyLjU3MTQyOSAyOTIuNTcxNDI5dDY0LjI4NTcxNC0xNTUuMTQyODU4VDUxMiA3My4xNDI4NTd0MTU1LjE0Mjg1NyA2NC4yODU3MTRUNzMxLjQyODU3MSAyOTIuNTcxNDI5eiIgcC1pZD0iNTMwNSIgZmlsbD0iIzdCOTFGNCI+PC9wYXRoPjwvc3ZnPg=="),
     });
     const methods = {
       copy(msg) {

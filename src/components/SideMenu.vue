@@ -1,5 +1,5 @@
 <template>
-  <el-affix target=".el-aside">
+  <!-- <el-affix target=".el-aside"> -->
     <div class="aside">
       <el-menu
         class="el-menu-vertical"
@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-  </el-affix>
+  <!-- </el-affix> -->
 </template>
 
 <script>
@@ -97,7 +97,8 @@ export default {
     const route = useRoute();
     const store = useStore();
     const router = useRouter();
-    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.storage("grace_config")
+    const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       isCollapse: ref(props.isCollapse),
       routeName: toRaw(route.name),
@@ -129,7 +130,8 @@ export default {
   border-radius: var(--border-radius);
   box-shadow: 0px 20px 40px rgb(103 118 128 / 3%);
   padding: 1rem 1.2rem;
-  position: relative;
+  position: sticky;
+  top: 1rem;
 }
 
 .el-menu {
@@ -205,9 +207,7 @@ export default {
     }
   }
 }
-.isCollapse {
-  // transform: translateX(-100%);
-}
+
 .hidden {
   visibility: hidden;
   opacity: 0;

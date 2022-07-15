@@ -195,7 +195,7 @@ export default {
         "#ffd700",
         "#90ee90",
         "#00ced1",
-        "#1e90ff",
+        "#7B91F4",
         "#c71585",
       ],
     });
@@ -213,7 +213,8 @@ export default {
             let config = res.data.data.opt
             config = JSON.parse(JSON.stringify(config).replaceAll('"false"','false').replaceAll('"true"','true'))
             state.grace_config = config
-            inisHelper.set.storage('grace_config',config)
+            // inisHelper.set.storage('grace_config',config)
+            inisHelper.set.sessionStorage('grace_config',config)
           }else {
             ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
           }
@@ -261,7 +262,8 @@ export default {
         POST("options", params).then((res) => {
           if (res.data.code == 200) {
             ElMessage({ message: "保存成功!", type: "success" });
-            inisHelper.set.storage("grace_config",params.opt)
+            // inisHelper.set.storage("grace_config",params.opt)
+            inisHelper.set.sessionStorage("grace_config",params.opt)
             if(!state.grace_config.option.autoSwithch){
               inisHelper.clear.cookie("day")
             }
