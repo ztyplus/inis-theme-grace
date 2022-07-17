@@ -93,7 +93,7 @@ export default {
       },
       setConfig(){
           let grace_config = inisHelper.get.sessionStorage("grace_config")
-          state.themeColor = (grace_config.style.themeColor ? grace_config.style.themeColor : "#79bbff")
+          state.themeColor = ((grace_config.style && grace_config.style.themeColor) ? grace_config.style.themeColor : "#79bbff")
           let themeColor = state.themeColor
           let themeColor1 = inisHelper.color(themeColor,0.5,'rgba').rgba
           let themeColor2 = inisHelper.color(themeColor,0.2,'rgba').rgba
@@ -102,8 +102,8 @@ export default {
           state.grace_css = `:root {--theme-color: ${themeColor};--theme-color-1: ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
           :dark {--theme-color: ${themeColor};--theme-color-1:  ${themeColor1};--theme-color-2: ${themeColor2};--theme-color-3: ${themeColor3};--theme-color-4: ${themeColor4};}\
           `
-          state.setYear = (grace_config.option.setYear ? grace_config.option.setYear : "")
-          state.cover= (grace_config.option.cover ? grace_config.option.cover : INIS.api + '/file/random')
+          state.setYear = ((grace_config.option && grace_config.option.setYear) ? grace_config.option.setYear : "")
+          state.cover= ((grace_config.option && grace_config.option.cover) ? grace_config.option.cover : INIS.api + '/file/random')
       },
       welcome(){
         if(!inisHelper.get.cookie("wellcome")){

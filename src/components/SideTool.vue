@@ -86,7 +86,7 @@ export default {
         router.push({ name: "config" });
       },
       admin(){
-        window.open(INIS.api.split('api')[0], "_blank");
+        window.open('//' + INIS.api.split('/')[2], "_blank");
       },
       swDay(day) {
         if (day) document.body.removeAttribute("class", "dark");
