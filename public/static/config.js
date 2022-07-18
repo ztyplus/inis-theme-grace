@@ -1,7 +1,8 @@
 window.INIS = {
 
     // API地址 - 填写后端域名 请严格按照以下格式填写
-    api: 'https://inis.ztyang.com/api',
+    api: 'https://api.tuixiaozhi.cn/api',
+    // api: 'https://inis.ztyang.com/api',
     // api: 'https://api.inis.cn/api',
 
     // 后端开启token验证后，需要将token填写到此处

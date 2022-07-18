@@ -23,7 +23,7 @@
       </div>
       <el-divider border-style="dashed"></el-divider>
       <div class="talk-content text-left" v-html='"<p>" + talk.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>"'></div>
-      <div v-if="talk.opt.hasOwnProperty('uploadfile')" class="talkimg flex flex-wrap">
+      <div v-if="talk.opt && talk.opt.hasOwnProperty('uploadfile')" class="talkimg flex flex-wrap">
         <photo-provider
          :photoClosable="true"
         :shouldTransition="true"
@@ -209,7 +209,7 @@ export default {
       getAddr(opt) {
         let addr = "";
         let address = opt
-        if(opt.hasOwnProperty('address')) address = opt.address
+        if(opt && opt.hasOwnProperty('address')) address = opt.address
         if (address) {
           if (address.province) addr += address.province;
           if (address.city) addr += address.city;
