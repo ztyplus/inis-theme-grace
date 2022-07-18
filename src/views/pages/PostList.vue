@@ -68,7 +68,7 @@
             <div class="layout-card cover">
               <img
                 class="wh-100 transform"
-                :src="item.img_src ? item.img_src : randomImg"
+                :src="item.img_src ? item.img_src :  inisapi + '/file/random?id=' + Math.random().toString(36)"
               />
               <div class="views flex post-sort justify-center">
                   <svg-icon  file-name="view" class="" height=".8rem" width=".8rem"></svg-icon>
@@ -122,7 +122,7 @@ export default {
     // const grace_config = inisHelper.get.storage("grace_config")
     const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
-      randomImg: INIS.api + '/file/random?id=' + Math.random().toString(36).substr(2),
+      inisapi: INIS.api ,
       keyword: null,
       loading: true,
       ArticleList: [],
