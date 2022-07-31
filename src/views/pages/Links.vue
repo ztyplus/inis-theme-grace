@@ -67,8 +67,8 @@ import { inisHelper } from "@/utils/helper";
 export default {
   components: { SvgIcon,Comment,MsgCard  },
   setup() {
-    // const grace_config = inisHelper.get.storage("grace_config")
-    const grace_config = inisHelper.get.sessionStorage("grace_config")
+    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       msgCard : ref(null),
       tools: (grace_config && grace_config.option.tools ? grace_config.option.tools : false),

@@ -368,6 +368,7 @@ export default {
     width: 33.33%;
     position: relative;
     img {
+      cursor: pointer;
       padding: 1px;
       box-sizing: border-box;
       max-height: 400px;

@@ -51,8 +51,8 @@ export default {
   setup() {
     const router = useRouter();
     const store = useStore();
-    // const grace_config = inisHelper.get.storage("grace_config")
-    const grace_config = inisHelper.get.sessionStorage("grace_config")
+    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       day: (grace_config ? grace_config.option.day : true),
       animation: (grace_config ? grace_config.option.animation : true),
@@ -60,8 +60,8 @@ export default {
     });
     const methods = {
       clearStorage() {
-        // inisHelper.clear.storage("grace_config");
-        inisHelper.clear.sessionStorage("grace_config");
+        inisHelper.clear.storage("grace_config");
+        // inisHelper.clear.sessionStorage("grace_config");
         inisHelper.clear.cookie("day");
         ElMessage({ message: "清除缓存成功！", type: "success" });
         location.reload();

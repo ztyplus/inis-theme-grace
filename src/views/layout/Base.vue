@@ -16,7 +16,7 @@
       <el-header><Header /></el-header>
       <el-container>
         <el-aside :class=" ((windowWidth < 760) ? 'transform ': '') + ((isCollapse && windowWidth < 760) ? 'isCollapse': '') "><SideMenu :isCollapse="isCollapse" @CloseOverlay="methods.close"/></el-aside>
-        <el-main><MainBox /></el-main>
+        <el-main class="mb-2"><MainBox /></el-main>
       </el-container>
       </el-container>
       <div class="footer w-100">
@@ -51,8 +51,23 @@ export default {
     ]),
   },
   setup(){
-    // const grace_config = inisHelper.get.storage("grace_config")
-    const grace_config = inisHelper.get.sessionStorage("grace_config")
+    const grace_config = inisHelper.get.storage("grace_config")
+    if (grace_config == "expire" || grace_config == false){
+        let params = {key: 'config:grace-theme', cache: false}
+        GET("options",{params}).then((res)=>{
+          if(res.data.code == 200){
+            res.data.data.opt.time = 600
+            let config = res.data.data.opt
+            config = JSON.parse(JSON.stringify(config).replace(/"false"/g,'false').replace(/"true"/g,'true'))
+            inisHelper.set.storage('grace_config',config)
+            // inisHelper.set.sessionStorage('grace_config',config)
+            location.reload()
+          }else {
+            ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
+          }
+        })
+      }
+    // const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       isCollapse: true,
       windowWidth: document.documentElement.clientWidth,
@@ -66,11 +81,6 @@ export default {
     })
     const methods = {
       initData(){
-        // let grace_config = inisHelper.get.storage("grace_config")
-        let grace_config = inisHelper.get.sessionStorage("grace_config")
-        if (!grace_config) {
-            methods.getConfig()
-        }
         methods.setConfig()
         methods.welcome()
       },
@@ -78,10 +88,11 @@ export default {
         let params = {key: 'config:grace-theme', cache: false}
         GET("options",{params}).then((res)=>{
           if(res.data.code == 200){
+            res.data.data.opt.time = 600
             let config = res.data.data.opt
-            config = JSON.parse(JSON.stringify(config).replaceAll('"false"','false').replaceAll('"true"','true'))
-            // inisHelper.set.storage('grace_config',config)
-            inisHelper.set.sessionStorage('grace_config',config)
+            config = JSON.parse(JSON.stringify(config).replace(/"false"/g,'false').replace(/"true"/g,'true'))
+            inisHelper.set.storage('grace_config',config)
+            // inisHelper.set.sessionStorage('grace_config',config)
             location.reload()
           }else {
             ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
@@ -92,7 +103,8 @@ export default {
         state.isCollapse = !state.isCollapse
       },
       setConfig(){
-          let grace_config = inisHelper.get.sessionStorage("grace_config")
+          let grace_config = inisHelper.get.storage("grace_config")
+          // let grace_config = inisHelper.get.sessionStorage("grace_config")
           state.themeColor = ((grace_config.style && grace_config.style.themeColor) ? grace_config.style.themeColor : "#79bbff")
           let themeColor = state.themeColor
           let themeColor1 = inisHelper.color(themeColor,0.5,'rgba').rgba

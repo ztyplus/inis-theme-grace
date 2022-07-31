@@ -73,13 +73,18 @@
   - 登录后显示前往后台按钮
   - 一些细节优化
 
+- 2022.07.31(1.1.0.beta)
+  - 解决部分垃圾浏览器不支持replaceAll方法问题
+  - 新增主题配置备份恢复功能
+  - 一些细节优化
+
 
 ## 使用方法
 
 > 主题基于 Vue3 + element-plus 进行开发
 
 1. 将源码下载下来自行打包上传网站根目录
-2. 下载静态文件[disk.zip](https://raw.githubusercontent.com/ztyangt/inis-theme-grace/main/dist.zip)上传至网站根目录解压，更改config.js对应内容即可
+2. 下载静态文件[disk.zip](https://raw.githubusercontent.com/ztyangt/inis-theme-grace/main/dist-v1.1.0.beta.zip)上传至网站根目录解压，更改config.js对应内容即可
 
 
 

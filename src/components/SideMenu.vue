@@ -1,5 +1,4 @@
 <template>
-  <!-- <el-affix target=".el-aside"> -->
     <div class="aside">
       <el-menu
         class="el-menu-vertical"
@@ -82,7 +81,6 @@
         </div>
       </div>
     </div>
-  <!-- </el-affix> -->
 </template>
 
 <script>
@@ -97,9 +95,10 @@ export default {
     const route = useRoute();
     const store = useStore();
     const router = useRouter();
-    // const grace_config = inisHelper.get.storage("grace_config")
-    const grace_config = inisHelper.get.sessionStorage("grace_config")
+    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
+      grace_config:grace_config,
       isCollapse: ref(props.isCollapse),
       routeName: toRaw(route.name),
       diaryId: (grace_config && grace_config.option.diaryId ? grace_config.option.diaryId : null),

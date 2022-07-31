@@ -1,5 +1,5 @@
 <template>
-  <div class="main main-card mb-2" :class="$route.meta.css">
+  <div class="main main-card" :class="$route.meta.css">
     <RouteView />
   </div>
 </template>

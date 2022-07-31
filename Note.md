@@ -128,3 +128,12 @@ export default {
 20. timeupdate 当目前的播放位置已更改时
 21. volumechange 当音量已更改时
 22. waiting 当视频由于需要缓冲下一帧而停止
+
+### 部分垃圾浏览器不支持replaceAll方法
+**解决办法：**在`main.js`中增加String 对象原型方法 replaceAll
+
+```js 
+String.prototype.replaceAll = function(s1,s2){ 
+  return this.replace(new RegExp(s1,"gm"),s2); 
+}
+```

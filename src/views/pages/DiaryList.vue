@@ -50,8 +50,8 @@ import { inisHelper } from '@/utils/helper';
 export default {
   setup() {
     const router = useRouter();
-    // const grace_config = inisHelper.get.storage("grace_config")
-    const grace_config = inisHelper.get.sessionStorage("grace_config")
+    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       loading: true,
       diaryId: null,

@@ -119,8 +119,8 @@ export default {
   components: { SvgIcon },
   setup() {
     const router = useRouter();
-    // const grace_config = inisHelper.get.storage("grace_config")
-    const grace_config = inisHelper.get.sessionStorage("grace_config")
+    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       inisapi: INIS.api ,
       keyword: null,

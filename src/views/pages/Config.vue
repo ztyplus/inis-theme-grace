@@ -4,7 +4,7 @@
 
       <el-popover
       v-if="version < newVersion" class="mt-2"
-      :width="400"
+      :width="300"
       effect="dark"
       :title="versionInfo.version_title + '-V' + versionInfo.version"
       placement="bottom-start"
@@ -20,7 +20,7 @@
         />
       </template>
       <template #default>
-        <div style="color:#eeeeee" v-html="versionInfo.version_content.replaceAll('\n','<br>')"></div>
+        <div style="color:#eeeeee" v-html="versionInfo.version_content.replace(/\n/g,'<br>')"></div>
         <div class="mt-2 text-right"><el-button type="success" @click="methods.update(versionInfo.update_url)">下载新版本</el-button></div>
       </template>
     </el-popover>
@@ -146,6 +146,8 @@
       </el-collapse-item>
     </el-collapse>
     <div class="w-100 text-right">
+      <el-button @click="methods.Recover" class="mt-2" type="success">恢复</el-button>
+      <el-button @click="methods.Backup" class="mt-2" type="warning">备份</el-button>
       <el-button @click="methods.saveConfig" class="mt-2" type="primary">保存</el-button>
     </div>
   </div>
@@ -210,11 +212,12 @@ export default {
         let params = {key: 'config:grace-theme', cache: false}
         GET("options",{params}).then((res)=>{
           if(res.data.code == 200){
+            res.data.data.opt.time=600
             let config = res.data.data.opt
-            config = JSON.parse(JSON.stringify(config).replaceAll('"false"','false').replaceAll('"true"','true'))
+            config = JSON.parse(JSON.stringify(config).replace(/"false"/g,'false').replace(/"true"/g,'true'))
             state.grace_config = config
-            // inisHelper.set.storage('grace_config',config)
-            inisHelper.set.sessionStorage('grace_config',config)
+            inisHelper.set.storage('grace_config',config)
+            // inisHelper.set.sessionStorage('grace_config',config)
           }else {
             ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
           }
@@ -235,6 +238,7 @@ export default {
           keys: "config:grace-theme",
           value: "grace主题配置内容",
           opt: {
+            time:600,
             style: {
               themeColor: state.grace_config.style.themeColor,
             },
@@ -244,7 +248,6 @@ export default {
               qq: state.grace_config.option.qq,
               wechat: state.grace_config.option.wechat,
               email: state.grace_config.option.email,
-              // title: state.grace_config.option.title,
               nickname: state.grace_config.option.nickname,
               description: state.grace_config.option.description,
               cover: state.grace_config.option.cover,
@@ -262,12 +265,64 @@ export default {
         POST("options", params).then((res) => {
           if (res.data.code == 200) {
             ElMessage({ message: "保存成功!", type: "success" });
-            // inisHelper.set.storage("grace_config",params.opt)
-            inisHelper.set.sessionStorage("grace_config",params.opt)
+            inisHelper.set.storage("grace_config",params.opt)
+            // inisHelper.set.sessionStorage("grace_config",params.opt)
             if(!state.grace_config.option.autoSwithch){
               inisHelper.clear.cookie("day")
             }
             location.reload();
+          } else {
+            ElMessage({ message: res.data.msg, type: "error" });
+          }
+        });
+      },
+      Recover() {
+        let params = { key: "backup:grace-theme", cache: false };
+        GET("options", { params }).then((res) => {
+          if (res.data.code == 200) {
+            let config = res.data.data.opt
+            let params = {
+              "login-token": state.login_token,
+              keys: "config:grace-theme",
+              value: res.data.data.value,
+              opt: res.data.data.opt,
+            };
+            POST("options", params).then((res) => {
+              if (res.data.code == 200) {
+                ElMessage({ message: "恢复成功", type: "success" });
+                config = JSON.parse(JSON.stringify(config).replace(/"false"/g,'false').replace(/"true"/g,'true'))
+                inisHelper.set.storage('grace_config',config)
+                // inisHelper.set.sessionStorage('grace_config',config)
+                if (!state.grace_config.option.autoSwithch) {
+                  inisHelper.clear.cookie("day");
+                }
+                location.reload();
+              } else {
+                ElMessage({ message: res.data.msg, type: "error" });
+              }
+            });
+          } else {
+            ElMessage({ message: res.data.msg, type: "error" });
+          }
+        });
+      },
+      Backup() {
+        let params = { key: "config:grace-theme", cache: false };
+        GET("options", { params }).then((res) => {
+          if (res.data.code == 200) {
+            let params = {
+              "login-token": state.login_token,
+              keys: "backup:grace-theme",
+              value: "echo主题备份内容",
+              opt: res.data.data.opt,
+            };
+            POST("options", params).then((res) => {
+              if (res.data.code == 200) {
+                ElMessage({ message: "备份成功！", type: "success" });
+              } else {
+                ElMessage({ message: res.data.msg, type: "error" });
+              }
+            });
           } else {
             ElMessage({ message: res.data.msg, type: "error" });
           }

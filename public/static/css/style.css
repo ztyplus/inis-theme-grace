@@ -16,7 +16,7 @@
   /* --theme-color:  #79bbff; */
   --border-color:  #ebedee;
   --box-shadow: 0px 0px 20px -5px rgb(158 158 158 / 55%);
-  --box-shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.10);
+  --box-shadow-2: 0 16px 30px rgba(159, 154, 154, 0.1);
   --box-shadow-3: 0 0 30px hsla(0, 0%, 0%, 0.10);
   --border-dashed-color: #E4E7ED;
   --border-radius: 5px;

@@ -15,6 +15,7 @@
           <el-button
             class="mr-1"
             type="primary"
+            size="small"
             v-if="!is_login"
             @click="methods.swDialog"
             >登录</el-button
@@ -63,7 +64,8 @@ export default {
     const router = useRouter();
     const store = useStore();
     const { toClipboard } = useClipboard();
-    const grace_config = inisHelper.get.sessionStorage("grace_config")
+    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       showLogin: false,
       qq: (grace_config && grace_config.option.qq ? grace_config.option.qq : ""),
@@ -137,9 +139,6 @@ export default {
       text-align: left;
       line-height: 1.5rem;
     }
-  }
-  .el-button {
-    height: 25px;
   }
   .share {
     span {

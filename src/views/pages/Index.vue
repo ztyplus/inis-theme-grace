@@ -49,8 +49,8 @@ export default {
 
   setup() {
     const router = useRouter();
-    // const grace_config = inisHelper.get.storage("grace_config")
-    const grace_config = inisHelper.get.sessionStorage("grace_config")
+    const grace_config = inisHelper.get.storage("grace_config")
+    // const grace_config = inisHelper.get.sessionStorage("grace_config")
     const state = reactive({
       randomImg: INIS.api + '/file/random?id=' + Math.random().toString(36).substr(2),
       music: (grace_config ? grace_config.option.music : false),
@@ -149,7 +149,6 @@ export default {
 .item-title {
   color: var(--h1-color);
 }
-
 .layout-169:after {
   padding-top: 56.25%;
   content: "";

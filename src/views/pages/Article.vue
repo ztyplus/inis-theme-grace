@@ -132,15 +132,15 @@ export default {
           if (res.data.code == 200) {
             state.article = res.data.data;
             document.title =  INIS.title + " - " + state.article.title
-            state.article_html = state.article.content.replaceAll("[X]", "[√]").replaceAll("[ ]", "[X]");
-            state.article_html = state.article_html.replaceAll("btn ", "el-button ").replaceAll("btn-primary","el-button--primary").replaceAll("btn-success","el-button--success");
-            state.article_html = state.article_html.replaceAll("btn-rounded", "is-round").replaceAll("btn-warning","el-button--warning").replaceAll("btn-danger","el-button--danger").replaceAll("btn-outline-success","el-button--success is-plain")
-            state.article_html = state.article_html.replaceAll("btn-outline-info","el-button--info is-plain").replaceAll("btn-outline-danger","el-button--danger is-plain").replaceAll("btn-outline-warning","el-button--warning is-plain")
-            state.article_html = state.article_html.replaceAll("btn-outline-info","el-button--info is-plain").replaceAll("btn-outline-danger","el-button--danger is-plain").replaceAll("btn-outline-warning","el-button--warning is-plain")
+            state.article_html = state.article.content.replace(/"[X]"/g, "[√]").replace(/"[ ]"/g, "[X]");
+            state.article_html = state.article_html.replace(/btn /g, "el-button ").replace(/btn-primary/g,"el-button--primary").replace(/btn-success/g,"el-button--success");
+            state.article_html = state.article_html.replace(/btn-rounded/g, "is-round").replace(/btn-warning/g,"el-button--warning").replace(/btn-danger/g,"el-button--danger").replace(/btn-outline-success/g,"el-button--success is-plain")
+            state.article_html = state.article_html.replace(/btn-outline-info/g,"el-button--info is-plain").replace(/btn-outline-danger/g,"el-button--danger is-plain").replace(/btn-outline-warning/g,"el-button--warning is-plain")
+            state.article_html = state.article_html.replace(/btn-outline-info/g,"el-button--info is-plain").replace(/btn-outline-danger/g,"el-button--danger is-plain").replace(/btn-outline-warning/g,"el-button--warning is-plain")
             var reg = /:\/\/(.*?)\//g
             var domain = reg.exec(INIS.api)[1];
                state.article_html = state.article_html.replace(/:[a-z]+:/g, function (match, capture) {
-              return `<img class="emoji-img" src="//${domain}/storage/random/emoji/qq/${match.replaceAll(":","")}.gif" align="absmiddle">`;
+              return `<img class="emoji-img" src="//${domain}/storage/random/emoji/qq/${match.replace(/:/g,"")}.gif" align="absmiddle">`;
             });
             res.data.data.expand.images.forEach((element) => {
               state.imgList.push(element.src);
