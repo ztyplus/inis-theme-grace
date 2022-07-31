@@ -20,7 +20,7 @@
             @click="methods.swDialog"
             >登录</el-button
           >
-          <el-button class="mr-1" type="success" v-if="is_login" @click="methods.logout"
+          <el-button class="mr-1" type="success" size="small" v-if="is_login" @click="methods.logout"
             >登出</el-button
           >
             <el-divider direction="vertical" />
