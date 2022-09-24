@@ -152,6 +152,7 @@ export default {
           where,
           limit: 8,
           page: state.page,
+          'login-token': inisHelper.get.storage("login")['login-token']
         };
         GET("article/sql", { params }).then((res) => {
           if (res.data.code == 200) {

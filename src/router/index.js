@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
 import { inisHelper } from '@/utils/helper'
 
+
 const routes = [
     {
         path: '/',

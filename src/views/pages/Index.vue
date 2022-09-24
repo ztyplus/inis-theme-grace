@@ -66,7 +66,7 @@ export default {
       },
       getArticle() {
         if (state.TopList.length == 0) {
-          let params = { where: "is_top=1;is_show=1;", limit: 10, cache: false };
+          let params = { where: "is_top=1;is_show=1;", limit: 10, cache: false,'login-token': inisHelper.get.storage("login")['login-token'] };
           GET("article/sql", { params }).then((res) => {
             if (res.data.code == 200) {
               state.TopList = res.data.data.data;

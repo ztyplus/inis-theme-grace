@@ -94,7 +94,7 @@
 <script>
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { reactive, toRefs, onMounted,ref } from "vue";
+import { reactive, toRefs, onMounted,onUnmounted,ref } from "vue";
 import { GET } from "@/utils/http/request";
 import { inisHelper } from "@/utils/helper";
 import MsgCardV from "@/components/module/MsgCard";
@@ -126,7 +126,7 @@ export default {
         if (!article_pass) {
           article_pass = password;
         }
-        let params = { id: route.params.id,password: article_pass };
+        let params = { id: route.params.id,password: article_pass,'login-token': inisHelper.get.storage("login")['login-token'] };
         GET("article", { params }).then((res) => {
           state.article_data = res.data
           if (res.data.code == 200) {
@@ -205,6 +205,9 @@ export default {
     onMounted(() => {
       methods.initData();
     });
+    onUnmounted(()=> {
+      store.dispatch("headCover", null);
+    })
     return { ...toRefs(state), methods };
   },
 };

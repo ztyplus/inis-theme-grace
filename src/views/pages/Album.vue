@@ -34,7 +34,7 @@
 <script>
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { reactive, toRefs, onMounted } from "vue";
+import { reactive, toRefs, onMounted,onUnmounted } from "vue";
 import { GET } from "@/utils/http/request";
 import { inisHelper } from "@/utils/helper";
 import iLink from "@/components/tool/Link";
@@ -69,6 +69,9 @@ export default {
     onMounted(() => {
       methods.initData();
     });
+    onUnmounted(()=> {
+      store.dispatch("headCover", null);
+    })
     return { ...toRefs(state), methods };
   },
 };
