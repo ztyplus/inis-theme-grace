@@ -19,6 +19,6 @@ window.INIS = {
     route_hash: true,
 
     // 请勿擅自修改此处
-    version: '1.1.0',
+    version: '1.1.1',
 }
 
