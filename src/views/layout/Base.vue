@@ -63,7 +63,7 @@ export default {
             // inisHelper.set.sessionStorage('grace_config',config)
             location.reload()
           }else {
-            ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
+            ElMessage({ message: '获取主题配置失败,请先配置主题！', type: "error" });
           }
         })
       }
@@ -95,7 +95,7 @@ export default {
             // inisHelper.set.sessionStorage('grace_config',config)
             location.reload()
           }else {
-            ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
+            ElMessage({ message: '获取主题配置失败,请先配置主题！', type: "error" });
           }
         })
       },

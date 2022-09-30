@@ -25,7 +25,7 @@
       <div class="talk-content text-left" v-html='"<p>" + talk.content.replace(/\n*$/g, "").replace(/\n/g, "</p> <p>") + "</p>"'></div>
       <div v-if="talk.opt && talk.opt.hasOwnProperty('uploadfile')" class="talkimg flex flex-wrap">
         <photo-provider
-         :photoClosable="true"
+        :photoClosable="true"
         :shouldTransition="true"
         :default-backdrop-opacity="0.9"
       >

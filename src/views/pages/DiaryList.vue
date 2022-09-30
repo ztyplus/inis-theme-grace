@@ -71,9 +71,11 @@ export default {
       },
       getDiray(page) {
         state.isLoading = true;
-        let params = { where: `is_show,=,1;sort_id,=,|${state.diaryiId}|`, limit: 12, page };
+        let params = { where: `is_show=1 and sort_id="|6|"`, limit: 12, page };
         // let params = {where:'is_show,=,1;',limit:12,page}
-        GET("article/sql", { params }).then((res) => {
+        // console.log(params);
+        console.log(`is_show=1 and sort_id="|${state.diaryiId}|"`);
+        GET("article/sql", {params} ).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;
             state.ArticleList = state.ArticleList.concat(res.data.data.data);

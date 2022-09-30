@@ -110,6 +110,7 @@
 </template>
 
 <script>
+import qs from 'qs';
 import { reactive, toRefs, onMounted } from "vue";
 import { GET } from "@/utils/http/request";
 import { useRouter } from "vue-router";
@@ -144,17 +145,17 @@ export default {
       },
       getArticle() {
         state.ArticleList = [];
-        let where = `is_show,=,1;sort_id,<>,|${state.albumId}|;sort_id,<>,|${state.diaryId}|`;
+        let where = `is_show=1 and sort_id!="|${state.albumId}|" and sort_id!="|${state.diaryId}|"`;
         if (state.sortId){
-          where = `is_show,=,1;sort_id,like,%|${state.sortId}|%;`
+          where = `is_show=1 and sort_id like '%|${state.sortId}|%'`
         }
         let params = {
-          where,
+          where: where,
           limit: 8,
           page: state.page,
           'login-token': inisHelper.get.storage("login")['login-token']
         };
-        GET("article/sql", { params }).then((res) => {
+        GET("article/sql", {params}).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;
             // let ArticleList = res.data.data.data;
@@ -196,17 +197,16 @@ export default {
         });
       },
       getSort(){
-        let params = {
+        let params = JSON.stringify({
           limit: 99,
-          where: `is_show,=,1;id,<>,${state.albumId};id,<>,${state.diaryId}` 
-        }
-        GET("article-sort/sql", { params }).then((res) => {
+          where: `is_show=1 and id!=${state.albumId} and id!=${state.diaryId}` 
+        })
+        GET("article-sort/sql", params ).then((res) => {
           if (res.data.code == 200) {
             state.sortList = res.data.data.data;
               
           }
         });
-       
       },
       handleCurrentChange(val) {
         state.page = val;

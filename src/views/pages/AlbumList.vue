@@ -103,7 +103,7 @@ export default {
         methods.getArticle();
       },
       getArticle() {
-        let params = { where: `is_show=1;sort_id=|${state.albumId}|`, limit: 8, page: state.page };
+        let params = { where: `is_show=1 and sort_id="|${state.albumId}|"`, limit: 8, page: state.page };
         GET("article/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;

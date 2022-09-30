@@ -219,7 +219,7 @@ export default {
             inisHelper.set.storage('grace_config',config)
             // inisHelper.set.sessionStorage('grace_config',config)
           }else {
-            ElMessage({ message: '获取主题配置失败,请前往配置主题！', type: "error" });
+            ElMessage({ message: '获取主题配置失败,请先配置主题！', type: "error" });
           }
         })
       },
@@ -262,7 +262,7 @@ export default {
             },
           },
         };
-        POST("options", params).then((res) => {
+        POST("options/save", params).then((res) => {
           if (res.data.code == 200) {
             ElMessage({ message: "保存成功!", type: "success" });
             inisHelper.set.storage("grace_config",params.opt)
@@ -278,7 +278,7 @@ export default {
       },
       Recover() {
         let params = { key: "backup:grace-theme", cache: false };
-        GET("options", { params }).then((res) => {
+        GET("options/one", { params }).then((res) => {
           if (res.data.code == 200) {
             let config = res.data.data.opt
             let params = {
@@ -287,7 +287,7 @@ export default {
               value: res.data.data.value,
               opt: res.data.data.opt,
             };
-            POST("options", params).then((res) => {
+            POST("options/save", params).then((res) => {
               if (res.data.code == 200) {
                 ElMessage({ message: "恢复成功", type: "success" });
                 config = JSON.parse(JSON.stringify(config).replace(/"false"/g,'false').replace(/"true"/g,'true'))
@@ -308,7 +308,7 @@ export default {
       },
       Backup() {
         let params = { key: "config:grace-theme", cache: false };
-        GET("options", { params }).then((res) => {
+        GET("options/one", { params }).then((res) => {
           if (res.data.code == 200) {
             let params = {
               "login-token": state.login_token,
@@ -316,7 +316,7 @@ export default {
               value: "echo主题备份内容",
               opt: res.data.data.opt,
             };
-            POST("options", params).then((res) => {
+            POST("options/save", params).then((res) => {
               if (res.data.code == 200) {
                 ElMessage({ message: "备份成功！", type: "success" });
               } else {

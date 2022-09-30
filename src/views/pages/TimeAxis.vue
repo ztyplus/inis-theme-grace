@@ -47,7 +47,7 @@ export default {
       },
       getArticle(page) {
         state.isLoading = true;
-        let params = { where: "is_show,=,1;", limit: 12, page };
+        let params = { where: "is_show=1", limit: 12, page };
         GET("article/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;

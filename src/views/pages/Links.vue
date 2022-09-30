@@ -93,7 +93,7 @@ export default {
         })
       },
       getLinks(sort_id,index,name) {
-        let params = {where: `sort_id,=,${sort_id};is_show,=,1`,order: "create_time asc",limit: 9999,};
+        let params = {where: `sort_id=${sort_id} and is_show=1`,order: "create_time asc",limit: 9999,};
         GET("links/sql", { params }).then((res) => {
           if (res.data.code == 200) {
             res.data.data.index = index
