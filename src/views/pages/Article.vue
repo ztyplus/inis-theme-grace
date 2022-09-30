@@ -200,7 +200,6 @@ export default {
       getFirst(){
         state.msgCard.methods.getFirst();
       },
-   
     };
     onMounted(() => {
       methods.initData();
