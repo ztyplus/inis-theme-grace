@@ -142,7 +142,7 @@ export default {
       isLoading: false,
       stopLoding: false,
       talkcontent: null,
-      api_url: INIS.api + "/file",
+      api_url: INIS.api + "/file/upload",
       fileList: [],
       upload_url: [],
       limit: 20,
@@ -152,7 +152,7 @@ export default {
     const methods = {
       initData() {
         state.login_token = inisHelper.get.storage("login")["login-token"];
-        state.upload_headers = { "login-token": state.login_token,token: INIS.token };
+        state.upload_headers = { "Authorization": state.login_token,token: INIS.token };
         methods.getTalks(1);
       },
       getTalks(page, limit = state.limit, del = false) {
@@ -162,7 +162,7 @@ export default {
           state.talkList = [];
         }
         let params = { type: "moving", limit, page };
-        GET("comments", { params }).then((res) => {
+        GET("comments/type", { params }).then((res) => {
           if (res.data.code == 200) {
             if (del && res.data.data.data.length > state.limit)
               state.allpage = res.data.data.page * 2;
@@ -189,8 +189,7 @@ export default {
                 uploadfile: state.upload_url
               },
             };
-            console.log(params);
-            POST("comments", params).then((res) => {
+            POST("comments/add", params).then((res) => {
               if (res.data.code == 200) {
                 ElMessage({ message: "发布成功", type: "success" });
                 state.talkcontent = null;
