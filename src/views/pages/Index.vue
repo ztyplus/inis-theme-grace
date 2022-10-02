@@ -12,7 +12,7 @@
         <el-carousel-item v-for="(item, index) in TopList" :key="index">
           <div
             class="banner cursor-pointer"
-            @click="methods.goArticle(item.expand.sort[0].name, item.id)"
+            @click="methods.goArticle(item.sort_id, item.id)"
           >
             <div
               class="wh-100 cover"
@@ -58,9 +58,15 @@ export default {
       topSkeleton: true,
       aboutSkeleton: true,
       About: "",
+      diaryiId: null,
+      albumId: null,
     });
     const methods = {
       initData() {
+        if(grace_config && grace_config.option.diaryId && grace_config.option.albumId ){
+          state.diaryiId = grace_config.option.diaryId
+          state.albumId = grace_config.option.albumId
+        }
         methods.getArticle();
         methods.getAbout();
       },
@@ -87,10 +93,10 @@ export default {
           });
         }
       },
-      goArticle(sort_name, id) {
+      goArticle(sort_id, id) {
         let route = "article";
-        if (sort_name == "日记") route = "diary";
-        else if (sort_name == "相册") route = "album";
+        if (sort_id.includes(state.diaryId)) route = "diary";
+        else if (sort_id.includes(state.albumId)) route = "album";
         router.push({
           name: route,
           params: { id },

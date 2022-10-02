@@ -71,7 +71,7 @@ export default {
       },
       getDiray(page) {
         state.isLoading = true;
-        let params = { where: `is_show=1 and sort_id="|6|"`, limit: 12, page };
+        let params = { where: `is_show=1 and sort_id="|${state.diaryiId}|"`, limit: 12, page };
         // let params = {where:'is_show,=,1;',limit:12,page}
         // console.log(params);
         GET("article/sql", {params} ).then((res) => {
