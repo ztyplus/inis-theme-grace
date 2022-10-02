@@ -74,7 +74,6 @@ export default {
         let params = { where: `is_show=1 and sort_id="|6|"`, limit: 12, page };
         // let params = {where:'is_show,=,1;',limit:12,page}
         // console.log(params);
-        console.log(`is_show=1 and sort_id="|${state.diaryiId}|"`);
         GET("article/sql", {params} ).then((res) => {
           if (res.data.code == 200) {
             state.allpage = res.data.data.page;

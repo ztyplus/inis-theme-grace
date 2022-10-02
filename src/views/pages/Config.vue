@@ -313,7 +313,7 @@ export default {
             let params = {
               "login-token": state.login_token,
               keys: "backup:grace-theme",
-              value: "echo主题备份内容",
+              value: "grace主题备份内容",
               opt: res.data.data.opt,
             };
             POST("options/save", params).then((res) => {

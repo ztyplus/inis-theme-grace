@@ -189,6 +189,7 @@ export default {
                 uploadfile: state.upload_url
               },
             };
+            console.log(params);
             POST("comments", params).then((res) => {
               if (res.data.code == 200) {
                 ElMessage({ message: "发布成功", type: "success" });
@@ -234,7 +235,7 @@ export default {
           showClose: false,
         })
           .then(() => {
-            POST("comments", params).then((res) => {
+            POST("comments/remove", params).then((res) => {
               if (res.data.code == 200) {
                 ElMessage({ message: "删除成功", type: "success" });
                 methods.getTalks(1, state.page * state.limit, true);
