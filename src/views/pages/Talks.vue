@@ -184,11 +184,12 @@ export default {
               content: state.talkcontent,
               "login-token": state.login_token,
               type: "moving",
-              opt: {
+              opt: JSON.stringify({
                 address: location,
                 uploadfile: state.upload_url
-              },
+              }),
             };
+            console.log(params);
             POST("comments/add", params).then((res) => {
               if (res.data.code == 200) {
                 ElMessage({ message: "发布成功", type: "success" });

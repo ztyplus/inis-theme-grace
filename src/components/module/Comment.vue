@@ -72,14 +72,13 @@ export default {
           url:state.postForm.url,
           type: state.type,
           article_id: state.article_id ? parseInt(state.article_id) : null,
-          opt: {
+          opt: JSON.stringify({
             like: 0,
             level: state.postForm.level
-          }
+          })
         }
-        // 不知道什么原因，提交POST请求有延迟，暂且搁下 
-        // 这是因为后端设置的邮件服务端口不对，邮件服务不正常导致 2022.06.28
-        await POST("comments",params).then((res) => {
+        await POST("comments/add",params).then((res) => {
+          console.log(123);
           if(res.data.code == 200) {
             ElMessage({message: '留言成功',type: 'success'})
             let commentUser = {
