@@ -1,106 +1,40 @@
-# INIS博客系统主题
+# inis-theme-grace
 
-预览: [演示站](https://www.ztyang.com)
+This template should help get you started developing with Vue 3 in Vite.
 
-## 页面展示
-![](https://qiniu.ztyang.com/img/20220630181441.png)
+## Recommended IDE Setup
 
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## 版本更新记录
+## Type Support for `.vue` Imports in TS
 
-下版本:
-1. 设置多篇登录可见文章，前台不显示，但依然体现在分页里面
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
+1. Disable the built-in TypeScript Extension
+    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-- 2022.10.02(1.1.3)
-  - 配合INIS 1.7.9版本更新，修改SQL查询参数格式,修改相关接口
-  
+## Customize configuration
 
-- 2022.09.24(1.1.1)
-  - 解决文章登录可见权限BUG
-  - 修复浏览器回退头图不刷新问题
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-- 2022.07.31(1.1.0.beta)
-  - 解决部分垃圾浏览器不支持replaceAll方法问题
-  - 新增主题配置备份恢复功能
-  - 一些细节优化
+## Project Setup
 
-- 2022.07.15(1.0.9)
-  - 更改本地主题数据缓存方案(session Storage)
-  - 未设置文章封面则使用随机图api
-  - 相册图片变形问题改善
-  - 相册排序序号错乱修复
-  - 路由可选择去除#号
-  - 文章列表添加搜索功能
-  - 登录后显示前往后台按钮
-  - 一些细节优化
+```sh
+npm install
+```
 
-- 2022.07.13(1.0.8)
-  - 友链页面增加留言评论
-  - 加密文章输入密码增加回车事件
-  - 增加用户注册功能
-  - 增加验证码登录功能
-  - 修复刷新头像闪烁问题
-  - ~~完善文章可见权限机制~~(未完成)
+### Compile and Hot-Reload for Development
 
-- 2022.07.12(1.0.7)
-  - 文章密码识别问题修复
-  - 日记头图切换
-  - 修改侧栏按钮“链接”名字为“友链”
-  - 修复顶栏标题和描述闪烁问题
+```sh
+npm run dev
+```
 
-- 2022.07.10(1.0.6)
-  - 修复bug:文章更新时间修正；子评论url修正
-  - 在现版本提示中增加更新详情
-  - 动态发布支持插入图片
-  - 移除自建工具，博客拒绝花里胡哨
+### Type-Check, Compile and Minify for Production
 
-- 2022.07.04(1.0.5)
-  - 增加骨架屏展示
-  - 初步适配inis编辑器
-
-- 2022.07.03(1.0.4)
-  - 增加记住评论昵称和邮箱功能
-  - 评论框美化
-  - 移动端padding优化
-  - 主题色统一
-  - 增大PC端右下角工具按钮尺寸
-  - 主题配置页增加新版本更新提示
-  - 修复评论对象opt缺少level属性问题
-
-- 2022.07.01(1.0.3)
-  - 修改歌单音量控制条显示方案
-  - 文章列表增加分类、标签和浏览量显示
-  - 删除很丑的日记框border
-  - 修复侧边菜单栏拖动窗口卡顿问题
-  - 删除歌单列表序号，更干净简洁
-  - 修复无置顶文章不显示歌单问
-
-- 2022.06.30(1.0.2)
-  - 修复主题色选色BUG
-  - 修复头像生成器label宽度不够问题
-  - 优化markdown二级标题圆角和下划线缝隙问题
-  - 删除音乐歌单分割线和调节高度
-  - 头像生成器增加滑块提示
-  - 一些细节优化
-
-- 2022.06.28(1.0.1)
-  - 添加评论功能
-  - 添加自建工具**头像生成器**
-  - N多细节优化
-
-## 使用方法
-
-> 主题基于 Vue3 + element-plus 进行开发
-
-1. 将源码下载下来自行打包上传网站根目录
-2. 下载静态文件[disk.zip](https://raw.githubusercontent.com/ztyangt/inis-theme-grace/main/dist-v1.1.0.beta.zip)上传至网站根目录解压，更改config.js对应内容即可
-
-
-
-## 打赏
-厚着脸皮求打赏，您的赞赏是我最大的动力😋 😋 😋
-
-![](https://qiniu.ztyang.com/img/Snipaste_2022-07-03_14-43-12.png)
-
+```sh
+npm run build
+```
