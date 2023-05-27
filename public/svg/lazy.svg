@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:rgb(0 0 0 / 0%);display:block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<g>
+  <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;180 50 50" keyTimes="0;1"></animateTransform>
+   
+<ellipse cx="50" cy="50" rx="40" ry="0.1" fill="none" stroke="#eeebff" stroke-width="6" transform="rotate(0 50 50)"></ellipse> 
+<ellipse cx="50" cy="50" rx="40" ry="0.1" fill="none" stroke="#eeebff" stroke-width="6" transform="rotate(45 50 50)"></ellipse> 
+<ellipse cx="50" cy="50" rx="40" ry="0.1" fill="none" stroke="#eeebff" stroke-width="6" transform="rotate(90 50 50)"></ellipse> 
+<ellipse cx="50" cy="50" rx="40" ry="0.1" fill="none" stroke="#eeebff" stroke-width="6" transform="rotate(135 50 50)"></ellipse>
+</g>
+<circle cx="50" cy="50" r="40" fill="none" stroke="#8c7bfd" stroke-width="6"></circle>
+<circle cx="50" cy="50" r="20" fill="#8c7bfd" stroke="#eeebff" stroke-width="6"></circle>
+</svg>

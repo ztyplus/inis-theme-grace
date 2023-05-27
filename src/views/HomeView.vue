@@ -1,9 +1,19 @@
+<template>
+  <div class="index">首页</div>
+  <button @click="login">登录</button>
+</template>
+
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import Common from "@/api/common";
+
+const login = async () => {
+  const result = await Common.login("hello", "sss");
+  console.log(result);
+};
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style lang="less" scoped>
+.index {
+  height: 1200px;
+}
+</style>

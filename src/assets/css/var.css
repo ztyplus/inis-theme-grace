@@ -1,0 +1,23 @@
+:root {
+  --el-color-primary: var(--theme-color) !important;
+  --el-border-radius-small: 5px !important;
+  --el-border-radius-round: 8px !important;
+  --el-bg-color: var(--theme-color-4) !important;
+  --el-color-primary-light-1: var(--theme-color-1) !important;
+  --el-color-primary-light-2: var(--theme-color-2) !important;
+  --el-color-primary-light-3: var(--theme-color-1) !important;
+  --el-color-primary-light-9: var(--theme-color-1) !important;
+  --el-color-primary-light-4: var(--theme-color-3) !important;
+  --el-button-hover-bg-color: var(--theme-color-1) !important;
+  --el-fill-color-blank: var(--theme-color-4) !important;
+  --el-border-color: var(--border-color) !important;
+  --el-button-hover-text-color: #fff !important;
+  --el-fill-color: var(--theme-color-3) !important;
+  --el-fill-color-darker: var(--theme-color-4) !important;
+  --el-color-primary-dark-2: var(--theme-color-1) !important;
+}
+
+.el-button {
+  line-height: 32px !important;
+  font-size: .875rem !important;
+}
